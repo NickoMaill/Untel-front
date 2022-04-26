@@ -1,11 +1,11 @@
 import React from 'react'
 
-export default function Video() {
+export default function Video(props) {
   return (
     <div>
-        <video>
-            <source src={require("../public/video/putaclic-loop.mp4")}/>
-        </video>
+			<video style={{ width: "100%", height: 450, objectFit: "cover", zIndex: -1, position:"absolute" }} loop autoPlay muted>
+				<source src={props.source} type="video/mp4" />
+			</video>
     </div>
   )
 }
