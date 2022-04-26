@@ -25,29 +25,39 @@ export default function Header() {
 				<a href="">
 					<img
 						className={styles.headerIcon}
+            alt="facebook"
+            title="facebook"
 						src="/icons/facebook-white.png"
 					/>
 				</a>
 				<a href="">
 					<img
+          alt="instagram"
+          title="instagram"
 						className={styles.headerIcon}
 						src="/icons/instagram-white.png"
 					/>
 				</a>
 				<a href="">
 					<img
+          alt="youtube"
+          title="youtube"
 						className={styles.headerIcon}
 						src="/icons/youtube-white.png"
 					/>
 				</a>
 				<a href="">
 					<img
+          alt="spotify"
+          title="spotify"
 						className={styles.headerIcon}
 						src="/icons/spotify-white.png"
 					/>
 				</a>
 				<a href="">
 					<img
+          alt="deezer"
+          title="deezer"
 						className={styles.headerIcon}
 						src="/icons/deezer-white.png"
 					/>
