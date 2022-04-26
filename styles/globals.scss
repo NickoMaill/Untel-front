@@ -3,6 +3,11 @@
   src: url("../public/font/LemonMilk/LEMONMILK-Regular.otf");
 }
 
+@font-face {
+  font-family: "Roboto light";
+  src: url("../public/font/Roboto/Roboto-Light.ttf");
+}
+
 html,
 *{
   margin: 0;
@@ -13,6 +18,10 @@ html,
 
 h1, h2, h3, h4 ,h5, span {
   font-family: "LemonMilk";
+}
+
+span, p, a, li {
+  font-family: "Roboto light";
 }
 
 body {
