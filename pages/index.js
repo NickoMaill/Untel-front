@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Album from "../components/Album";
 import Video from "../components/Video";
 import Youtube from "../components/Youtube";
 import Gig from "../components/Gig";
 import styles from "../styles/Home.module.scss";
+import PhotoGallery from "../components/PhotoGallery";
+import AppContext from "../context/state";
 
 export const getStaticProps = async () => {
 	const gigs = await fetch("http://localhost:8000/gig_dates/", {
@@ -21,15 +23,37 @@ export const getStaticProps = async () => {
 		},
 	};
 };
+const getWidth = () => window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
 export default function Homepage({ gigs }) {
+	const Context = useContext(AppContext);
+	const [width, setWidth] = useState(getWidth());
+
+	useEffect(() => {
+		const resizeListener = () => {
+			setWidth(getWidth());
+		};
+		window.addEventListener("resize", resizeListener);
+
+		return () => {
+			window.removeEventListener("resize", resizeListener);
+		};
+	}, []);
+
+
+	if (width <= 820) {
+		Context.setIsBurger(true);
+	} else {
+		Context.setIsBurger(false);
+	}
+
 	return (
 		<main>
 			<Video source="/video/putaclic-loop.mp4" />
 			<div className={styles.coloredDiv}>
 				<h2 style={{ fontFamily: "LemonMilk light" }}>UNTEL</h2>
 			</div>
-			<section style={{ display: "flex", justifyContent: "center" }}>
+			<section className={styles.albumContainer} style={{ display: "flex", justifyContent: "center" }}>
 				<Album
 					alt="pochette de l'album Carte Blanche"
 					title="Carte Blanche Vol 1"
@@ -52,7 +76,9 @@ export default function Homepage({ gigs }) {
 			<section className={styles.gigContainer}>
 				<Gig data={gigs} />
 			</section>
-			<section></section>
+			<section>
+				<PhotoGallery />
+			</section>
 		</main>
 	);
 }

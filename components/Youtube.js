@@ -1,14 +1,15 @@
 import React from "react";
+import styles from "../styles/Youtube.module.scss"
 
-export default function Youtube(props) {
+export default function Youtube({ src, title }) {
 	return (
 		<div>
 			<iframe
-				className={props.className}
-				width="560"
-				height="315"
-				src={props.src}
-				title={props.title}
+				className={styles.iframe}
+				// width="460"
+				// height="215"
+				src={src}
+				title={title}
 				frameBorder="0"
 				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 				allowFullScreen

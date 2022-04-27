@@ -1,0 +1,14 @@
+.img {
+    width: 20rem;
+    height: auto;
+    margin-inline: 0.5rem;
+    transition: 100ms;
+    &:hover {
+        filter: sepia(20);
+    }
+}
+
+.modalImg {
+    width: auto;
+    height: 50%;
+}

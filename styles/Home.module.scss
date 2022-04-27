@@ -36,3 +36,15 @@
   justify-content: center;
   align-items: center;
 }
+
+@media screen and (max-width: 843px) {
+    .youtubeContainer{
+      flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 775px) {
+    .albumContainer{
+      flex-direction: column;
+    }
+}
