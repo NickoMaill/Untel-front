@@ -1,3 +1,14 @@
+.titleContainer{
+    border-bottom: solid 1px;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    display: flex;
+}
+
+.gigTitle{
+    font-family: "Roboto regular";
+}
+
 .loader {
     font-size: 10px;
     margin: 50px auto;

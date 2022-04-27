@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-// import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import React, { useState } from "react";
 import styles from "../styles/Gig.module.scss";
 import GigCard from "./GigCard";
 
@@ -19,9 +18,10 @@ export default function Gig({ data }) {
 	};
 
 	return (
-		<div style={{ backgroundColor: "#fff" }}>
-			<div>
-				<h3>concert à venir</h3>
+		<div style={{ width:"30%", backgroundColor: "#fff" }}>
+			<div className={styles.titleContainer}>
+				<h4 className={styles.gigTitle}>Prochain Concerts /</h4>
+				<h4 style={{marginLeft:5, color:"grey"}} className={styles.gigTitle}>Concerts Passé</h4>
 			</div>
 			<div>
 				{!data.success ? (
@@ -44,15 +44,6 @@ export default function Gig({ data }) {
 					</ul>
 				)}
 			</div>
-			{/* <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
-				<TileLayer
-					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-				/>
-				<Marker position={[51.505, -0.09]}>
-					<Popup>{data.gigDates[0].place}</Popup>
-				</Marker>
-			</MapContainer> */}
 		</div>
 	);
 }

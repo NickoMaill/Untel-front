@@ -9,7 +9,7 @@ export default function Album(props) {
 				<h3 className={styles.albumTitle} >{props.children}</h3>
 				<p className={styles.albumText} style={{ fontStyle: "italic" }}>{props.year}</p>
 			</div>
-			<button className={styles.albumButton}>Plus d &apos info</button>
+			<button className={styles.albumButton}>Plus d'info</button>
 		</div>
 	);
 }

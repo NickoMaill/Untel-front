@@ -1,0 +1,25 @@
+.gigCardContainer{
+    padding: 0.5rem;
+    border-bottom: solid 1px;
+}
+.infoContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonContainer{
+    display: flex;
+    margin-block: 1rem;
+}
+
+.button{
+    padding: 0.4rem;
+    border-radius: 0.2rem;
+    background-color: #fff;
+    border: solid 1px;
+    transition: 300ms;
+    &:hover{
+        background-color: #303030;
+        color: #fff;
+    }
+}

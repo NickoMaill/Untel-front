@@ -8,27 +8,40 @@
   src: url("../public/font/Roboto/Roboto-Light.ttf");
 }
 
+@font-face {
+  font-family: "Roboto regular";
+  src: url("../public/font/Roboto/Roboto-Regular.ttf");
+}
+
 html,
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow:visible;
 }
 
-h1, h2, h3, h4 ,h5, span {
+h1,
+h2,
+h3,
+h4,
+h5,
+span {
   font-family: "LemonMilk";
 }
 
-span, p, a, li {
+span,
+p,
+a,
+li {
   font-family: "Roboto light";
 }
 
 body {
+  overflow-x: hidden;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
 }
 
 a {

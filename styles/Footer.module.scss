@@ -1,0 +1,32 @@
+.footerContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    background-color: black;
+    padding: 2rem;
+}
+
+.infoContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.icon{
+    width: 1.5rem;
+}
+
+.iconContainer{
+    display: flex;
+}
+
+.footerIcon {
+    width: 1.5rem;
+    margin-inline: 0.5rem;
+    transition: 200ms;
+    &:hover {
+        -ms-transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+    }
+}
