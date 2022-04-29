@@ -24,7 +24,9 @@
   background-image: url("/images/untel-band2.webp");
   background-position: center;
   width: 100%;
-  height: 50rem;
+  height: 45rem;
+  object-fit: cover;
+  // width: "100%", height: 450, objectFit: "cover", zIndex: -1, position:"absolute"
 }
 
 .gigContainer {

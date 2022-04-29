@@ -23,29 +23,10 @@ export const getStaticProps = async () => {
 		},
 	};
 };
-const getWidth = () => window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
 
 export default function Homepage({ gigs }) {
 	const Context = useContext(AppContext);
-	const [width, setWidth] = useState(getWidth());
-
-	useEffect(() => {
-		const resizeListener = () => {
-			setWidth(getWidth());
-		};
-		window.addEventListener("resize", resizeListener);
-
-		return () => {
-			window.removeEventListener("resize", resizeListener);
-		};
-	}, []);
-
-
-	if (width <= 820) {
-		Context.setIsBurger(true);
-	} else {
-		Context.setIsBurger(false);
-	}
 
 	return (
 		<main>

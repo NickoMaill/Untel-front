@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.6.0",
     "leaflet": "^1.8.0",
     "leaflet-defaulticon-compatibility": "^0.1.1",
     "leaflet-geosearch": "^3.6.0",
@@ -20,6 +21,7 @@
     "react-leaflet": "^4.0.0",
     "react-modal": "^3.13.1",
     "react-router-dom": "^6.3.0",
+    "reactstrap": "^9.0.2",
     "sass": "^1.51.0"
   },
   "devDependencies": {

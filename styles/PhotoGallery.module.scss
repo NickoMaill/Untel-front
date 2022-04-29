@@ -1,14 +1,36 @@
+.arrowContainer{
+    z-index: 2;
+    position: absolute;
+    background: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.arrowGallery{
+    width: 1rem;
+}
+
+.imgContainer{
+    z-index: 1;
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    &::-webkit-scrollbar{
+        display: none;
+    }
+}
+
 .img {
-    width: 20rem;
-    height: auto;
+    width:24rem;
+    height:24rem;
+    width: max-content;
+    object-fit: contain;
+    margin-block: 0.5rem;
     margin-inline: 0.5rem;
     transition: 100ms;
     &:hover {
         filter: sepia(20);
     }
-}
-
-.modalImg {
-    width: auto;
-    height: 50%;
 }

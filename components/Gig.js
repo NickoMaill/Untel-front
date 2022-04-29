@@ -5,6 +5,19 @@ import GigCard from "./GigCard";
 export default function Gig({ data }) {
 	const [geometry, setGeometry] = useState([]);
 	const [isVisible, setIsVisible] = useState(false);
+	let customStyles;
+
+	if (data.length > 2) {
+		customStyles = {
+			overflowY: "scroll",
+			height: 300,
+		};
+	} else {
+		customStyles = {
+			overflowY: "hidden",
+			height: "auto",
+		};
+	}
 
 	const getGeometry = (index) => {
 		fetch(
@@ -18,29 +31,33 @@ export default function Gig({ data }) {
 	};
 
 	return (
-		<div style={{ width:"30%", backgroundColor: "#fff" }}>
+		<div style={{ width: "30%", backgroundColor: "#fff" }}>
 			<div className={styles.titleContainer}>
 				<h4 className={styles.gigTitle}>Prochain Concerts /</h4>
-				<h4 style={{marginLeft:5, color:"grey"}} className={styles.gigTitle}>Concerts Passé</h4>
+				<h4 style={{ marginLeft: 5, color: "grey" }} className={styles.gigTitle}>
+					Concerts Passé
+				</h4>
 			</div>
-			<div>
+			<div style={customStyles}>
 				{!data.success ? (
 					<div className={styles.loader}>Loading... address</div>
 				) : (
 					<ul>
-						{data.gigDates.map((gigData, i) => {
-							return (
-								<GigCard
-									key={i}
-									title={gigData.place}
-									date={gigData.date}
-									city={gigData.city}
-									country={gigData.country}
-									event={gigData.event_link}
-									onClick={() => getGeometry(i)}
-								/>
-							);
-						})}
+						<li>
+							{data.gigDates.map((gigData, i) => {
+								return (
+									<GigCard
+										key={i}
+										title={gigData.place}
+										date={gigData.date}
+										city={gigData.city}
+										country={gigData.country}
+										event={gigData.event_link}
+										onClick={() => getGeometry(i)}
+									/>
+								);
+							})}
+						</li>
 					</ul>
 				)}
 			</div>
