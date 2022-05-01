@@ -7,6 +7,7 @@ import styles from "../styles/Home.module.scss";
 import PhotoGallery from "../components/PhotoGallery";
 import AppContext from "../context/state";
 
+
 export const getStaticProps = async () => {
 	const gigs = await fetch("http://localhost:8000/gig_dates/", {
 		method: "GET",
@@ -23,7 +24,6 @@ export const getStaticProps = async () => {
 		},
 	};
 };
-
 
 export default function Homepage({ gigs }) {
 	const Context = useContext(AppContext);

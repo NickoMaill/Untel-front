@@ -1,5 +1,6 @@
 import { useState } from "react";
 // import Head from "next/head";
+import { SnackbarProvider } from "notistack";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import AppContext from "../context/state";
@@ -11,15 +12,17 @@ function MyApp({ Component, pageProps }) {
 
 	const value = {
 		isBurger,
-		setIsBurger
-	}
+		setIsBurger,
+	};
 
 	return (
-		<AppContext.Provider value={value}>
+		<SnackbarProvider anchorOrigin={{ vertical: "top", horizontal: "right" }} maxSnack={3}>
+			<AppContext.Provider value={value}>
 			<Header />
-			<Component {...pageProps} />
+				<Component {...pageProps} />
 			<Footer />
-		</AppContext.Provider>
+			</AppContext.Provider>
+		</SnackbarProvider>
 	);
 }
 
