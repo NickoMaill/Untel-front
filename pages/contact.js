@@ -1,14 +1,14 @@
+import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Contact.module.scss";
 
 export default function Contact() {
+	const router = useRouter();
 	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-	const [userMessage, setUserMessage] = useState({
-		email: "",
-		subject: "",
-		messageBody: "",
-	});
+	const [contactEmail, setContactEmail] = useState("");
+	const [subject, setSubject] = useState("");
+	const [messageBody, setMessageBody] = useState("");
 	const [isEmailValid, setIsEmailValid] = useState(null);
 	const [messageSend, setMessageSend] = useState(false);
 	const [isSending, setIsSending] = useState(false);
@@ -17,28 +17,32 @@ export default function Contact() {
 		/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
 	const sendMessage = () => {
-		console.log(userMessage);
 		setIsSending(true);
 		fetch("http://localhost:8000/admin/send-email", {
 			method: "POST",
 			mode: "cors",
 			headers: {
-				headers: {
-					Accept: "application/json",
-					"Content-Type": "application/json",
-				},
-				credentials: "include",
+				Accept: "application/json",
+				"Content-Type": "application/json",
 			},
-			body: JSON.stringify(userMessage),
+			credentials: "include",
+			body: JSON.stringify({
+				contactEmail,
+				subject,
+				messageBody,
+			}),
 		})
+			.then((res) => res.json())
 			.then((res) => {
-				console.log(res);
 				setIsSending(false);
 				if (res.success) {
 					setMessageSend(true);
 					enqueueSnackbar("hello", {
 						variant: "success",
 					});
+					setTimeout(() => {
+						router.push("/");
+					}, 2000);
 				} else {
 					enqueueSnackbar("hello", {
 						variant: "error",
@@ -60,10 +64,7 @@ export default function Contact() {
 			console.log("mauvais format");
 		} else {
 			setIsEmailValid(true);
-			setUserMessage((prevState) => ({
-				...prevState,
-				email: input,
-			}));
+			setContactEmail(input);
 			console.log("bon format");
 		}
 	};
@@ -110,9 +111,7 @@ export default function Contact() {
 										className={styles.input}
 										placeholder="Votre sujet de discussion"
 										name="subject"
-										onChange={(e) =>
-											setUserMessage((prevState) => ({ ...prevState, subject: e.target.value }))
-										}
+										onChange={(e) => setSubject(e.target.value)}
 										type="text"
 									/>
 								</div>
@@ -123,12 +122,7 @@ export default function Contact() {
 										placeholder="Votre message ici ..."
 										name="messageBody"
 										style={{ fontFamily: "Roboto light" }}
-										onChange={(e) =>
-											setUserMessage((prevState) => ({
-												...prevState,
-												messageBody: e.target.value,
-											}))
-										}
+										onChange={(e) => setMessageBody(e.target.value)}
 										cols="30"
 										rows="10"
 									/>

@@ -49,10 +49,9 @@ export default function Homepage({ gigs }) {
 			</section>
 			<section className={styles.youtubeContainer}>
 				<Youtube
-					title="Youtube video 'Entretien d'embauche - Untel'"
 					src="https://www.youtube.com/embed/1JbqsjB4qPg"
 				/>
-				<Youtube title="Youtube video 'Favorable - Untel'" src="https://www.youtube.com/embed/fyi2exJt24U" />
+				<Youtube src="https://www.youtube.com/embed/fyi2exJt24U" />
 			</section>
 			<section className={styles.gigContainer}>
 				<Gig data={gigs} />
