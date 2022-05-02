@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import styles from "../styles/Gig.module.scss";
+import { convertDate } from "../utils/convertDate";
 import GigCard from "./GigCard";
 
 export default function Gig({ data }) {
 	const [geometry, setGeometry] = useState([]);
 	const [isVisible, setIsVisible] = useState(false);
 	let customStyles;
+
+
 
 	if (data.length > 2) {
 		customStyles = {

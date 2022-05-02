@@ -28,6 +28,8 @@ export const getStaticProps = async () => {
 export default function Homepage({ gigs }) {
 	const Context = useContext(AppContext);
 
+	console.log(gigs);
+
 	return (
 		<main>
 			<Video source="/video/putaclic-loop.mp4" />
