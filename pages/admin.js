@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { useSnackbar } from "notistack";
 import { login } from "../utils/login";
 import AlbumSettings from "../components/AlbumSettings";
@@ -59,40 +60,24 @@ export default function admin({ data }) {
 				</section>
 			) : (
 				<section>
-					<div>
-						<div>
-							<h3>Bienvenue</h3>
-							<h4>sur votre espace administrateur</h4>
-						</div>
-						<div>
-							<p>
-								Ici vous pouvez modifier certains contenue de votre site comme les photos, ajouté des
-								albums ou vos prochaines dates
-							</p>
-							<p>
-								pour tout autre changement non répertorié dans votre espace veuillez contacter le
-								développeur en charge du site
-							</p>
-						</div>
-					</div>
-					<div>
-						<h5>Modifier vos albums</h5>
-						<div>
-                            {data.albums.map((album, i) => {
-                                return <AlbumSettings
-                                key={i}
-                                title={album.title}
-                                subtitle={album.subtitle}
-                                releaseYear={album.year}
-                                description={album.description}
-                                playlist={album.playlist_link}
-                                youtube={album.video_link}
-                                isReleased={album.is_released}
-                                albumCover={album.photos_paths}
-                                />
-                            })}
-                        </div>
-					</div>
+					<Link href="/admin/addAlbum">
+						<button>Ajouter un album</button>
+					</Link>
+					<Link href="/admin/updateAlbum">
+						<button>Modifier un album</button>
+					</Link>
+					<Link href="/admin/addGig">
+						<button>Ajouter un date</button>
+					</Link>
+					<Link href="/admin/updateGig">
+						<button>Modifier une date</button>
+					</Link>
+					<Link href="/admin/addDeletePhotos">
+						<button>Ajouter / supprimer vos photos </button>
+					</Link>
+					<Link href="/admin/updateVideos">
+						<button>Modifier vidéo</button>
+					</Link>
 				</section>
 			)}
 		</main>
