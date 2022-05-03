@@ -7,7 +7,7 @@ export default function Footer() {
 			<div className={styles.infoContainer}>
 				<span>&copy; Copyright All Rights Reserved - © 2022</span>
 				<span>
-					Photos par <a href="">Elodie Roy</a>, <a href="">Atiah</a>
+					Photos par <a href="">Elodie Roy</a>, <a href="https://elodieroyphotographe-69.webself.net/" target="_blank">Atiah</a>
 				</span>
 				<span>
 					site codé par <a href="">Nicolas Maillols</a>{" "}

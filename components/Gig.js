@@ -10,17 +10,17 @@ export default function Gig({ data }) {
 
 
 
-	if (data.length > 2) {
-		customStyles = {
-			overflowY: "scroll",
-			height: 300,
-		};
-	} else {
-		customStyles = {
-			overflowY: "hidden",
-			height: "auto",
-		};
-	}
+	// if (data.length > 2) {
+	// 	customStyles = {
+	// 		overflowY: "scroll",
+	// 		height: 300,
+	// 	};
+	// } else {
+	// 	customStyles = {
+	// 		overflowY: "hidden",
+	// 		height: "auto",
+	// 	};
+	// }
 
 	const getGeometry = (index) => {
 		fetch(
@@ -47,7 +47,7 @@ export default function Gig({ data }) {
 				) : (
 					<ul>
 						<li>
-							{data.gigDates.map((gigData, i) => {
+							{data.gigs.map((gigData, i) => {
 								return (
 									<GigCard
 										key={i}
