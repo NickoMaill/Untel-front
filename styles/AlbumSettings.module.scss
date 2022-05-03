@@ -1,0 +1,19 @@
+.formDetails{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    margin-bottom: 0.8rem;
+}
+.formDetails2{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.8rem;
+}
+
+.input{
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 0.5rem;
+    font-family: "Roboto regular";
+    align-items: center;
+}

@@ -3,15 +3,6 @@ import styles from "../styles/PhotoGallery.module.scss";
 
 export default function PhotoGallery() {
 	const ref = useRef(null)
-	// const [isVisible, setIsVisible] = useState(false);
-	// const [path, setPath] = useState("");
-
-	// const openCloseModal = (e) => {
-	// 	setPath(e.target.src);
-	// 	setIsVisible(!isVisible);
-	// };
-
-	// console.log(ref.current.scrollLeft);
 
 	const scroll = (scrollOffset) => {
 		ref.current.scrollLeft += scrollOffset

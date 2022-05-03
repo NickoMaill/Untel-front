@@ -1,5 +1,5 @@
-export const login = (pass) => {
-	return fetch("http://localhost:8000/admin/login", {
+export const login = async (pass) => {
+	return await  fetch("http://localhost:8000/admin/login", {
 		method: "POST",
 		mode: "cors",
 		headers: {
