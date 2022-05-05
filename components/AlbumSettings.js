@@ -76,7 +76,7 @@ export default function AlbumSettings({
 				</div>
 				<div style={{ display: "flex", alignItems: "center", justifyContent:"space-evenly" }}>
 					<div style={{display:"flex", flexDirection:"column"}}>
-						<label htmlFor="albumCover">Photo de l'album</label>
+						<label htmlFor="albumCover">Photo de l&apos;album</label>
 						<input className={styles.input} name="albumCover" type="file" />
 					</div>
 					<div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>

@@ -16,8 +16,8 @@ export default function GigCard({ title, date, city, country, event, onClick }) 
 				</span>
 			</div>
 			<div className={styles.buttonContainer}>
-				<a style={{ marginRight: "10%" }} target="_blank" href={event}>
-					<button className={styles.button}>accéder a l'évènement</button>
+				<a style={{ marginRight: "10%" }} target="_blank" rel="noreferrer" href={event}>
+					<button className={styles.button}>accéder a l&apos;évènement</button>
 				</a>
 
 				<button className={styles.button} onClick={onClick}>

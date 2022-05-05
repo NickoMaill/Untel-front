@@ -102,7 +102,7 @@ export default function Contact() {
 										type="text"
 									/>
 									{isEmailValid === false && (
-										<span style={{ color: "rgb(243, 36, 36)" }}>mauvais format d'email</span>
+										<span style={{ color: "rgb(243, 36, 36)" }}>mauvais format d&apos;email</span>
 									)}
 								</div>
 								<div style={{ marginBlock: 10, display: "flex", flexDirection: "column" }}>

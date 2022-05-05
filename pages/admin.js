@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useSnackbar } from "notistack";
 import { login } from "../utils/login";
-import AlbumSettings from "../components/AlbumSettings";
 
 export const getStaticProps = async () => {
 	const data = await fetch("http://localhost:8000/", {
@@ -21,7 +20,7 @@ export const getStaticProps = async () => {
 	};
 };
 
-export default function admin({ data }) {
+export default function Admin({ data }) {
 	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 	const [isAdminLogged, setIsAdminLogged] = useState(false);
 	const [password, setPassword] = useState("");
@@ -44,7 +43,9 @@ export default function admin({ data }) {
 	return (
 		<main>
 			{!isAdminLogged ? (
-				<section>
+				<section
+					style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+				>
 					<form
 						style={{
 							display: "flex",
@@ -59,7 +60,9 @@ export default function admin({ data }) {
 					</form>
 				</section>
 			) : (
-				<section>
+				<section
+					style={{ display: "flex", alignItems: "center", justifyContent: "center"}}
+				>
 					<Link href="/admin/addAlbum">
 						<button>Ajouter un album</button>
 					</Link>

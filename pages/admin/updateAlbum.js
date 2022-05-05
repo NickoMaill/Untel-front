@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useSnackbar } from "notistack";
-import { login } from "../utils/login";
+import { login } from "../../utils/login";
 import AlbumSettings from "../../components/AlbumSettings";
+import Link from "next/link";
 
 export const getStaticProps = async () => {
 	const data = await fetch("http://localhost:8000/", {
@@ -20,7 +21,7 @@ export const getStaticProps = async () => {
 	};
 };
 
-export default function updateAlbum() {
+export default function UpdateAlbum({ data }) {
 	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 	const [isAdminLogged, setIsAdminLogged] = useState(false);
 	const [password, setPassword] = useState("");
@@ -73,11 +74,14 @@ export default function updateAlbum() {
 									playlist={album.playlist_link}
 									youtube={album.video_link}
 									isReleased={album.is_released}
-									albumCover={album.photos_paths}
+									albumCover={album.photo_path}
 								/>
 							);
 						})}
 					</div>
+                    <Link href="/admin">
+                    <button>Revenir a votre espace admin</button>
+                    </Link>
 				</div>
 			</section>
 		</main>

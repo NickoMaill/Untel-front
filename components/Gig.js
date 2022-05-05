@@ -30,7 +30,7 @@ export default function Gig({ data }) {
 			.then((res) => {
 				setGeometry(res.features[0].geometry.coordinates);
 			})
-			.catch((error) => console.log("error", error));
+			.catch((error) => console.error("error", error));
 	};
 
 	return (

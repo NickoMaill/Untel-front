@@ -7,7 +7,7 @@ export default function Instagram({ src }) {
 				src={src}
 				width="320"
 				height="400"
-				frameborder="0"
+				frameBorder="0"
 				scrolling="no"
                 title="instagram"
 				allowtransparency="true"

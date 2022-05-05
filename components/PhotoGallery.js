@@ -1,30 +1,32 @@
 import React, { useState, useRef } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import styles from "../styles/PhotoGallery.module.scss";
 
 export default function PhotoGallery() {
-	const ref = useRef(null)
+	const ref = useRef(null);
 
 	const scroll = (scrollOffset) => {
-		ref.current.scrollLeft += scrollOffset
-	}
+		ref.current.scrollLeft += scrollOffset;
+		console.log(ref);
+	};
 
 	return (
-		<div style={{display:"flex" ,alignItems: "center" }}>
+		<div style={{ display: "flex", alignItems: "center" }}>
 			<div className={styles.arrowContainer}>
-				<div onClick={() => scroll(-1000)} style={{ backgroundColor: "rgba(0,0,0,0.7)", padding: 10 }}>
+				<div onClick={() => scroll(-500)} style={{ backgroundColor: "rgba(0,0,0,0.7)", padding: 10 }}>
 					<img className={styles.arrowGallery} src="/icons/left.png" alt="flèche gauche" />
 				</div>
-				<div onClick={() => scroll(1000)} style={{ backgroundColor: "rgba(0,0,0,0.7)", padding: 10 }}>
+				<div onClick={() => scroll(500)} style={{ backgroundColor: "rgba(0,0,0,0.7)", padding: 10 }}>
 					<img className={styles.arrowGallery} src="/icons/right.png" alt="flèche droite" />
 				</div>
 			</div>
 			<div className={styles.imgContainer} ref={ref}>
-				<img className={styles.img} src="/images/untel-band3.webp" alt="Untel" />
-				<img className={styles.img} src="/images/untel-band4.webp" alt="Untel" />
-				<img className={styles.img} src="/images/untel-favo.webp" alt="Untel" />
-				<img className={styles.img} src="/images/untel-front1.webp" alt="Untel" />
-				<img className={styles.img} src="/images/untel-front2.webp" alt="Untel" />
-				<img className={styles.img} src="/images/untel.webp" alt="Untel" />
+				<LazyLoadImage loading="lazy" className={styles.img} src="/images/untel-band3.webp" alt="Untel" />
+				<LazyLoadImage loading="lazy" className={styles.img} src="/images/untel-band4.webp" alt="Untel" />
+				<LazyLoadImage loading="lazy" className={styles.img} src="/images/untel-favo.webp" alt="Untel" />
+				<LazyLoadImage loading="lazy" className={styles.img} src="/images/untel-front1.webp" alt="Untel" />
+				<LazyLoadImage loading="lazy" className={styles.img} src="/images/untel-front2.webp" alt="Untel" />
+				<LazyLoadImage loading="lazy" className={styles.img} src="/images/untel.webp" alt="Untel" />
 			</div>
 		</div>
 	);

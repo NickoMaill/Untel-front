@@ -39,6 +39,21 @@
   align-items: center;
 }
 
+.spinner:before {
+  content: "";
+  position: absolute;
+  box-sizing: border-box;
+  // left: 52%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: 2rem;
+  border-radius: 50%;
+  border: 3px solid #ccc;
+  border-top-color: #000;
+  animation: spinner 0.8s linear infinite;
+}
+
 @media screen and (max-width: 843px) {
     .youtubeContainer{
       flex-direction: column;

@@ -1,4 +1,4 @@
-.cardContainer{
+.cardContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,17 +7,19 @@
     margin-inline: 5rem;
 }
 
-.imgAlbum{
+.imgAlbum {
     width: 19rem;
     transition: 400ms;
-    &:hover{
+    &:hover {
         -ms-transform: scale(1.1);
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
+        z-index: 3;
     }
 }
 
-.titleContainer{
+.titleContainer {
+    z-index: 2;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -30,32 +32,96 @@
     width: 80%;
 }
 
-.albumButton{
+.albumButton {
+    z-index: 3;
     margin-top: -1rem;
     padding: 0.7rem;
     width: 50%;
     background-color: #fff;
     border: solid #000 1px;
     transition: 300ms;
-    &:hover{
+    &:hover {
         background-color: #000;
         color: #fff;
         -ms-transform: scale(1.1);
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
     }
-    &:active{
+    &:active {
         -ms-transform: scale(0.95);
         -webkit-transform: scale(0.95);
         transform: scale(0.95);
     }
-
 }
 
-.albumTitle{
+.albumTitle {
     margin-block: 0.5rem;
 }
 
-.albumText{
+.albumText {
     margin-bottom: 0.5rem;
+}
+
+/*$$$$$$$$$$$$$$$$$$$$$$$$$$$$*/
+
+// .button {
+//     position: relative;
+//     padding: 8px 16px;
+//     background: #ffffff;
+//     border: none;
+//     outline: none;
+//     border-radius: 2px;
+//     cursor: pointer;
+//   }
+
+//   .button:active {
+//     background: #ffffff;
+//   }
+
+//   .button__text {
+//     font: bold 20px "Quicksand", san-serif;
+//     color: #ffffff;
+//     transition: all 0.2s;
+//   }
+
+//   .button--loading .button__text {
+//     visibility: hidden;
+//     opacity: 0;
+//   }
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.albumLoader {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 3;
+    margin-top: -1rem;
+    padding: 0.7rem;
+    width: 50%;
+    background-color: rgb(233, 233, 233);
+    border: solid #000 1px;
+    transition: 100ms;
+}
+
+.spinner {
+}
+
+.spinner:before {
+    content: "";
+    position: absolute;
+    box-sizing: border-box;
+    // left: 52%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: 2rem;
+    border-radius: 50%;
+    border: 3px solid #ccc;
+    border-top-color: #000;
+    animation: spinner 0.8s linear infinite;
 }
