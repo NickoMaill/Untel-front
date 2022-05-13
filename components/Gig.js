@@ -7,8 +7,7 @@ export default function Gig({ data }) {
 	const [geometry, setGeometry] = useState([]);
 	const [isVisible, setIsVisible] = useState(false);
 	let customStyles;
-
-
+	console.log(data);
 
 	// if (data.length > 2) {
 	// 	customStyles = {
@@ -24,11 +23,12 @@ export default function Gig({ data }) {
 
 	const getGeometry = (index) => {
 		fetch(
-			`https://api.geoapify.com/v1/geocode/search?text=${data.gigDates[index].address}, ${data.gigDates[index].city}, ${data.gigDates[index].country}&apiKey=ac8c21ac706f453b9ee59cdf882cca91`
+			`https://api.geoapify.com/v1/geocode/search?text=${data.gigs[index].address}, ${data.gigs[index].city}, ${data.gigs[index].country}&apiKey=ac8c21ac706f453b9ee59cdf882cca91`
 		)
 			.then((res) => res.json())
 			.then((res) => {
-				setGeometry(res.features[0].geometry.coordinates);
+				console.log(res);
+				// setGeometry(res.features[0].geometry.coordinates);
 			})
 			.catch((error) => console.error("error", error));
 	};

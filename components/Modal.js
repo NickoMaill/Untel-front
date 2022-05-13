@@ -1,8 +1,6 @@
 import styles from "../styles/Modal.module.scss";
 
-export default function Modal({ src, alt, open, onClick }) {
-	console.log(open);
-
+export default function Modal({ src, open, onClick }) {
 	return (
 		<div>
 			{open ? (
