@@ -38,7 +38,7 @@ export default function Homepage({ data }) {
 
 	return (
 		<main>
-			<Video source="/video/putaclic-loop.mp4" />
+			<Video source="/video/montage.mp4" />
 			<div className={styles.coloredDiv}>
 				<h2 style={{ fontFamily: "LemonMilk light" }}>UNTEL</h2>
 			</div>

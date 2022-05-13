@@ -75,13 +75,15 @@ export default function UpdateAlbum({ data }) {
 									youtube={album.video_link}
 									isReleased={album.is_released}
 									albumCover={album.photo_path}
+									color={album.color}
+									id={album.album_id}
 								/>
 							);
 						})}
 					</div>
-                    <Link passHref={true} href="/admin">
-                    <button>Revenir a votre espace admin</button>
-                    </Link>
+					<Link passHref={true} href="/admin">
+						<button>Revenir a votre espace admin</button>
+					</Link>
 				</div>
 			</section>
 		</main>

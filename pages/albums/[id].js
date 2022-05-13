@@ -1,18 +1,23 @@
 import React from "react";
+import Playlist from "../../components/Playlist";
 import Youtube from "../../components/Youtube";
+import styles from "../../styles/AlbumPages.module.scss";
 
 export default function AlbumDetails({ album }) {
 	const formatDescription = [album.description].map((i) => i.replace(/\n/g, "<br/>")).join("");
 	return (
 		<main>
 			<section>
-				<div style={{display:"flex", alignItems:"center"}}>
-					<img style={{width:"20%", marginRight:20}} src={`http://localhost:8000/${album.photo_path}`} alt="" />
+				<div className={styles.title}>
 					<h2>{`${album.title} (${album.year})`}</h2>
+					<img className={styles.img} src={`http://localhost:8000/${album.photo_path}`} alt="" />
 				</div>
 				<div>
 					<p>{formatDescription}</p>
-					<Youtube src={album.video_link}/>
+					<div style={{display:"flex", justifyContent:"space-around", alignItems:"center"}}>
+						<Youtube src={album.video_link} />
+						<Playlist src={album.playlist_link} />
+					</div>
 				</div>
 			</section>
 		</main>
@@ -35,8 +40,6 @@ export async function getStaticProps({ params }) {
 		},
 	};
 }
-
-console.log("hello");
 
 export async function getStaticPaths() {
 	const data = await fetch("http://localhost:8000/albums/all", {
