@@ -2,6 +2,7 @@ import React from "react";
 import Youtube from "../../components/Youtube";
 
 export default function AlbumDetails({ album }) {
+	const formatDescription = [album.description].map((i) => i.replace(/\n/g, "<br/>")).join("");
 	return (
 		<main>
 			<section>
@@ -10,7 +11,7 @@ export default function AlbumDetails({ album }) {
 					<h2>{`${album.title} (${album.year})`}</h2>
 				</div>
 				<div>
-					<p>{album.description}</p>
+					<p>{formatDescription}</p>
 					<Youtube src={album.video_link}/>
 				</div>
 			</section>

@@ -17,8 +17,8 @@ export default function Footer({ onClick }) {
 					site codé par <a href="">Nicolas Maillols</a>{" "}
 				</span>
 			</div>
-			<div onClick={onClick}>
-				<img className={styles.footerIcon} src="/icons/upArrow.png" alt="" />
+			<div>
+				<a href="#"><img className={styles.footerIcon} src="/icons/upArrow.png" alt="" /></a>
 			</div>
 			<div className={styles.iconContainer}>
 				<a href="">

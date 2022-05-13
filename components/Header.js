@@ -8,18 +8,18 @@ import AppContext from "../context/state";
 const imageSize = 25;
 
 export default function Header() {
-	const Context = useContext(AppContext)
+	const Context = useContext(AppContext);
 
 	return (
-		<header className={styles.headerContainer}>
+		<header id="top" className={styles.headerContainer}>
 			{!Context.isBurger ? (
 				<>
 					<div>
 						<nav>
-							<Link href="/">
+							<Link passHref={true} href="/">
 								<span className={styles.navLink}>Accueil</span>
 							</Link>
-							<Link href="/contact">
+							<Link passHref={true} href="/contact">
 								<span className={styles.navLink}>Contact</span>
 							</Link>
 						</nav>
@@ -77,10 +77,10 @@ export default function Header() {
 					</div>
 					<Menu>
 						<nav>
-							<Link href="/">
+							<Link passHref={true} href="/">
 								<span className={styles.navLink}>Accueil</span>
 							</Link>
-							<Link href="/contact">
+							<Link passHref={true} href="/contact">
 								<span className={styles.navLink}>Contact</span>
 							</Link>
 						</nav>

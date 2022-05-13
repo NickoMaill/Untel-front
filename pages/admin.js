@@ -63,22 +63,22 @@ export default function Admin({ data }) {
 				<section
 					style={{ display: "flex", alignItems: "center", justifyContent: "center"}}
 				>
-					<Link href="/admin/addAlbum">
+					<Link passHref={true} href="/admin/addAlbum">
 						<button>Ajouter un album</button>
 					</Link>
-					<Link href="/admin/updateAlbum">
+					<Link passHref={true} href="/admin/updateAlbum">
 						<button>Modifier un album</button>
 					</Link>
-					<Link href="/admin/addGig">
+					<Link passHref={true} href="/admin/addGig">
 						<button>Ajouter un date</button>
 					</Link>
-					<Link href="/admin/updateGig">
+					<Link passHref={true} href="/admin/updateGig">
 						<button>Modifier une date</button>
 					</Link>
-					<Link href="/admin/addDeletePhotos">
+					<Link passHref={true} href="/admin/addDeletePhotos">
 						<button>Ajouter / supprimer vos photos </button>
 					</Link>
-					<Link href="/admin/updateVideos">
+					<Link passHref={true} href="/admin/updateVideos">
 						<button>Modifier vidéo</button>
 					</Link>
 				</section>

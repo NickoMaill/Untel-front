@@ -79,7 +79,7 @@ export default function UpdateAlbum({ data }) {
 							);
 						})}
 					</div>
-                    <Link href="/admin">
+                    <Link passHref={true} href="/admin">
                     <button>Revenir a votre espace admin</button>
                     </Link>
 				</div>

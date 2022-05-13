@@ -1,9 +1,19 @@
 import React, { useState, useRef } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import styles from "../styles/PhotoGallery.module.scss";
+import Modal from "./Modal";
 
 export default function PhotoGallery() {
+	const [isOpen, setIsOpen] = useState(false);
+	const [currentPhoto, setCurrentPhoto] = useState("");
 	const ref = useRef(null);
+	console.log(ref)
+
+	const openCloseModal = (path) => {
+		setIsOpen(!isOpen)
+		setCurrentPhoto(path)
+
+	}
 
 	const scroll = (scrollOffset) => {
 		ref.current.scrollLeft += scrollOffset;
@@ -21,12 +31,15 @@ export default function PhotoGallery() {
 				</div>
 			</div>
 			<div className={styles.imgContainer} ref={ref}>
-				<LazyLoadImage loading="lazy" className={styles.img} src="/images/untel-band3.webp" alt="Untel" />
-				<LazyLoadImage loading="lazy" className={styles.img} src="/images/untel-band4.webp" alt="Untel" />
-				<LazyLoadImage loading="lazy" className={styles.img} src="/images/untel-favo.webp" alt="Untel" />
-				<LazyLoadImage loading="lazy" className={styles.img} src="/images/untel-front1.webp" alt="Untel" />
-				<LazyLoadImage loading="lazy" className={styles.img} src="/images/untel-front2.webp" alt="Untel" />
-				<LazyLoadImage loading="lazy" className={styles.img} src="/images/untel.webp" alt="Untel" />
+				<LazyLoadImage loading="lazy" onClick={() => openCloseModal(ref.current.childNodes[0].src)} className={styles.img} src="/images/untel-band3.webp" alt="Untel" />
+				<LazyLoadImage loading="lazy" onClick={() => openCloseModal(ref.current.childNodes[1].src)} className={styles.img} src="/images/untel-band4.webp" alt="Untel" />
+				<LazyLoadImage loading="lazy" onClick={() => openCloseModal(ref.current.childNodes[2].src)} className={styles.img} src="/images/untel-favo.webp" alt="Untel" />
+				<LazyLoadImage loading="lazy" onClick={() => openCloseModal(ref.current.childNodes[3].src)} className={styles.img} src="/images/untel-front1.webp" alt="Untel" />
+				<LazyLoadImage loading="lazy" onClick={() => openCloseModal(ref.current.childNodes[4].src)} className={styles.img} src="/images/untel-front2.webp" alt="Untel" />
+				<LazyLoadImage loading="lazy" onClick={() => openCloseModal(ref.current.childNodes[5].src)} className={styles.img} src="/images/untel.webp" alt="Untel" />
+			</div>
+			<div>
+				<Modal open={isOpen} onClick={openCloseModal} src={currentPhoto} />
 			</div>
 		</div>
 	);
