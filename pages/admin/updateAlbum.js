@@ -3,6 +3,7 @@ import { useSnackbar } from "notistack";
 import { login } from "../../utils/login";
 import AlbumSettings from "../../components/AlbumSettings";
 import Link from "next/link";
+import styles from "../../styles/AlbumSettings.module.scss"
 
 export const getStaticProps = async () => {
 	const data = await fetch("http://localhost:8000/", {
@@ -44,12 +45,12 @@ export default function UpdateAlbum({ data }) {
 	return (
 		<main>
 			<section>
-				<div>
-					<div>
+				<div style={{display:"flex", flexDirection:"column"}}>
+					<div style={{textAlign:"center"}}>
 						<h3>Bienvenue</h3>
 						<h4>sur votre espace administrateur</h4>
 					</div>
-					<div>
+					<div style={{textAlign:"center"}}>
 						<p>
 							Ici vous pouvez modifier certains contenue de votre site comme les photos, ajouté des albums
 							ou vos prochaines dates
@@ -60,9 +61,8 @@ export default function UpdateAlbum({ data }) {
 						</p>
 					</div>
 				</div>
-				<div>
-					<h5>Modifier vos albums</h5>
-					<div>
+				<div style={{display:"flex", flexDirection:"column"}}>
+					<h5 style={{textAlign:"center"}}>Modifier vos albums</h5>
 						{data.albums.map((album, i) => {
 							return (
 								<AlbumSettings
@@ -77,14 +77,14 @@ export default function UpdateAlbum({ data }) {
 									albumCover={album.photo_path}
 									color={album.color}
 									id={album.album_id}
+									requestType="update"
 								/>
 							);
 						})}
-					</div>
-					<Link passHref={true} href="/admin">
-						<button>Revenir a votre espace admin</button>
-					</Link>
 				</div>
+					<Link passHref={true} href="/admin">
+						<button className={styles.button}>Revenir a votre espace admin</button>
+					</Link>
 			</section>
 		</main>
 	);

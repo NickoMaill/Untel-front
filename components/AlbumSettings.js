@@ -13,6 +13,7 @@ export default function AlbumSettings({
 	isReleased,
 	albumCover,
 	id,
+	requestType,
 }) {
 	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
@@ -27,9 +28,20 @@ export default function AlbumSettings({
 	const [isReleasedAlbum, setIsReleasedAlbum] = useState(isReleased);
 	const [isUpdated, setIsUpdated] = useState(false);
 
-	const updateAlbum = (event) => {
+	const updateAlbum = (event, type) => {
 		event.preventDefault();
 		setIsUpdated(true);
+		let url;
+		let method;
+
+		if (type === "add") {
+			url = "http://localhost:8000/albums/add-album";
+		}
+
+		if (type === "update") {
+			url = `http://localhost:8000/albums/update-album/${id}`;
+			method = "PUT";
+		}
 
 		const formData = new FormData();
 		formData.append("title", titleAlbum);
@@ -42,8 +54,8 @@ export default function AlbumSettings({
 		formData.append("color", colorAlbum);
 		formData.append("isReleased", isReleasedAlbum);
 
-		fetch(`http://localhost:8000/albums/update-album/${id}`, {
-			method: "PUT",
+		fetch(url, {
+			method,
 			body: formData,
 		})
 			.then((res) => res.json())
@@ -66,9 +78,14 @@ export default function AlbumSettings({
 			})
 			.catch((err) => console.error(err));
 	};
+
 	return (
-		<div style={{ display: "flex", margin: 4 }}>
-			<form onSubmit={(e) => updateAlbum(e)} style={{ display: "flex", flexDirection: "column", width: "50%" }}>
+		<div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
+			<form
+				onSubmit={(e) => updateAlbum(e, requestType)}
+				className={styles.form}
+				style={{ display: "flex", flexDirection: "column", width: "70%", justifyContent: "center" }}
+			>
 				<div style={{ display: "flex", justifyContent: "space-between" }}>
 					<div className={styles.formDetails}>
 						<label htmlFor="title">Titre</label>
@@ -153,6 +170,7 @@ export default function AlbumSettings({
 							defaultValue={playlist}
 							name="playlist"
 							type="url"
+							placeholder="playlist Spotify"
 							onChange={(e) => setPlaylistLinkAlbum(e.target.value)}
 						/>
 					</div>
@@ -161,6 +179,7 @@ export default function AlbumSettings({
 						<input
 							className={styles.input}
 							defaultValue={youtube}
+							placeholder="lien youtube"
 							name="youtube"
 							type="text"
 							onChange={(e) => setVideoLinkAlbum(e.target.value)}
@@ -169,7 +188,7 @@ export default function AlbumSettings({
 				</div>
 				<div style={{ display: "flex", alignItems: "center", justifyContent: "space-evenly" }}>
 					<div style={{ display: "flex", flexDirection: "column" }}>
-						<div>
+						<div style={{ display: "flex", flexDirection: "column", marginBlock: 20 }}>
 							<label htmlFor="image">Photo de l&apos;album</label>
 							<input
 								className={styles.input}
@@ -179,24 +198,35 @@ export default function AlbumSettings({
 							/>
 						</div>
 						<div>
-							<label>Choisissez le thème de couleur pour cette page</label>
-							<input
-								type="color"
-								defaultValue={color}
-								onChange={(e) => setColorAlbum(e.target.value)}
-							/>
+							<label>Choisissez le thème de couleur </label>
+							<div>
+								<div style={{ display: "flex", alignItems: "center", marginBlock: 10 }}>
+									<input
+										type="color"
+										style={{ width: 100 }}
+										value={colorAlbum}
+										onChange={(e) => setColorAlbum(e.target.value)}
+									/>
+									<span style={{ marginLeft: 20 }}>{colorAlbum}</span>
+								</div>
+								<button type="button" onClick={() => setColorAlbum(color)}>
+									réinitialiser
+								</button>
+							</div>
 						</div>
 					</div>
-					<div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-						<img
-							style={{ width: 200 }}
-							src={`http://localhost:8000/${albumCover}`}
-							alt={`photo de couveture de ${title}`}
-						/>
-					</div>
+					{albumCover && (
+						<div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+							<img
+								style={{ width: 200 }}
+								src={`http://localhost:8000/${albumCover}`}
+								alt={`photo de couveture de ${title}`}
+							/>
+						</div>
+					)}
 				</div>
-				<div>
-					<input value="Mettre a jour l'album" type="submit" />
+				<div style={{ display: "flex", justifyContent: "center", marginTop: 70 }}>
+					<input className={styles.button} value="Mettre a jour l'album" type="submit" />
 				</div>
 			</form>
 		</div>

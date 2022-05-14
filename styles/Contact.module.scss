@@ -20,11 +20,6 @@
     @include inputBase();
 }
 
-.wrongEmail {
-    @include inputBase();
-    border-color: rgb(243, 36, 36);
-}
-
 .goodEmail {
     @include inputBase();
     border-color: rgb(0, 96, 0);

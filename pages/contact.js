@@ -53,8 +53,6 @@ export default function Contact() {
 	};
 
 	const verifyEmail = (input) => {
-		console.log(input);
-
 		if (input === "") {
 			return setIsEmailValid(null);
 		}

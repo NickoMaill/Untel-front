@@ -1,0 +1,33 @@
+@mixin inputBase {
+    width: 100%;
+    border: solid 1px #000;
+    border-radius: 0.3rem;
+    padding: 0.3rem;
+    margin-block:0.3rem ;
+}
+
+.wrongPassword {
+    @include inputBase();
+    border-color: rgb(243, 36, 36);
+}
+
+.password{
+    @include inputBase();
+}
+
+.button{
+    padding: 1rem;
+    margin-bottom: 3rem;
+    background-color: #fff;
+    border: #000 1px solid;
+    border-radius: 0.4rem;
+    transition: 200ms;
+    &:hover {
+        background-color: #000;
+        color: #fff;
+        transform: scale(1.1);
+    }
+    &:active {
+        transform: scale(0.95);
+    }
+};
