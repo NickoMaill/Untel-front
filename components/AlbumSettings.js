@@ -36,6 +36,7 @@ export default function AlbumSettings({
 
 		if (type === "add") {
 			url = "http://localhost:8000/albums/add-album";
+			method = "POST";
 		}
 
 		if (type === "update") {
@@ -70,10 +71,10 @@ export default function AlbumSettings({
 					enqueueSnackbar("Album mis à jour", {
 						variant: "success",
 					});
-					console.log("album updated", res);
+					console.log(res);
 				}
 			})
-			.finally((res) => {
+			.finally(() => {
 				setIsUpdated(false);
 			})
 			.catch((err) => console.error(err));
