@@ -1,11 +1,12 @@
 import { useRef, useEffect, useState } from "react";
 import Album from "../components/Album";
 import Video from "../components/Video";
-// import Youtube from "../components/Youtube";
 import Gig from "../components/Gig";
 import styles from "../styles/Home.module.scss";
 import PhotoGallery from "../components/PhotoGallery";
 import loadable from "@loadable/component";
+import Instagram from "../components/Instagram";
+import InstaGrid from "../components/InstaGrid";
 // import AppContext from "../context/state";
 
 export const getStaticProps = async () => {
@@ -13,14 +14,29 @@ export const getStaticProps = async () => {
 		method: "GET",
 		mode: "cors",
 		headers: {
+			"Cache-Control": "max-age=10000000000000000000000",
 			Accept: "application/json",
 			"Content-Type": "application/json",
 		},
 		credentials: "include",
 	}).then((res) => res.json());
+
+
+	const instaPost = await fetch("http://localhost:8000/instagram", {
+		method: "GET",
+		mode: "cors",
+		headers: {
+			"Cache-Control": "max-age=10000000000000000000000",
+			Accept: "application/json",
+			"Content-Type": "application/json",
+		},
+		credentials: "include",
+	}).then((res) => res.json());
+
 	return {
 		props: {
 			data,
+			instaPost,
 		},
 	};
 };
@@ -29,18 +45,13 @@ const Youtube = loadable(() => import("../components/Youtube"), {
 	fallback: <span className={styles.spinner}></span>,
 });
 
-export default function Homepage({ data }) {
-	const ref = useRef(null);
-	const [showVideo, setShowVideo] = useState(false);
-	// useEffect(() => {
-	// 	console.log(ref);
-	// }, [ref]);
-
+export default function Homepage({ data, instaPost }) {
+	console.log(instaPost);
 	return (
 		<main>
 			<Video source="/video/montage.mp4" />
 			<div className={styles.coloredDiv}>
-				<h2 style={{ fontFamily: "LemonMilk light" }}>UNTEL</h2>
+				<h2 className={styles.title}>UNTEL</h2>
 			</div>
 			<section className={styles.albumContainer} style={{ display: "flex", justifyContent: "center" }}>
 				{data.albums.map((album, i) => {
@@ -59,9 +70,19 @@ export default function Homepage({ data }) {
 					);
 				})}
 			</section>
+			<section className={styles.instaContainer}>
+				<div className={styles.postsContainer}>
+					{/* {instaPost.edges.map((post, i) => {
+						if (i <= 2) {
+							return <Instagram key={i} postId={post.node.shortcode} />;
+						}
+					})} */}
+					<InstaGrid posts={instaPost}/>
+				</div>
+			</section>
 			<section className={styles.youtubeContainer}>
-					<Youtube src="https://www.youtube.com/embed/1JbqsjB4qPg" />
-					<Youtube src="https://www.youtube.com/embed/fyi2exJt24U" />
+				<Youtube src="https://www.youtube.com/embed/1JbqsjB4qPg" />
+				<Youtube src="https://www.youtube.com/embed/fyi2exJt24U" />
 			</section>
 			<section className={styles.gigContainer}>
 				<Gig data={data} />

@@ -1,0 +1,87 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 70%;
+}
+
+.postInfoContainer{
+    z-index: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: -15rem;
+    padding: 0.5rem;
+    justify-content: center;
+    width: 15rem;
+    height: 15rem;
+    color: #f1f1f1;
+    opacity: 0%;
+    background-color: rgba(0, 0, 0, 0.693);
+    transition: all .2s ease-in-out;
+    &:hover{
+        opacity:100% ;
+    }
+}
+
+.postContainer{
+    width: 15rem;
+    height: 15rem;
+}
+.image{
+    
+    width: 15rem;
+    height: 15rem;
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.videoContainer {
+    display: flex;
+    margin-top: 0.2rem;
+    margin-left: 13.2rem;
+    position: absolute;
+}
+
+.photoContainer{
+    z-index: 1;
+    position: relative;
+    display: flex;
+}
+
+.statsPosts{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 3rem;
+}
+
+.statPost{
+    display: flex;
+    align-items: center;
+}
+
+.postDetails{
+    text-align: center;
+}
+
+.buttonContainer{
+    margin: 2rem;
+}
+
+.button{
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: #fff;
+    border: solid 1px #000000;
+    border-radius: 0.3rem;
+    transition: 200ms;
+    &:hover{
+        color: #f1f1f1;
+        background-color: #000000;
+    }
+}

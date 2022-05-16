@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "../styles/Youtube.module.scss"
+import styles from "../styles/Iframe.module.scss"
 
-export default function Youtube({ src, title, ref }) {
+export default function Youtube({ src, ref }) {
 	return (
 		<div>
 			<iframe

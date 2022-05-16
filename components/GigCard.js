@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/GigCard.module.scss";
+import styles from "../styles/Gig.module.scss";
 import { convertDate } from "../utils/convertDate";
 
 export default function GigCard({ title, date, city, country, event, onClick }) {
@@ -20,7 +20,7 @@ export default function GigCard({ title, date, city, country, event, onClick }) 
 				</span>
 			</div>
 			<div className={styles.buttonContainer}>
-				<a style={{ marginRight: "10%" }} target="_blank" rel="noreferrer" href={event}>
+				<a target="_blank" rel="noreferrer" href={event}>
 					<button className={styles.button}>accéder a l&apos;évènement</button>
 				</a>
 

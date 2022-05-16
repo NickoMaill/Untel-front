@@ -8,89 +8,43 @@ import AppContext from "../context/state";
 const imageSize = 25;
 
 export default function Header() {
-	const Context = useContext(AppContext);
-
+	const [showMenu, setShowMenu] = useState(false);
+	const handleShowMenu = () => {
+		setShowMenu(!showMenu);
+	};
 	return (
 		<header id="top" className={styles.headerContainer}>
-			{!Context.isBurger ? (
-				<>
-					<div>
-						<nav>
+			<>
+				<div className={styles.responsiveHeader}>
+					<button
+						onClick={() => handleShowMenu()}
+						className={`${styles.burger} ${showMenu && styles.closeMenu}`}
+					>
+						<span className={styles.burgerBar}></span>
+					</button>
+					<nav className={`${styles.nav} ${showMenu ? styles.showNav : ""}`}>
+						<div>
 							<Link passHref={true} href="/">
-								<span className={styles.navLink}>Accueil</span>
+								<span onClick={handleShowMenu} className={styles.navLink}>
+									Accueil
+								</span>
 							</Link>
 							<Link passHref={true} href="/contact">
-								<span className={styles.navLink}>Contact</span>
+								<span onClick={handleShowMenu} className={styles.navLink}>
+									Contact
+								</span>
 							</Link>
-						</nav>
-					</div>
-					<div>
-						<h1>Untel</h1>
-					</div>
-					<div className={styles.iconContainer}>
-						<a href="">
-							<img
-								className={styles.headerIcon}
-								alt="facebook"
-								title="facebook"
-								src="/icons/facebook-white.png"
-							/>
-						</a>
-						<a href="">
-							<img
-								alt="instagram"
-								title="instagram"
-								className={styles.headerIcon}
-								src="/icons/instagram-white.png"
-							/>
-						</a>
-						<a href="">
-							<img
-								alt="youtube"
-								title="youtube"
-								className={styles.headerIcon}
-								src="/icons/youtube-white.png"
-							/>
-						</a>
-						<a href="">
-							<img
-								alt="spotify"
-								title="spotify"
-								className={styles.headerIcon}
-								src="/icons/spotify-white.png"
-							/>
-						</a>
-						<a href="">
-							<img
-								alt="deezer"
-								title="deezer"
-								className={styles.headerIcon}
-								src="/icons/deezer-white.png"
-							/>
-						</a>
-					</div>
-				</>
-			) : (
-				<>
-					<div>
-						<h1>Untel</h1>
-					</div>
-					<Menu>
-						<nav>
-							<Link passHref={true} href="/">
-								<span className={styles.navLink}>Accueil</span>
-							</Link>
-							<Link passHref={true} href="/contact">
-								<span className={styles.navLink}>Contact</span>
-							</Link>
-						</nav>
+						</div>
+						<div className={styles.title1}>
+							<h1>UNTEL</h1>
+						</div>
 						<div className={styles.iconContainer}>
 							<a href="">
 								<img
 									className={styles.headerIcon}
 									alt="facebook"
 									title="facebook"
-									src="/icons/facebook-white.png"
+									src="/svg/facebook.svg"
 								/>
 							</a>
 							<a href="">
@@ -98,7 +52,7 @@ export default function Header() {
 									alt="instagram"
 									title="instagram"
 									className={styles.headerIcon}
-									src="/icons/instagram-white.png"
+									src="/svg/instagram.svg"
 								/>
 							</a>
 							<a href="">
@@ -106,7 +60,7 @@ export default function Header() {
 									alt="youtube"
 									title="youtube"
 									className={styles.headerIcon}
-									src="/icons/youtube-white.png"
+									src="/svg/youtube.svg"
 								/>
 							</a>
 							<a href="">
@@ -114,7 +68,7 @@ export default function Header() {
 									alt="spotify"
 									title="spotify"
 									className={styles.headerIcon}
-									src="/icons/spotify-white.png"
+									src="/svg/spotify.svg"
 								/>
 							</a>
 							<a href="">
@@ -122,13 +76,16 @@ export default function Header() {
 									alt="deezer"
 									title="deezer"
 									className={styles.headerIcon}
-									src="/icons/deezer-white.png"
+									src="/svg/deezer.svg"
 								/>
 							</a>
 						</div>
-					</Menu>
-				</>
-			)}
+					</nav>
+				</div>
+				<div className={styles.title2}>
+					<h1>UNTEL</h1>
+				</div>
+			</>
 		</header>
 	);
 }

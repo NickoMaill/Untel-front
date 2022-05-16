@@ -1,11 +1,16 @@
-.titleContainer{
+.gigContainer {
+    width: 30rem;
+    background-color: #fff;
+}
+
+.titleContainer {
     border-bottom: solid 1px;
     margin-bottom: 0.5rem;
     padding: 0.5rem;
     display: flex;
 }
 
-.gigTitle{
+.gigTitle {
     font-family: "Roboto regular";
 }
 
@@ -76,5 +81,55 @@
     100% {
         -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
+    }
+}
+
+.gigCardContainer {
+    padding: 0.5rem;
+    border-bottom: solid 1px;
+}
+.gigCardContainer2 {
+    padding: 0.5rem;
+    border-bottom: solid 1px;
+    background-color: rgb(125, 125, 125);
+}
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonContainer {
+    display: flex;
+    margin-block: 1rem;
+}
+
+.button {
+    padding: 0.4rem;
+    border-radius: 0.2rem;
+    background-color: #fff;
+    border: solid 1px;
+    transition: 300ms;
+    width: 10rem;
+    margin-right: 1rem;
+    &:hover {
+        background-color: #303030;
+        color: #fff;
+    }
+}
+
+@media screen and (max-width: 1439px) {
+}
+
+@media screen and (max-width: 1087px) {
+    .gigContainer {
+        width: 20rem;
+    }
+    .buttonContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+    .button {
+        margin-bottom: 0.5rem;
+        margin-right: 0;
     }
 }

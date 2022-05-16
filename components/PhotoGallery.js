@@ -21,10 +21,10 @@ export default function PhotoGallery() {
 		<div style={{ display: "flex", alignItems: "center" }}>
 			<div className={styles.arrowContainer}>
 				<div onClick={() => scroll(-500)} style={{ backgroundColor: "rgba(0,0,0,0.7)", padding: 10 }}>
-					<img style={{ width: "1rem" }} src="/icons/left.png" alt="flèche gauche" />
+					<img src="/svg/left.svg" alt="flèche gauche" />
 				</div>
 				<div onClick={() => scroll(500)} style={{ backgroundColor: "rgba(0,0,0,0.7)", padding: 10 }}>
-					<img style={{ width: "1rem" }} src="/icons/right.png" alt="flèche droite" />
+					<img src="/svg/right.svg" alt="flèche droite" />
 				</div>
 			</div>
 			<div className={styles.imgContainer} ref={ref}>

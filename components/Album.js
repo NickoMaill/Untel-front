@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import styles from "../styles/Album.module.scss";
+import styles from "../styles/AlbumPages.module.scss";
 
 const imageSize = 290;
 

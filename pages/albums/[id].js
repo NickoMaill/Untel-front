@@ -4,7 +4,7 @@ import Youtube from "../../components/Youtube";
 import styles from "../../styles/AlbumPages.module.scss";
 
 export default function AlbumDetails({ album }) {
-	const formatDescription = [album.description].map((i) => i.replace(/\n/g, "<br/>")).join("");
+	// const formatDescription = [album.description].map((i) => i.replace(/\n/g, "<br/>")).join("");
 	return (
 		<main>
 			<section>
@@ -13,7 +13,7 @@ export default function AlbumDetails({ album }) {
 					<img className={styles.img} src={`http://localhost:8000/${album.photo_path}`} alt="" />
 				</div>
 				<div>
-					<p>{formatDescription}</p>
+					<p style={{whiteSpace:"pre-line"}}>{album.description}</p>
 					<div style={{display:"flex", justifyContent:"space-around", alignItems:"center"}}>
 						<Youtube src={album.video_link} />
 						<Playlist src={album.playlist_link} />
@@ -26,6 +26,7 @@ export default function AlbumDetails({ album }) {
 
 export async function getStaticProps({ params }) {
 	const album = await fetch(`http://localhost:8000/albums/${params.id}`, {
+		"Cache-Control": "max-age=10000000000000000000000",
 		method: "GET",
 		mode: "cors",
 		headers: {
@@ -43,6 +44,7 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
 	const data = await fetch("http://localhost:8000/albums/all", {
+		"Cache-Control": "max-age=10000000000000000000000",
 		method: "GET",
 		mode: "cors",
 		headers: {

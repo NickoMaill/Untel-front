@@ -1,15 +1,17 @@
 import React from "react";
+import styles  from  "../styles/Iframe.module.scss"
 
-export default function Instagram({ src }) {
+export default function Instagram({ postId }) {
 	return (
-		<div>
+		<div className={styles.iframeContainer}>
 			<iframe
-				src={src}
+			loading="lazy"
+				src={`https://www.instagram.com/p/${postId}/embed`}
+				className={styles.instaFrame}
 				width="320"
-				height="400"
+				height="600"
 				frameBorder="0"
 				scrolling="no"
-                title="instagram"
 				allowtransparency="true"
 			></iframe>
 		</div>

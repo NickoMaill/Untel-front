@@ -1,4 +1,4 @@
-.footerContainer{
+.footerContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -6,31 +6,45 @@
     background-color: black;
     padding: 2rem;
     width: 100%;
-    
 }
 
-.infoContainer{
+.infoContainer {
     display: flex;
     flex-direction: column;
 }
 
-.icon{
+.icon {
     width: 1.5rem;
 }
 
-.iconContainer{
+.iconContainer {
     display: flex;
+    align-items: center;
 }
 
 .footerIcon {
-    width: 1.5rem;
     margin-left: 1rem;
     transition: 200ms;
-    
+
     scroll-behavior: smooth;
     &:hover {
         -ms-transform: scale(1.5);
         -webkit-transform: scale(1.5);
         transform: scale(1.5);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footerContainer{
+        justify-content: center;
+    }
+    .iconContainer {
+        display: none;
+    }
+    .footerIcon{
+        display: none;
+    }
+    .infoContainer{
+        text-align: center;
     }
 }

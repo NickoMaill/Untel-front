@@ -6,8 +6,6 @@ import GigCard from "./GigCard";
 export default function Gig({ data }) {
 	const [geometry, setGeometry] = useState([]);
 	const [isVisible, setIsVisible] = useState(false);
-	let customStyles;
-	console.log(data);
 
 	// if (data.length > 2) {
 	// 	customStyles = {
@@ -34,14 +32,14 @@ export default function Gig({ data }) {
 	};
 
 	return (
-		<div style={{ width: "30%", backgroundColor: "#fff" }}>
+		<div className={styles.gigContainer}>
 			<div className={styles.titleContainer}>
 				<h4 className={styles.gigTitle}>Prochain Concerts /</h4>
 				<h4 style={{ marginLeft: 5, color: "grey" }} className={styles.gigTitle}>
 					Concerts Passé
 				</h4>
 			</div>
-			<div style={customStyles}>
+			<div>
 				{!data.success ? (
 					<div className={styles.loader}>Loading... address</div>
 				) : (

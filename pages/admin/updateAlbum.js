@@ -10,6 +10,7 @@ export const getStaticProps = async () => {
 		method: "GET",
 		mode: "cors",
 		headers: {
+			"Cache-Control": "max-age=10000000000000000000000",
 			Accept: "application/json",
 			"Content-Type": "application/json",
 		},

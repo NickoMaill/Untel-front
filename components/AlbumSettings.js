@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSnackbar } from "notistack";
 import styles from "../styles/AlbumSettings.module.scss";
 
@@ -27,6 +27,13 @@ export default function AlbumSettings({
 	const [colorAlbum, setColorAlbum] = useState(color);
 	const [isReleasedAlbum, setIsReleasedAlbum] = useState(isReleased);
 	const [isUpdated, setIsUpdated] = useState(false);
+
+	const initialValue = [
+		{
+		  type: 'paragraph',
+		  children: [{ text: 'A line of text in a paragraph.' }],
+		},
+	  ]
 
 	const updateAlbum = (event, type) => {
 		event.preventDefault();
