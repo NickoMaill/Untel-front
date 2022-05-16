@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useState, useRef } from "react";
+import { img } from "react-lazy-load-image-component";
 import styles from "../styles/PhotoGallery.module.scss";
 import Modal from "./Modal";
 
@@ -28,42 +28,42 @@ export default function PhotoGallery() {
 				</div>
 			</div>
 			<div className={styles.imgContainer} ref={ref}>
-				<LazyLoadImage
+				<img
 					loading="lazy"
 					onClick={() => openCloseModal(ref.current.childNodes[0].src)}
 					className={styles.img}
 					src="/images/untel-band3.webp"
 					alt="Untel"
 				/>
-				<LazyLoadImage
+				<img
 					loading="lazy"
 					onClick={() => openCloseModal(ref.current.childNodes[1].src)}
 					className={styles.img}
 					src="/images/untel-band4.webp"
 					alt="Untel"
 				/>
-				<LazyLoadImage
+				<img
 					loading="lazy"
 					onClick={() => openCloseModal(ref.current.childNodes[2].src)}
 					className={styles.img}
 					src="/images/untel-favo.webp"
 					alt="Untel"
 				/>
-				<LazyLoadImage
+				<img
 					loading="lazy"
 					onClick={() => openCloseModal(ref.current.childNodes[3].src)}
 					className={styles.img}
 					src="/images/untel-front1.webp"
 					alt="Untel"
 				/>
-				<LazyLoadImage
+				<img
 					loading="lazy"
 					onClick={() => openCloseModal(ref.current.childNodes[4].src)}
 					className={styles.img}
 					src="/images/untel-front2.webp"
 					alt="Untel"
 				/>
-				<LazyLoadImage
+				<img
 					loading="lazy"
 					onClick={() => openCloseModal(ref.current.childNodes[5].src)}
 					className={styles.img}
@@ -72,7 +72,9 @@ export default function PhotoGallery() {
 				/>
 			</div>
 			<div>
-				<Modal open={isOpen} onClick={openCloseModal} src={currentPhoto} />
+				<Modal open={isOpen} onClick={openCloseModal}>
+					<img className={styles.imgModal} src={currentPhoto} alt="photo de l'artiste Untel" />
+				</Modal>
 			</div>
 		</div>
 	);

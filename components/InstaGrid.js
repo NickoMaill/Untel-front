@@ -1,14 +1,22 @@
 import React, { useState } from "react";
 import styles from "../styles/instaGrid.module.scss";
-import 'animate.css';
+import "animate.css";
+import Modal from "./Modal";
+import Instagram from "./Instagram";
 
 export default function InstaGrid({ posts }) {
 	const [visible, setVisible] = useState(10);
 	const [showInfo, setShowInfo] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
+	const [currentPost, setCurrentPost] = useState("");
 
 	const showPostInfo = () => {
 		setShowInfo(!showInfo);
+	};
+
+	const openCloseModal = (post) => {
+		setIsOpen(!isOpen);
+		setCurrentPost(post)
 	};
 
 	const showMoreItem = () => {
@@ -49,11 +57,11 @@ export default function InstaGrid({ posts }) {
 							/>
 						</div>
 
-						<div className={styles.postInfoContainer}>
+						<div onClick={() => openCloseModal(post.node.shortcode)} className={styles.postInfoContainer}>
 							<div className={styles.statsPosts}>
 								{post.node.edge_media_preview_like.count > 0 ? (
 									<div className={styles.statPost}>
-										<img src="/svg/chat.svg" alt="icon commentaire" />
+										<img src="/svg/heart.svg" alt='icon mention "j"aime"' />
 										<span>{post.node.edge_media_preview_like.count}</span>
 									</div>
 								) : (
@@ -61,7 +69,7 @@ export default function InstaGrid({ posts }) {
 								)}
 								{post.node.edge_media_to_comment.count > 0 ? (
 									<div className={styles.statPost}>
-										<img src="/svg/heart.svg" alt="icon commentaire" />
+										<img src="/svg/chat.svg" alt="icon commentaire" />
 										<span>{post.node.edge_media_to_comment.count}</span>
 									</div>
 								) : (
@@ -78,8 +86,13 @@ export default function InstaGrid({ posts }) {
 				))}
 			</div>
 			<div className={styles.buttonContainer}>
-				<button className={styles.button} onClick={() => showMoreItem()}>Afficher plus de posts</button>
+				<button className={styles.button} onClick={() => showMoreItem()}>
+					Afficher plus de posts
+				</button>
 			</div>
+			<Modal open={isOpen} onClick={openCloseModal}>
+				<Instagram postId={currentPost} />
+			</Modal>
 		</div>
 	);
 }

@@ -17,7 +17,7 @@ export default function Footer({ onClick }) {
 					site codé par <a href="">Nicolas Maillols</a>{" "}
 				</span>
 				<Link passHref={true} href="/CGU">
-					<span>condition générale d'utilisations</span>
+					<span>condition générale d&apos;utilisations</span>
 				</Link>
 				<Link passHref={true} href="/privacyPolicy">
 					<span>politique de vie privée</span>

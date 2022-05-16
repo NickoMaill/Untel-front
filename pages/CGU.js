@@ -26,7 +26,7 @@ export default function CGU() {
 			</p>
 			<p>
 				<b>Informations personnelles :</b> « Les informations qui permettent, sous quelque forme que ce soit,
-				directement ou non, l'identification des personnes physiques auxquelles elles s'appliquent » (article 4
+				directement ou non, l&apos;identification des personnes physiques auxquelles elles s&apos;appliquent » (article 4
 				de la loi n° 78-17 du 6 janvier 1978).
 			</p>
 			<p>
@@ -36,9 +36,9 @@ export default function CGU() {
 			</p>
 			<h2>1. Présentation du site internet.</h2>
 			<p>
-				En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie
+				En vertu de l&apos;article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l&apos;économie
 				numérique, il est précisé aux utilisateurs du site internet{" "}
-				<a href="https://untel-official.fr">https://untel-official.fr</a> l'identité des différents intervenants
+				<a href="https://untel-official.fr">https://untel-official.fr</a> l&apos;identité des différents intervenants
 				dans le cadre de sa réalisation et de son suivi:
 			</p>
 			<p>
@@ -228,10 +228,10 @@ export default function CGU() {
 			</p>
 			<ul>
 				<li>
-					droit d'accès (article 15 RGPD) et de rectification (article 16 RGPD), de mise à jour, de complétude
+					droit d&apos;accès (article 15 RGPD) et de rectification (article 16 RGPD), de mise à jour, de complétude
 					des données des Utilisateurs droit de verrouillage ou d’effacement des données des Utilisateurs à
 					caractère personnel (article 17 du RGPD), lorsqu’elles sont inexactes, incomplètes, équivoques,
-					périmées, ou dont la collecte, l'utilisation, la communication ou la conservation est interdite{" "}
+					périmées, ou dont la collecte, l&apos;utilisation, la communication ou la conservation est interdite{" "}
 				</li>
 
 				<li>droit de retirer à tout moment un consentement (article 13-2c RGPD) </li>
@@ -311,21 +311,21 @@ export default function CGU() {
 			<h2>8. Notification d’incident</h2>
 			<p>
 				Quels que soient les efforts fournis, aucune méthode de transmission sur Internet et aucune méthode de
-				stockage électronique n'est complètement sûre. Nous ne pouvons en conséquence pas garantir une sécurité
-				absolue. Si nous prenions connaissance d'une brèche de la sécurité, nous avertirions les utilisateurs
-				concernés afin qu'ils puissent prendre les mesures appropriées. Nos procédures de notification
-				d’incident tiennent compte de nos obligations légales, qu'elles se situent au niveau national ou
+				stockage électronique n&apos;est complètement sûre. Nous ne pouvons en conséquence pas garantir une sécurité
+				absolue. Si nous prenions connaissance d&apos;une brèche de la sécurité, nous avertirions les utilisateurs
+				concernés afin qu&apos;ils puissent prendre les mesures appropriées. Nos procédures de notification
+				d’incident tiennent compte de nos obligations légales, qu&apos;elles se situent au niveau national ou
 				européen. Nous nous engageons à informer pleinement nos clients de toutes les questions relevant de la
 				sécurité de leur compte et à leur fournir toutes les informations nécessaires pour les aider à respecter
 				leurs propres obligations réglementaires en matière de reporting.
 			</p>
 			<p>
-				Aucune information personnelle de l'utilisateur du site{" "}
-				<a href="https://untel-official.fr">https://untel-official.fr</a> n'est publiée à l'insu de
-				l'utilisateur, échangée, transférée, cédée ou vendue sur un support quelconque à des tiers. Seule
-				l'hypothèse du rachat de <a href="https://untel-official.fr">https://untel-official.fr</a> et de ses
-				droits permettrait la transmission des dites informations à l'éventuel acquéreur qui serait à son tour
-				tenu de la même obligation de conservation et de modification des données vis à vis de l'utilisateur du
+				Aucune information personnelle de l&apos;utilisateur du site{" "}
+				<a href="https://untel-official.fr">https://untel-official.fr</a> n&apos;est publiée à l&apos;insu de
+				l&apos;utilisateur, échangée, transférée, cédée ou vendue sur un support quelconque à des tiers. Seule
+				l&apos;hypothèse du rachat de <a href="https://untel-official.fr">https://untel-official.fr</a> et de ses
+				droits permettrait la transmission des dites informations à l&apos;éventuel acquéreur qui serait à son tour
+				tenu de la même obligation de conservation et de modification des données vis à vis de l&apos;utilisateur du
 				site <a href="https://untel-official.fr">https://untel-official.fr</a>.
 			</p>
 			<h3>Sécurité</h3>

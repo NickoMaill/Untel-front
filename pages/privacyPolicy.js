@@ -14,7 +14,7 @@ export default function privacyPolicy() {
 				We use Your Personal data to provide and improve the Service. By using the Service, You agree to the
 				collection and use of information in accordance with this Privacy Policy. This Privacy Policy has been
 				created with the help of the{" "}
-				<a href="https://www.freeprivacypolicy.com/free-privacy-policy-generator/" target="_blank">
+				<a href="https://www.freeprivacypolicy.com/free-privacy-policy-generator/" target="_blank" rel="noreferrer">
 					Privacy Policy Generator
 				</a>
 				.
@@ -88,7 +88,7 @@ export default function privacyPolicy() {
 				<li>
 					<p>
 						<strong>Website</strong> refers to Untel-Officiel, accessible from{" "}
-						<a href="http://untel-officel.fr" rel="external nofollow noopener" target="_blank">
+						<a href="http://untel-officel.fr" target="_blank" rel="noreferrer">
 							http://untel-officel.fr
 						</a>
 					</p>
@@ -126,7 +126,7 @@ export default function privacyPolicy() {
 			<h3>Usage Data</h3>
 			<p>Usage Data is collected automatically when using the Service.</p>
 			<p>
-				Usage Data may include information such as Your Device's Internet Protocol address (e.g. IP address),
+				Usage Data may include information such as Your Device&apos;s Internet Protocol address (e.g. IP address),
 				browser type, browser version, the pages of our Service that You visit, the time and date of Your visit,
 				the time spent on those pages, unique device identifiers and other diagnostic data.
 			</p>
@@ -161,8 +161,7 @@ export default function privacyPolicy() {
 					change the settings for disabling, or deleting local shared objects?&quot; available at{" "}
 					<a
 						href="https://helpx.adobe.com/flash-player/kb/disable-local-shared-objects-flash.html#main_Where_can_I_change_the_settings_for_disabling__or_deleting_local_shared_objects_"
-						rel="external nofollow noopener"
-						target="_blank"
+						target="_blank" rel="noreferrer"
 					>
 						https://helpx.adobe.com/flash-player/kb/disable-local-shared-objects-flash.html#main_Where_can_I_change_the_settings_for_disabling__or_deleting_local_shared_objects_
 					</a>
@@ -181,7 +180,7 @@ export default function privacyPolicy() {
 				close Your web browser. Learn more about cookies:{" "}
 				<a
 					href="https://www.freeprivacypolicy.com/blog/sample-privacy-policy-template/#Use_Of_Cookies_And_Tracking"
-					target="_blank"
+					target="_blank" rel="noreferrer"
 				>
 					Use of Cookies by Free Privacy Policy
 				</a>
@@ -254,7 +253,7 @@ export default function privacyPolicy() {
 				<li>
 					<p>
 						<strong>To contact You:</strong> To contact You by email, telephone calls, SMS, or other
-						equivalent forms of electronic communication, such as a mobile application's push notifications
+						equivalent forms of electronic communication, such as a mobile application&apos;s push notifications
 						regarding updates or informative communications related to the functionalities, products or
 						contracted services, including the security updates, when necessary or reasonable for their
 						implementation.
@@ -335,7 +334,7 @@ export default function privacyPolicy() {
 			</p>
 			<h2>Transfer of Your Personal Data</h2>
 			<p>
-				Your information, including Personal Data, is processed at the Company's operating offices and in any
+				Your information, including Personal Data, is processed at the Company&apos;s operating offices and in any
 				other places where the parties involved in the processing are located. It means that this information
 				may be transferred to — and maintained on — computers located outside of Your state, province, country
 				or other governmental jurisdiction where the data protection laws may differ than those from Your
@@ -381,7 +380,7 @@ export default function privacyPolicy() {
 				the Internet, or method of electronic storage is 100% secure. While We strive to use commercially
 				acceptable means to protect Your Personal Data, We cannot guarantee its absolute security.
 			</p>
-			<h1>Children's Privacy</h1>
+			<h1>Children&apos;s Privacy</h1>
 			<p>
 				Our Service does not address anyone under the age of 13. We do not knowingly collect personally
 				identifiable information from anyone under the age of 13. If You are a parent or guardian and You are
@@ -391,12 +390,12 @@ export default function privacyPolicy() {
 			</p>
 			<p>
 				If We need to rely on consent as a legal basis for processing Your information and Your country requires
-				consent from a parent, We may require Your parent's consent before We collect and use that information.
+				consent from a parent, We may require Your parent&apos;s consent before We collect and use that information.
 			</p>
 			<h1>Links to Other Websites</h1>
 			<p>
 				Our Service may contain links to other websites that are not operated by Us. If You click on a third
-				party link, You will be directed to that third party's site. We strongly advise You to review the
+				party link, You will be directed to that third party&apos;s site. We strongly advise You to review the
 				Privacy Policy of every site You visit.
 			</p>
 			<p>
@@ -423,14 +422,13 @@ export default function privacyPolicy() {
 					By email:{" "}
 					<a
 						href="/cdn-cgi/l/email-protection"
-						class="__cf_email__"
+						className="__cf_email__"
 						data-cfemail="3c495248595011535a5a555f555d507c53494850535357125a4e"
 					>
 						[email&#160;protected]
 					</a>
 				</li>
 			</ul>
-			<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 		</main>
 	);
 }
