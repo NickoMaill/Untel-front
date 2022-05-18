@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { img } from "react-lazy-load-image-component";
 import styles from "../styles/PhotoGallery.module.scss";
 import Modal from "./Modal";
 
@@ -20,10 +19,10 @@ export default function PhotoGallery() {
 	return (
 		<div style={{ display: "flex", alignItems: "center" }}>
 			<div className={styles.arrowContainer}>
-				<div onClick={() => scroll(-500)} style={{ backgroundColor: "rgba(0,0,0,0.7)", padding: 10 }}>
+				<div onClick={() => scroll(-500)} className={styles.leftRightArrow}>
 					<img src="/svg/left.svg" alt="flèche gauche" />
 				</div>
-				<div onClick={() => scroll(500)} style={{ backgroundColor: "rgba(0,0,0,0.7)", padding: 10 }}>
+				<div onClick={() => scroll(500)} className={styles.leftRightArrow}>
 					<img src="/svg/right.svg" alt="flèche droite" />
 				</div>
 			</div>

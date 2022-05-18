@@ -1,9 +1,6 @@
-import React, { useState, useContext } from "react";
-import { slide as Menu } from "react-burger-menu";
+import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import styles from "../styles/Header.module.scss";
-import AppContext from "../context/state";
 
 const imageSize = 25;
 
@@ -39,7 +36,7 @@ export default function Header() {
 							<h1>UNTEL</h1>
 						</div>
 						<div className={styles.iconContainer}>
-							<a href="">
+							<a target="_blank" rel="noreferrer" href="https://www.facebook.com/untelofficiel">
 								<img
 									className={styles.headerIcon}
 									alt="facebook"
@@ -47,7 +44,7 @@ export default function Header() {
 									src="/svg/facebook.svg"
 								/>
 							</a>
-							<a href="">
+							<a target="_blank" rel="noreferrer" href="https://www.instagram.com/untel.officiel/">
 								<img
 									alt="instagram"
 									title="instagram"
@@ -55,7 +52,7 @@ export default function Header() {
 									src="/svg/instagram.svg"
 								/>
 							</a>
-							<a href="">
+							<a target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UC2yk6QHhrP-h_Ytn9DCcEjg">
 								<img
 									alt="youtube"
 									title="youtube"
@@ -63,7 +60,7 @@ export default function Header() {
 									src="/svg/youtube.svg"
 								/>
 							</a>
-							<a href="">
+							<a target="_blank" rel="noreferrer" href="https://open.spotify.com/artist/6FKGND11aWqkYLC2zS1zas">
 								<img
 									alt="spotify"
 									title="spotify"
@@ -71,7 +68,7 @@ export default function Header() {
 									src="/svg/spotify.svg"
 								/>
 							</a>
-							<a href="">
+							<a target="_blank" rel="noreferrer" href="https://www.deezer.com/fr/artist/68974282">
 								<img
 									alt="deezer"
 									title="deezer"

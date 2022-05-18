@@ -1,28 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useSnackbar } from "notistack";
 import { login } from "../utils/login";
 import styles from "../styles/Admin.module.scss";
 
-export const getStaticProps = async () => {
-	const data = await fetch("http://localhost:8000/", {
-		method: "GET",
-		mode: "cors",
-		headers: {
-			Accept: "application/json",
-			"Content-Type": "application/json",
-		},
-		credentials: "include",
-	}).then((res) => res.json());
-	return {
-		props: {
-			data,
-		},
-	};
-};
-
-export default function Admin({ data }) {
-	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+export default function Admin() {
+	const { enqueueSnackbar } = useSnackbar();
 	const [isAdminLogged, setIsAdminLogged] = useState(false);
 	const [password, setPassword] = useState("");
 	const [validPassword, setValidPassword] = useState(true);

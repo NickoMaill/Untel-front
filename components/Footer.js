@@ -29,21 +29,46 @@ export default function Footer({ onClick }) {
 				</a>
 			</div>
 			<div className={styles.iconContainer}>
-				<a href="">
-					<img className={styles.footerIcon} alt="facebook" title="facebook" src="/svg/facebook.svg" />
-				</a>
-				<a href="">
-					<img alt="instagram" title="instagram" className={styles.footerIcon} src="/svg/instagram.svg" />
-				</a>
-				<a href="">
-					<img alt="youtube" title="youtube" className={styles.footerIcon} src="/svg/youtube.svg" />
-				</a>
-				<a href="">
-					<img alt="spotify" title="spotify" className={styles.footerIcon} src="/svg/spotify.svg" />
-				</a>
-				<a href="">
-					<img alt="deezer" title="deezer" className={styles.footerIcon} src="/svg/deezer.svg" />
-				</a>
+			<a target="_blank" rel="noreferrer" href="https://www.facebook.com/untelofficiel">
+								<img
+									className={styles.footerIcon}
+									alt="facebook"
+									title="facebook"
+									src="/svg/facebook.svg"
+								/>
+							</a>
+							<a target="_blank" rel="noreferrer" href="https://www.instagram.com/untel.officiel/">
+								<img
+									alt="instagram"
+									title="instagram"
+									className={styles.footerIcon}
+									src="/svg/instagram.svg"
+								/>
+							</a>
+							<a target="_blank" rel="noreferrer" href="https://www.youtube.com/channel/UC2yk6QHhrP-h_Ytn9DCcEjg">
+								<img
+									alt="youtube"
+									title="youtube"
+									className={styles.footerIcon}
+									src="/svg/youtube.svg"
+								/>
+							</a>
+							<a target="_blank" rel="noreferrer" href="https://open.spotify.com/artist/6FKGND11aWqkYLC2zS1zas">
+								<img
+									alt="spotify"
+									title="spotify"
+									className={styles.footerIcon}
+									src="/svg/spotify.svg"
+								/>
+							</a>
+							<a target="_blank" rel="noreferrer" href="https://www.deezer.com/fr/artist/68974282">
+								<img
+									alt="deezer"
+									title="deezer"
+									className={styles.footerIcon}
+									src="/svg/deezer.svg"
+								/>
+							</a>
 			</div>
 		</footer>
 	);

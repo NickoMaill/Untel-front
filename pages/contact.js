@@ -1,17 +1,17 @@
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "../styles/Contact.module.scss";
 
 export default function Contact() {
 	const router = useRouter();
-	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+	const { enqueueSnackbar } = useSnackbar();
 	const [contactEmail, setContactEmail] = useState("");
 	const [subject, setSubject] = useState("");
 	const [messageBody, setMessageBody] = useState("");
 	const [isEmailValid, setIsEmailValid] = useState(null);
 	const [messageSend, setMessageSend] = useState(false);
-	const [isSending, setIsSending] = useState(false);
+	const [_isSending, setIsSending] = useState(false);
 
 	const mailRegex =
 		/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
@@ -70,7 +70,6 @@ export default function Contact() {
 	return (
 		<main>
 			<section>
-				<h2>Contact</h2>
 				<div>
 					{!messageSend ? (
 						<div
@@ -81,9 +80,9 @@ export default function Contact() {
 								alignItems: "center",
 							}}
 						>
-							<p>Un renseignement, une collab, un concert, ou une simple question ?</p>
+							<h4 style={{fontFamily:"Roboto regular",textAlign:"center", marginTop:"2rem"}}><strong>Un renseignement, une collab, un concert, ou une simple question ?</strong></h4>
 							<form className={styles.form}>
-								<h4>Formulaire de contact</h4>
+								<h4 style={{ textAlign: "center" }}>Formulaire de contact</h4>
 								<div style={{ marginBlock: 10, display: "flex", flexDirection: "column" }}>
 									<label htmlFor="email">Email</label>
 									<input

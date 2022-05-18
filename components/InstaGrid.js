@@ -1,28 +1,24 @@
-import React, { useState } from "react";
-import styles from "../styles/instaGrid.module.scss";
-import "animate.css";
+import { useState } from "react";
 import Modal from "./Modal";
 import Instagram from "./Instagram";
+import styles from "../styles/instaGrid.module.scss";
+import "animate.css";
 
 export default function InstaGrid({ posts }) {
 	const [visible, setVisible] = useState(10);
-	const [showInfo, setShowInfo] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 	const [currentPost, setCurrentPost] = useState("");
-
-	const showPostInfo = () => {
-		setShowInfo(!showInfo);
-	};
+	const [endOfPost, setEndOfPost] = useState(false);
 
 	const openCloseModal = (post) => {
 		setIsOpen(!isOpen);
-		setCurrentPost(post)
+		setCurrentPost(post);
 	};
 
 	const showMoreItem = () => {
 		if (visible === posts.edges.length) {
-			console.log("yes");
 			setVisible((pervState) => pervState + 0);
+			setEndOfPost(true);
 		} else {
 			setVisible((pervState) => pervState + 5);
 		}
@@ -37,6 +33,10 @@ export default function InstaGrid({ posts }) {
 
 	return (
 		<div className={styles.mainContainer}>
+			<div className={styles.instaLogoContainer}>
+				<div className={styles.borderDesign}></div>
+				<img className={styles.instaLogo} src="/svg/instaString.svg" alt="" />
+			</div>
 			<div className={styles.wrapper}>
 				{posts.edges.slice(0, visible).map((post, i) => (
 					<div className={`${styles.postContainer} animate__animated animate__backInUp`} key={i}>
@@ -61,7 +61,11 @@ export default function InstaGrid({ posts }) {
 							<div className={styles.statsPosts}>
 								{post.node.edge_media_preview_like.count > 0 ? (
 									<div className={styles.statPost}>
-										<img src="/svg/heart.svg" alt='icon mention "j"aime"' />
+										<img
+											style={{ marginRight: "0.3rem" }}
+											src="/svg/heart.svg"
+											alt='icon mention "j"aime"'
+										/>
 										<span>{post.node.edge_media_preview_like.count}</span>
 									</div>
 								) : (
@@ -69,7 +73,11 @@ export default function InstaGrid({ posts }) {
 								)}
 								{post.node.edge_media_to_comment.count > 0 ? (
 									<div className={styles.statPost}>
-										<img src="/svg/chat.svg" alt="icon commentaire" />
+										<img
+											style={{ marginRight: "0.3rem" }}
+											src="/svg/chat.svg"
+											alt="icon commentaire"
+										/>
 										<span>{post.node.edge_media_to_comment.count}</span>
 									</div>
 								) : (
@@ -89,6 +97,13 @@ export default function InstaGrid({ posts }) {
 				<button className={styles.button} onClick={() => showMoreItem()}>
 					Afficher plus de posts
 				</button>
+				{endOfPost && (
+					<div className={styles.endMEssage}>
+						<span style={{ fontStyle: "italic" }}>
+							- Tout continue au-delà de l&apos;horizon (mais sur cette liste !) -
+						</span>
+					</div>
+				)}
 			</div>
 			<Modal open={isOpen} onClick={openCloseModal}>
 				<Instagram postId={currentPost} />

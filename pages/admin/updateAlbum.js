@@ -78,6 +78,7 @@ export default function UpdateAlbum({ data }) {
 									albumCover={album.photo_path}
 									color={album.color}
 									id={album.album_id}
+									price={album.price}
 									requestType="update"
 								/>
 							);

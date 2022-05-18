@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "../styles/AlbumPages.module.scss";
 
 const imageSize = 290;
@@ -26,7 +26,9 @@ export default function Album({ alt, title, src, children, year, subtitle, href 
 						Plus d&apos;info
 					</button>
 				) : (
-					<button className={styles.albumLoader}>Plus d&apos;info<span className={styles.spinner}></span></button>
+					<button className={styles.albumLoader}>
+						Plus d&apos;info<span className={styles.spinner}></span>
+					</button>
 				)}
 			</Link>
 		</div>

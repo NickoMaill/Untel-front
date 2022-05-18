@@ -1,4 +1,4 @@
-.arrowContainer{
+.arrowContainer {
     z-index: 2;
     position: absolute;
     background: none;
@@ -8,16 +8,16 @@
     align-items: center;
 }
 
-.arrowGallery{
+.arrowGallery {
     width: 1rem;
 }
 
-.imgContainer{
+.imgContainer {
     z-index: 1;
     display: flex;
     overflow-x: scroll;
     scroll-behavior: smooth;
-    &::-webkit-scrollbar{
+    &::-webkit-scrollbar {
         display: none;
     }
 }
@@ -34,7 +34,17 @@
     }
 }
 
-.imgModal{
+.imgModal {
     height: 70vh;
-    position:absolute;
+    position: absolute;
+}
+
+.leftRightArrow {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 0.7rem;
+    transition: 200ms;
+    &:hover{
+        transform: scale(1.2);
+    }
 }

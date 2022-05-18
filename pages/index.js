@@ -1,20 +1,16 @@
-import { useRef, useEffect, useState } from "react";
 import Album from "../components/Album";
 import Video from "../components/Video";
 import Gig from "../components/Gig";
 import styles from "../styles/Home.module.scss";
 import PhotoGallery from "../components/PhotoGallery";
 import loadable from "@loadable/component";
-import Instagram from "../components/Instagram";
 import InstaGrid from "../components/InstaGrid";
-// import AppContext from "../context/state";
 
 export const getStaticProps = async () => {
 	const data = await fetch("http://localhost:8000/", {
 		method: "GET",
 		mode: "cors",
 		headers: {
-			"Cache-Control": "max-age=10000000000000000000000",
 			Accept: "application/json",
 			"Content-Type": "application/json",
 		},
@@ -26,7 +22,6 @@ export const getStaticProps = async () => {
 		method: "GET",
 		mode: "cors",
 		headers: {
-			"Cache-Control": "max-age=10000000000000000000000",
 			Accept: "application/json",
 			"Content-Type": "application/json",
 		},
@@ -46,7 +41,6 @@ const Youtube = loadable(() => import("../components/Youtube"), {
 });
 
 export default function Homepage({ data, instaPost }) {
-	console.log(instaPost);
 	return (
 		<main>
 			<Video source="/video/montage.mp4" />
@@ -72,11 +66,6 @@ export default function Homepage({ data, instaPost }) {
 			</section>
 			<section className={styles.instaContainer}>
 				<div className={styles.postsContainer}>
-					{/* {instaPost.edges.map((post, i) => {
-						if (i <= 2) {
-							return <Instagram key={i} postId={post.node.shortcode} />;
-						}
-					})} */}
 					<InstaGrid posts={instaPost}/>
 				</div>
 			</section>

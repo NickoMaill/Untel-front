@@ -1,12 +1,23 @@
 import styles from "../styles/Modal.module.scss";
+import "animate.css";
+import { useState } from "react";
 
 export default function Modal({ children, open, onClick }) {
+	const [animation, setAnimation] = useState("");
+
+	const anim = (bool) => {
+		if (bool === true) {
+			return "animate__backInUp";
+		} else {
+			return "animate__backOutDown";
+		}
+	};
+
 	return (
 		<div>
 			{open ? (
 				<div className={styles.modal} onClick={onClick}>
-					<div className={styles.imgContainer}>
-						{/* <img className={styles.img} src={src} alt="photo de l'artiste Untel" /> */}
+					<div className={`${styles.imgContainer} animate__animated ${anim(open)}`}>
 						{children}
 						<button type="button" onClick={onClick}>
 							close
@@ -14,7 +25,7 @@ export default function Modal({ children, open, onClick }) {
 					</div>
 				</div>
 			) : (
-				<></>
+					<></>
 			)}
 		</div>
 	);

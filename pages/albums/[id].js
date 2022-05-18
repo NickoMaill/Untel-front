@@ -1,10 +1,22 @@
 import React from "react";
+import StripeCheckout from "react-stripe-checkout";
 import Playlist from "../../components/Playlist";
 import Youtube from "../../components/Youtube";
 import styles from "../../styles/AlbumPages.module.scss";
+import testPaypal from "../../data/testPaypal.json";
+import PaypalButton from "../../components/PaypalButton";
 
 export default function AlbumDetails({ album }) {
-	// const formatDescription = [album.description].map((i) => i.replace(/\n/g, "<br/>")).join("");
+	console.log(album);
+	const handleToken = (token, address) => {
+		console.log(token, address);
+	};
+
+	const formaHtml = (string) => {
+		const formatDescription = [string].map((i) => i.replace(/"/g, "")).join("");
+		return formatDescription;
+	};
+
 	return (
 		<main>
 			<section>
@@ -13,12 +25,17 @@ export default function AlbumDetails({ album }) {
 					<img className={styles.img} src={`http://localhost:8000/${album.photo_path}`} alt="" />
 				</div>
 				<div>
-					<p style={{whiteSpace:"pre-line"}}>{album.description}</p>
-					<div style={{display:"flex", justifyContent:"space-around", alignItems:"center"}}>
+					<p style={{ whiteSpace: "pre-line" }}>{album.description}</p>
+					<div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
 						<Youtube src={album.video_link} />
 						<Playlist src={album.playlist_link} />
 					</div>
 				</div>
+				<PaypalButton
+					value={album.price}
+					reference_id={album.album_id}
+					description={album.title + " " + album.subtitle}
+				/>
 			</section>
 		</main>
 	);
@@ -26,7 +43,6 @@ export default function AlbumDetails({ album }) {
 
 export async function getStaticProps({ params }) {
 	const album = await fetch(`http://localhost:8000/albums/${params.id}`, {
-		"Cache-Control": "max-age=10000000000000000000000",
 		method: "GET",
 		mode: "cors",
 		headers: {
@@ -44,7 +60,6 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
 	const data = await fetch("http://localhost:8000/albums/all", {
-		"Cache-Control": "max-age=10000000000000000000000",
 		method: "GET",
 		mode: "cors",
 		headers: {

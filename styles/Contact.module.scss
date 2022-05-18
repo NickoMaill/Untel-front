@@ -9,7 +9,7 @@
 .form {
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 50%;
     border: solid 3px #000;
     border-radius: 1rem;
     padding: 2rem;
@@ -36,5 +36,11 @@
         transform: scale(1.1);
         background-color: #000;
         color: #fff;
+    }
+}
+
+@media screen and (max-width: 592px){
+    .form{
+        width: max-content;
     }
 }

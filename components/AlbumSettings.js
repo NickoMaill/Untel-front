@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSnackbar } from "notistack";
 import styles from "../styles/AlbumSettings.module.scss";
 
@@ -14,6 +14,7 @@ export default function AlbumSettings({
 	albumCover,
 	id,
 	requestType,
+	price,
 }) {
 	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
@@ -26,16 +27,18 @@ export default function AlbumSettings({
 	const [photoPathAlbum, setPhotoPathAlbum] = useState(albumCover);
 	const [colorAlbum, setColorAlbum] = useState(color);
 	const [isReleasedAlbum, setIsReleasedAlbum] = useState(isReleased);
+	const [priceAlbum, setPriceAlbum] = useState(price);
 	const [isUpdated, setIsUpdated] = useState(false);
 
 	const initialValue = [
 		{
-		  type: 'paragraph',
-		  children: [{ text: 'A line of text in a paragraph.' }],
+			type: "paragraph",
+			children: [{ text: "A line of text in a paragraph." }],
 		},
-	  ]
+	];
 
 	const updateAlbum = (event, type) => {
+		// const parsedPrice = parseFloat([priceAlbum].map((i) => i.replace(/,/g, ".")).join(""));
 		event.preventDefault();
 		setIsUpdated(true);
 		let url;
@@ -61,6 +64,7 @@ export default function AlbumSettings({
 		formData.append("image", photoPathAlbum);
 		formData.append("color", colorAlbum);
 		formData.append("isReleased", isReleasedAlbum);
+		formData.append("price", priceAlbum);
 
 		fetch(url, {
 			method,
@@ -131,29 +135,41 @@ export default function AlbumSettings({
 						/>
 					</div>
 					<div className={styles.formDetails}>
-						<label htmlFor="isReleased">Cet album est-il déjà sortis ?</label>
-						<div style={{ display: "flex", alignItems: "center" }}>
-							<label style={{ marginRight: 10 }} htmlFor="isReleased">
-								Oui
-							</label>
-							<input
-								name="isReleased"
-								type="radio"
-								onChange={() => setIsReleasedAlbum(true)}
-								value={isReleasedAlbum}
-								checked={isReleasedAlbum}
-							/>
-							<label style={{ marginInline: 10 }} htmlFor="isNotReleased">
-								Non
-							</label>
-							<input
-								name="isNotReleased"
-								type="radio"
-								onChange={() => setIsReleasedAlbum(false)}
-								value={!isReleasedAlbum}
-								checked={!isReleasedAlbum}
-							/>
+						<div style={{display: "flex", flexDirection:"column", alignItems:"center"}}>
+							<label htmlFor="isReleased">Cet album est-il déjà sortis ?</label>
+							<div style={{ display: "flex", alignItems: "center" }}>
+								<label style={{ marginRight: 10 }} htmlFor="isReleased">
+									Oui
+								</label>
+								<input
+									name="isReleased"
+									type="radio"
+									onChange={() => setIsReleasedAlbum(true)}
+									value={isReleasedAlbum}
+									checked={isReleasedAlbum}
+								/>
+								<label style={{ marginInline: 10 }} htmlFor="isNotReleased">
+									Non
+								</label>
+								<input
+									name="isNotReleased"
+									type="radio"
+									onChange={() => setIsReleasedAlbum(false)}
+									value={!isReleasedAlbum}
+									checked={!isReleasedAlbum}
+								/>
+							</div>
 						</div>
+					</div>
+					<div className={styles.formDetails}>
+						<label>Prix de l&apos;album</label>
+						<input
+							type="text"
+							className={styles.input}
+							onChange={(e) => setPriceAlbum(e.target.value)}
+							defaultValue={price}
+							placeholder="prix en euro TTC"
+						/>
 					</div>
 				</div>
 				<div className={styles.formDetails2}>
@@ -203,6 +219,7 @@ export default function AlbumSettings({
 								name="image"
 								type="file"
 								onChange={(e) => setPhotoPathAlbum(e.target.files[0])}
+								
 							/>
 						</div>
 						<div>
