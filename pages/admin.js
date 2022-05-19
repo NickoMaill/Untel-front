@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Link from "next/link";
 import { useSnackbar } from "notistack";
 import { login } from "../utils/login";
 import styles from "../styles/Admin.module.scss";
+import AppContext from "../context/state";
 
 export default function Admin() {
 	const { enqueueSnackbar } = useSnackbar();
-	const [isAdminLogged, setIsAdminLogged] = useState(false);
+	const Context = useContext(AppContext);
+	// const [isAdminLogged, setIsAdminLogged] = useState(false);
 	const [password, setPassword] = useState("");
 	const [validPassword, setValidPassword] = useState(true);
 
@@ -23,15 +25,19 @@ export default function Admin() {
 				enqueueSnackbar("Bienvenue sur votre interface Admin", {
 					variant: "success",
 				});
-				setIsAdminLogged(true);
+				Context.setIsAdminLogged(true);
 				setValidPassword(true);
+
+				setTimeout(() => {
+					Context.setIsAdminSessionExpired(true);
+				}, 3600000);
 			}
 		});
 	};
 
 	return (
 		<main className={styles.mainAdmin}>
-			{!isAdminLogged ? (
+			{!Context.isAdminLogged ? (
 				<section>
 					<form
 						onSubmit={(e) => authentication(e)}
@@ -52,7 +58,7 @@ export default function Admin() {
 						<input type="submit" value="se connecter" />
 					</form>
 				</section>
-			) : (
+			) : !Context.isAdminSessionExpired ? (
 				<>
 					<section style={{ display: "flex", flexDirection: "column" }}>
 						<div style={{ textAlign: "center" }}>
@@ -79,7 +85,7 @@ export default function Admin() {
 								<button className={styles.button}>Modifier un album</button>
 							</Link>
 							<Link passHref={true} href="/admin/addGig">
-								<button className={styles.button}>Ajouter un date</button>
+								<button className={styles.button}>Ajouter une date</button>
 							</Link>
 							<Link passHref={true} href="/admin/updateGig">
 								<button className={styles.button}>Modifier une date</button>
@@ -93,6 +99,12 @@ export default function Admin() {
 						</div>
 					</section>
 				</>
+			) : (
+				<section>
+					<div>
+						<p>Votre session a expirée veuillez vous reconnecter</p>
+					</div>
+				</section>
 			)}
 		</main>
 	);

@@ -62,6 +62,9 @@ export default function UpdateAlbum({ data }) {
 						</p>
 					</div>
 				</div>
+					<Link passHref={true} href="/admin">
+						<button className={styles.button}>Revenir a votre espace admin</button>
+					</Link>
 				<div style={{display:"flex", flexDirection:"column"}}>
 					<h5 style={{textAlign:"center"}}>Modifier vos albums</h5>
 						{data.albums.map((album, i) => {
@@ -79,14 +82,12 @@ export default function UpdateAlbum({ data }) {
 									color={album.color}
 									id={album.album_id}
 									price={album.price}
+									setList={album.track_list !== null ? album.track_list : []}
 									requestType="update"
 								/>
 							);
 						})}
 				</div>
-					<Link passHref={true} href="/admin">
-						<button className={styles.button}>Revenir a votre espace admin</button>
-					</Link>
 			</section>
 		</main>
 	);

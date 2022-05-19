@@ -1,9 +1,7 @@
 import React from "react";
-import StripeCheckout from "react-stripe-checkout";
 import Playlist from "../../components/Playlist";
 import Youtube from "../../components/Youtube";
 import styles from "../../styles/AlbumPages.module.scss";
-import testPaypal from "../../data/testPaypal.json";
 import PaypalButton from "../../components/PaypalButton";
 
 export default function AlbumDetails({ album }) {
@@ -18,24 +16,52 @@ export default function AlbumDetails({ album }) {
 	};
 
 	return (
-		<main>
+		<main className={styles.main} style={{ background: `radial-gradient( #c7c8d0, ${album.color})` }}>
 			<section>
 				<div className={styles.title}>
-					<h2>{`${album.title} (${album.year})`}</h2>
-					<img className={styles.img} src={`http://localhost:8000/${album.photo_path}`} alt="" />
+					<div style={{ margin: "2rem 0rem 4rem 0rem" }}>
+						<h2>{`${album.title} (${album.year})`}</h2>
+					</div>
+					<div className={styles.albumInfo}>
+						<img className={styles.img} src={`http://localhost:8000/${album.photo_path}`} alt="" />
+						<div className={styles.trackListContainer}>
+							<div>
+								<ul style={{ marginTop: 30 }}>
+									{album.track_list.map((track, i) => (
+										<li style={{ marginBottom: 30, display: "flex" }} key={i}>
+											<p style={{ marginRight: 20 }}>{track.trackNumber} - </p>
+											<p>{track.track}</p>
+										</li>
+									))}
+								</ul>
+							</div>
+							<div style={{ zIndex: "0" }}>
+								<a href="" target="_blank" rel="noreferrer">
+									<button className={styles.qobuz}>
+										<img src="/svg/qobuz.svg" style={{ width: 100 }} alt="" />
+									</button>
+								</a>
+								<span>vous le voulez en version physique ? c'est possible !</span>
+								<PaypalButton
+									value={album.price}
+									reference_id={album.album_id}
+									description={album.title + " " + album.subtitle}
+								/>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div>
-					<p style={{ whiteSpace: "pre-line" }}>{album.description}</p>
+					<div className={styles.corpusContainer}>
+						<div className={styles.textContainer}>
+							<p style={{ whiteSpace: "pre-line" }}>{album.description}</p>
+						</div>
+					</div>
 					<div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
 						<Youtube src={album.video_link} />
 						<Playlist src={album.playlist_link} />
 					</div>
 				</div>
-				<PaypalButton
-					value={album.price}
-					reference_id={album.album_id}
-					description={album.title + " " + album.subtitle}
-				/>
 			</section>
 		</main>
 	);

@@ -44,3 +44,14 @@
     font-family: "Roboto regular";
     align-items: center;
 }
+
+.trackContainer{
+    display: flex;
+    align-items: center;
+    margin-block: 1rem;
+}
+
+.deleteButton{
+    padding: 0.2rem;
+    margin-left: 1rem;
+};

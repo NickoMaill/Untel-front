@@ -5,6 +5,7 @@ import styles from "../styles/instaGrid.module.scss";
 import "animate.css";
 
 export default function InstaGrid({ posts }) {
+	console.log(posts);
 	const [visible, setVisible] = useState(10);
 	const [isOpen, setIsOpen] = useState(false);
 	const [currentPost, setCurrentPost] = useState("");
@@ -100,7 +101,7 @@ export default function InstaGrid({ posts }) {
 				{endOfPost && (
 					<div className={styles.endMEssage}>
 						<span style={{ fontStyle: "italic" }}>
-							- Tout continue au-delà de l&apos;horizon (mais sur cette liste !) -
+							- Tout continue au-delà de l&apos;horizon (mais pas sur cette liste !) -
 						</span>
 					</div>
 				)}

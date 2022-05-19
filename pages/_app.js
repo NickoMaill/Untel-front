@@ -9,10 +9,15 @@ import "../styles/globals.scss";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 function MyApp({ Component, pageProps }) {
+	const [isAdminLogged, setIsAdminLogged] = useState(false)
+	const [isAdminSessionExpired, setIsAdminSessionExpired] = useState(false)
 
-	
 
 	const value = {
+		isAdminLogged,
+		setIsAdminLogged,
+		isAdminSessionExpired,
+		setIsAdminSessionExpired
 	};
 
 	return (

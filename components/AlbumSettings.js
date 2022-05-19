@@ -15,9 +15,9 @@ export default function AlbumSettings({
 	id,
 	requestType,
 	price,
+	setList,
 }) {
 	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-
 	const [titleAlbum, setTitleAlbum] = useState(title);
 	const [subtitleAlbum, setSubtitleAlbum] = useState(subtitle);
 	const [yearAlbum, setYearAlbum] = useState(releaseYear);
@@ -28,21 +28,41 @@ export default function AlbumSettings({
 	const [colorAlbum, setColorAlbum] = useState(color);
 	const [isReleasedAlbum, setIsReleasedAlbum] = useState(isReleased);
 	const [priceAlbum, setPriceAlbum] = useState(price);
+	const [trackListAlbum, setTrackListAlbum] = useState(setList) || []
+	const [currentSong, setCurrentSong] = useState({});
 	const [isUpdated, setIsUpdated] = useState(false);
 
-	const initialValue = [
-		{
-			type: "paragraph",
-			children: [{ text: "A line of text in a paragraph." }],
-		},
-	];
+	const addTrack = () => {
+
+		if (currentSong.track === "") {
+			console.error("vous devez rentrez un nom de chanson");
+			return;
+		}
+
+		if (trackListAlbum !== null) {
+			
+			if (trackListAlbum.findIndex((i) => i.trackNumber === currentSong.trackNumber) > -1) {
+				console.error("chanson déjà a jouter supprimer la pour la modifier");
+				return;
+			} else {
+				setTrackListAlbum((prevState) => [...prevState, currentSong]);
+			}
+		} else {
+			setTrackListAlbum(currentSong)
+		}
+
+	};
+
+	const deleteTrack = (index) => {
+		setTrackListAlbum((prevState) => prevState.filter((trackListAlbum, i) => i !== index));
+	};
 
 	const updateAlbum = (event, type) => {
-		// const parsedPrice = parseFloat([priceAlbum].map((i) => i.replace(/,/g, ".")).join(""));
 		event.preventDefault();
 		setIsUpdated(true);
 		let url;
 		let method;
+		const sortedTrackList = JSON.stringify(trackListAlbum.sort((a, b) => (a.trackNumber > b.trackNumber ? 1 : -1)));
 
 		if (type === "add") {
 			url = "http://localhost:8000/albums/add-album";
@@ -65,6 +85,7 @@ export default function AlbumSettings({
 		formData.append("color", colorAlbum);
 		formData.append("isReleased", isReleasedAlbum);
 		formData.append("price", priceAlbum);
+		formData.append("setList", sortedTrackList);
 
 		fetch(url, {
 			method,
@@ -135,7 +156,7 @@ export default function AlbumSettings({
 						/>
 					</div>
 					<div className={styles.formDetails}>
-						<div style={{display: "flex", flexDirection:"column", alignItems:"center"}}>
+						<div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 							<label htmlFor="isReleased">Cet album est-il déjà sortis ?</label>
 							<div style={{ display: "flex", alignItems: "center" }}>
 								<label style={{ marginRight: 10 }} htmlFor="isReleased">
@@ -219,7 +240,6 @@ export default function AlbumSettings({
 								name="image"
 								type="file"
 								onChange={(e) => setPhotoPathAlbum(e.target.files[0])}
-								
 							/>
 						</div>
 						<div>
@@ -238,6 +258,58 @@ export default function AlbumSettings({
 									réinitialiser
 								</button>
 							</div>
+						</div>
+						<div>
+							<div style={{ marginTop: 30 }}>
+								<label>Ajouter/modifier la tliste des chansons</label>
+								<div>
+									<input
+										className={styles.input}
+										style={{ width: 45 }}
+										onChange={(e) =>
+											setCurrentSong((prevState) => ({
+												...prevState,
+												trackNumber: parseInt(e.target.value),
+											}))
+										}
+										placeholder="n°"
+										type="text"
+										maxLength={3}
+									/>
+									<input
+										className={styles.input}
+										onChange={(e) =>
+											setCurrentSong((prevState) => ({ ...prevState, track: e.target.value }))
+										}
+										placeholder="titre de la chanson"
+										type="text"
+									/>
+									<button type="button" className={styles.deleteButton} onClick={addTrack}>
+										ajouter
+									</button>
+								</div>
+							</div>
+							{trackListAlbum && (
+								<div>
+									<ul>
+										{trackListAlbum.map((item, i) => {
+											return (
+												<li key={i} className={styles.trackContainer}>
+													<p style={{ marginRight: "1rem" }}>{item.trackNumber} - </p>
+													<span>{item.track}</span>
+													<button
+														className={styles.deleteButton}
+														onClick={() => deleteTrack(i)}
+														type="button"
+													>
+														x
+													</button>
+												</li>
+											);
+										})}
+									</ul>
+								</div>
+							)}
 						</div>
 					</div>
 					{albumCover && (

@@ -2,9 +2,10 @@ import React from "react";
 
 export default function Playlist({ src }) {
 	return (
-		<div style={{width:400}}>
+		<div style={{width:450}}>
 			<iframe
 				style={{ borderRadius: 12 }}
+
 				src={src}
 				width="100%"
 				height="380"
