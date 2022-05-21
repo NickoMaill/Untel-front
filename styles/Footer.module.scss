@@ -1,5 +1,6 @@
 .footerContainer {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     color: #fff;
@@ -8,18 +9,49 @@
     width: 100%;
 }
 
+.upFooterContainer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+}
+
 .infoContainer {
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 2rem;
 }
 
 .icon {
     width: 1.5rem;
 }
 
+.footerLink{
+    cursor: pointer;
+    position: relative;
+    padding-bottom: 0.2rem;
+    &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #fff;
+        transform-origin: bottom right;
+        transition: transform 0.25s ease-out;
+    }
+    &:hover:after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+}
+
 .iconContainer {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
 }
 
 .footerIcon {

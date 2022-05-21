@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSnackbar } from "notistack";
+import Modal from "../components/Modal";
 import styles from "../styles/AlbumSettings.module.scss";
 
 export default function AlbumSettings({
@@ -16,6 +17,8 @@ export default function AlbumSettings({
 	requestType,
 	price,
 	setList,
+	qobuz,
+	stream,
 }) {
 	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 	const [titleAlbum, setTitleAlbum] = useState(title);
@@ -28,19 +31,25 @@ export default function AlbumSettings({
 	const [colorAlbum, setColorAlbum] = useState(color);
 	const [isReleasedAlbum, setIsReleasedAlbum] = useState(isReleased);
 	const [priceAlbum, setPriceAlbum] = useState(price);
-	const [trackListAlbum, setTrackListAlbum] = useState(setList) || []
 	const [currentSong, setCurrentSong] = useState({});
+	const [trackListAlbum, setTrackListAlbum] = useState(setList) || [];
+	const [shopLink, setShopLink] = useState(qobuz);
+	const [currentStream, setCurrentStream] = useState({});
+	const [streamLinks, setStreamLinks] = useState(stream) || [];
 	const [isUpdated, setIsUpdated] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
+
+	const openModal = () => {
+		setIsOpen(!isOpen);
+	};
 
 	const addTrack = () => {
-
 		if (currentSong.track === "") {
 			console.error("vous devez rentrez un nom de chanson");
 			return;
 		}
 
 		if (trackListAlbum !== null) {
-			
 			if (trackListAlbum.findIndex((i) => i.trackNumber === currentSong.trackNumber) > -1) {
 				console.error("chanson déjà a jouter supprimer la pour la modifier");
 				return;
@@ -48,21 +57,46 @@ export default function AlbumSettings({
 				setTrackListAlbum((prevState) => [...prevState, currentSong]);
 			}
 		} else {
-			setTrackListAlbum(currentSong)
+			setTrackListAlbum(currentSong);
 		}
-
 	};
 
 	const deleteTrack = (index) => {
 		setTrackListAlbum((prevState) => prevState.filter((trackListAlbum, i) => i !== index));
 	};
 
-	const updateAlbum = (event, type) => {
+	const addStreamLink = () => {
+		if (currentStream.nameTrack === "" || currentStream.link === "") {
+			console.error("vous devez rentrez ou selectioner un lien");
+			return;
+		}
+
+		if (streamLinks.length > 0) {
+			if (streamLinks.findIndex((i) => i.nameLink === currentStream.nameLink) > -1) {
+				console.error("lien déjà ajouter, supprimer le pour le modifier");
+				return;
+			} else {
+				setStreamLinks((prevState) => [...prevState, currentStream]);
+				console.log("ajouté");
+			}
+		} else {
+			console.log("ajouté");
+			setStreamLinks((prevState) => [...prevState, currentStream]);
+			// setStreamLinks([currentStream]);
+		}
+	};
+
+	const deleteStreamLink = (index) => {
+		setStreamLinks((prevState) => prevState.filter((streamLinks, i) => i !== index));
+	};
+
+	const updateOrAddAlbum = (event, type) => {
 		event.preventDefault();
 		setIsUpdated(true);
 		let url;
 		let method;
 		const sortedTrackList = JSON.stringify(trackListAlbum.sort((a, b) => (a.trackNumber > b.trackNumber ? 1 : -1)));
+		const sortedNameLink = JSON.stringify(streamLinks.sort((a, b) => (a.nameLink > b.nameLink ? 1 : -1)));
 
 		if (type === "add") {
 			url = "http://localhost:8000/albums/add-album";
@@ -86,6 +120,8 @@ export default function AlbumSettings({
 		formData.append("isReleased", isReleasedAlbum);
 		formData.append("price", priceAlbum);
 		formData.append("setList", sortedTrackList);
+		formData.append("shopLink", shopLink);
+		formData.append("streamLinks", sortedNameLink);
 
 		fetch(url, {
 			method,
@@ -112,10 +148,12 @@ export default function AlbumSettings({
 			.catch((err) => console.error(err));
 	};
 
+	const deleteAlbum = () => {};
+
 	return (
 		<div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
 			<form
-				onSubmit={(e) => updateAlbum(e, requestType)}
+				onSubmit={(e) => updateOrAddAlbum(e, requestType)}
 				className={styles.form}
 				style={{ display: "flex", flexDirection: "column", width: "70%", justifyContent: "center" }}
 			>
@@ -230,6 +268,17 @@ export default function AlbumSettings({
 							onChange={(e) => setVideoLinkAlbum(e.target.value)}
 						/>
 					</div>
+					<div className={styles.formDetails}>
+						<label htmlFor="youtube">Qobuz</label>
+						<input
+							className={styles.input}
+							defaultValue={youtube}
+							placeholder="lien achat qobuz"
+							name="youtube"
+							type="text"
+							onChange={(e) => setShopLink(e.target.value)}
+						/>
+					</div>
 				</div>
 				<div style={{ display: "flex", alignItems: "center", justifyContent: "space-evenly" }}>
 					<div style={{ display: "flex", flexDirection: "column" }}>
@@ -313,17 +362,113 @@ export default function AlbumSettings({
 						</div>
 					</div>
 					{albumCover && (
-						<div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-around",
+								alignItems: "center",
+								flexDirection: "column",
+							}}
+						>
 							<img
 								style={{ width: 200 }}
 								src={`http://localhost:8000/${albumCover}`}
 								alt={`photo de couveture de ${title}`}
 							/>
+							<div className={styles.streaming}>
+								<label>Sélectionnez vos plateforme</label>
+								<div>
+									<div>
+										<select
+											onChange={(e) =>
+												setCurrentStream((prevState) => ({
+													...prevState,
+													nameLink: e.target.value,
+												}))
+											}
+											className={styles.input}
+											defaultValue=""
+										>
+											<option value="" disabled key="1">
+												-- plateforme --
+											</option>
+											<option value="spotify" key="2">
+												Spotify
+											</option>
+											<option value="appleMusic" key="3">
+												Apple Music
+											</option>
+											<option value="deezer" key="4">
+												Deezer
+											</option>
+										</select>
+										<input
+											onChange={(e) =>
+												setCurrentStream((prevState) => ({
+													...prevState,
+													link: e.target.value,
+												}))
+											}
+											className={styles.input}
+											type="text"
+											placeholder="lien de l'album"
+										/>
+										<button type="button" onClick={addStreamLink}>
+											ajouter
+										</button>
+									</div>
+
+									{streamLinks && (
+										<div>
+											<ul>
+												{streamLinks.map((link, i) => {
+													return (
+														<li key={i} className={styles.trackContainer}>
+															<p>{link.nameLink}</p>
+															<button
+																className={styles.deleteButton}
+																type="button"
+																onClick={() => deleteStreamLink(i)}
+															>
+																X
+															</button>
+														</li>
+													);
+												})}
+											</ul>
+										</div>
+									)}
+								</div>
+							</div>
 						</div>
 					)}
 				</div>
-				<div style={{ display: "flex", justifyContent: "center", marginTop: 70 }}>
+				<div style={{ display: "flex", justifyContent: "space-around", marginTop: 70 }}>
+					{requestType === "update" ? (
+						<button className={styles.button} onClick={openModal} type="button">
+							Supprimer L&apos;album
+						</button>
+					) : (
+						<></>
+					)}
 					<input className={styles.button} value="Mettre a jour l'album" type="submit" />
+					<Modal open={isOpen} onClick={openModal}>
+						<div
+							style={{
+								backgroundColor: "#f1f1f1",
+								display: "flex",
+								flexDirection: "column",
+								alignItems: "center",
+								width: "100%",
+								padding: 50,
+							}}
+						>
+							Etes-vous sûr ?
+							<button className={styles.button} onClick={() => deleteAlbum(id)} type="button">
+								Supprimer L&apos;album
+							</button>
+						</div>
+					</Modal>
 				</div>
 			</form>
 		</div>

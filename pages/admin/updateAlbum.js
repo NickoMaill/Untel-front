@@ -83,6 +83,7 @@ export default function UpdateAlbum({ data }) {
 									id={album.album_id}
 									price={album.price}
 									setList={album.track_list !== null ? album.track_list : []}
+									stream={album.stream_links !== null ? album.stream_links : []}
 									requestType="update"
 								/>
 							);

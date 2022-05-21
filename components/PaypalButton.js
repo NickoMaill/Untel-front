@@ -2,13 +2,11 @@ import { useEffect, useState } from "react";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 
 export default function PaypalButton({ description, value, reference_id, albumId }) {
-	console.log(reference_id);
 	const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
 	const [paidFor, setPaidFor] = useState(false);
 	const [error, setError] = useState(false);
 	const [cancel, setCancel] = useState(false);
 	const [success, setSuccess] = useState({});
-	console.log(success.status);
 	const handleApprove = (obj) => {
 		setPaidFor(true);
 	};

@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "../styles/Iframe.module.scss"
+import styles from "../styles/Iframe.module.scss";
 
 export default function Youtube({ src, ref }) {
 	return (
 		<div>
 			<iframe
-			loading="lazy"
+				loading="lazy"
 				className={styles.iframe}
 				ref={ref}
 				src={src}

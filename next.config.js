@@ -5,18 +5,25 @@ require("dotenv").config({
 const nextConfig = {
 	reactStrictMode: true,
 	images: {
-		domains: ["localhost"],
+		domains: ["localhost:8000", "localhost:3000"],
 		loader: "akamai",
 		path: "",
+		dangerouslyAllowSVG: true,
+		contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+		minimumCacheTTL: 600,
+		disableStaticImages: true,
 	},
 	i18n: {
 		locales: ["fr"],
 		defaultLocale: "fr",
 	},
 	env: {
-		STRIPE_KEY: process.env.STRIPE_KEY,
 		CLIENT_ID: process.env.CLIENT_ID,
 	},
 };
+
+require("@next/bundle-analyzer")({
+	enabled: process.env.ANALYZE === "true",
+});
 
 module.exports = nextConfig;

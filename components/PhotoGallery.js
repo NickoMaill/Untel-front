@@ -1,15 +1,21 @@
-import { useState, useRef } from "react";
+import Image from "next/image";
+import { useState, useRef, useEffect } from "react";
 import styles from "../styles/PhotoGallery.module.scss";
 import Modal from "./Modal";
 
 export default function PhotoGallery() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [currentPhoto, setCurrentPhoto] = useState("");
+	const [currentWidth, setCurrentWidth] = useState(null);
+	const [currentHeight, setCurrentHeight] = useState(null);
 	const ref = useRef(null);
+	// console.log(ref);
 
-	const openCloseModal = (path) => {
+	const openCloseModal = (path, width, height) => {
 		setIsOpen(!isOpen);
 		setCurrentPhoto(path);
+		setCurrentWidth(width * 2);
+		setCurrentHeight(height * 2);
 	};
 
 	const scroll = (scrollOffset) => {
@@ -20,59 +26,102 @@ export default function PhotoGallery() {
 		<div style={{ display: "flex", alignItems: "center" }}>
 			<div className={styles.arrowContainer}>
 				<div onClick={() => scroll(-500)} className={styles.leftRightArrow}>
-					<img src="/svg/left.svg" alt="flèche gauche" />
+					<Image width={24} height={24} src="/svg/left.svg" alt="flèche gauche" />
 				</div>
 				<div onClick={() => scroll(500)} className={styles.leftRightArrow}>
-					<img src="/svg/right.svg" alt="flèche droite" />
+					<Image width={24} height={24} src="/svg/right.svg" alt="flèche droite" />
 				</div>
 			</div>
 			<div className={styles.imgContainer} ref={ref}>
-				<img
-					loading="lazy"
-					onClick={() => openCloseModal(ref.current.childNodes[0].src)}
-					className={styles.img}
-					src="/images/untel-band3.webp"
-					alt="Untel"
-				/>
-				<img
-					loading="lazy"
-					onClick={() => openCloseModal(ref.current.childNodes[1].src)}
-					className={styles.img}
-					src="/images/untel-band4.webp"
-					alt="Untel"
-				/>
-				<img
-					loading="lazy"
-					onClick={() => openCloseModal(ref.current.childNodes[2].src)}
-					className={styles.img}
-					src="/images/untel-favo.webp"
-					alt="Untel"
-				/>
-				<img
-					loading="lazy"
-					onClick={() => openCloseModal(ref.current.childNodes[3].src)}
-					className={styles.img}
-					src="/images/untel-front1.webp"
-					alt="Untel"
-				/>
-				<img
-					loading="lazy"
-					onClick={() => openCloseModal(ref.current.childNodes[4].src)}
-					className={styles.img}
-					src="/images/untel-front2.webp"
-					alt="Untel"
-				/>
-				<img
-					loading="lazy"
-					onClick={() => openCloseModal(ref.current.childNodes[5].src)}
-					className={styles.img}
-					src="/images/untel.webp"
-					alt="Untel"
-				/>
+				<div className={styles.img}>
+					<Image
+					layout="fixed"
+						loading="lazy"
+						width={256}
+						height={384}
+						onClick={() =>
+							openCloseModal(ref.current.childNodes[0].childNodes[0].childNodes[0].src, 256, 384)
+						}
+						src="/images/untel-band3.webp"
+						alt="Untel"
+					/>
+				</div>
+				<div className={styles.img}>
+					<Image
+					layout="fixed"
+						loading="lazy"
+						width={576}
+						height={384}
+						onClick={() =>
+							openCloseModal(ref.current.childNodes[1].childNodes[0].childNodes[0].src, 576, 384)
+						}
+						src="/images/untel-band4.webp"
+						alt="Untel"
+					/>
+				</div>
+				<div className={styles.img}>
+					<Image
+					layout="fixed"
+						loading="lazy"
+						width={255}
+						height={384}
+						onClick={() =>
+							openCloseModal(ref.current.childNodes[2].childNodes[0].childNodes[0].src, 255, 384)
+						}
+						src="/images/untel-favo.webp"
+						alt="Untel"
+					/>
+				</div>
+				<div className={styles.img}>
+					<Image
+					layout="fixed"
+						loading="lazy"
+						width={288}
+						height={384}
+						onClick={() =>
+							openCloseModal(ref.current.childNodes[3].childNodes[0].childNodes[0].src, 288, 384)
+						}
+						src="/images/untel-front1.webp"
+						alt="Untel"
+					/>
+				</div>
+				<div className={styles.img}>
+					<Image
+					layout="fixed"
+						loading="lazy"
+						width={384}
+						height={384}
+						onClick={() =>
+							openCloseModal(ref.current.childNodes[4].childNodes[0].childNodes[0].src, 384, 384)
+						}
+						src="/images/untel-front2.webp"
+						alt="Untel"
+					/>
+				</div>
+				<div className={styles.img}>
+					<Image
+					layout="fixed"
+						loading="lazy"
+						width={512}
+						height={384}
+						onClick={() =>
+							openCloseModal(ref.current.childNodes[5].childNodes[0].childNodes[0].src, 512, 384)
+						}
+						src="/images/untel.webp"
+						alt="Untel"
+					/>
+				</div>
 			</div>
 			<div>
 				<Modal open={isOpen} onClick={openCloseModal}>
-					<img className={styles.imgModal} src={currentPhoto} alt="photo de l'artiste Untel" />
+					<div className={styles.imgModal}>
+						<Image
+							width={currentWidth}
+							height={currentHeight}
+							src={currentPhoto}
+							alt="photo de l'artiste Untel"
+						/>
+					</div>
 				</Modal>
 			</div>
 		</div>

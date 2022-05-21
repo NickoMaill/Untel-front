@@ -1,0 +1,159 @@
+{
+	"dir": "ltr",
+	"lang": "fr",
+	"short_name": "Untel officiel",
+	"name": "Untel site officiel",
+	"description": "Site web de l'artiste Untel, site dans lequel vous pourrez retrouver toute ses actualités ainsi. L'achat d'album est aussi possible soit au format dématérialisé ou physique.",
+	"icons": [
+		{
+			"src": "favicon.ico",
+			"sizes": "64x64 32x32 24x24 16x16",
+			"type": "image/x-icon"
+		},
+		{
+			"src": "svg/appleMusic.svg",
+			"sizes": "34x90",
+			"type": "image/svg"
+		},
+		{
+			"src": "svg/chat.svg",
+			"sizes": "24x17",
+			"type": "image/svg"
+		},
+		{
+			"src": "svg/deezer.svg",
+			"sizes": "34x90",
+			"type": "image/svg"
+		},
+		{
+			"src": "svg/deezerLogo.svg",
+			"sizes": "24x24",
+			"type": "image/svg"
+		},
+		{
+			"src": "svg/facebook.svg",
+			"sizes": "24x24",
+			"type": "image/svg"
+		},
+		{
+			"src": "svg/heart.svg",
+			"sizes": "24x17",
+			"type": "image/svg"
+		},
+		{
+			"src": "svg/instagram.svg",
+			"sizes": "24x24",
+			"type": "image/svg"
+		},
+		{
+			"src": "svg/instaString.svg",
+			"sizes": "114x320",
+			"type": "image/svg"
+		},
+		{
+			"src": "svg/left.svg",
+			"sizes": "24x24",
+			"type": "image/svg"
+		},
+		{
+			"src": "svg/qobuz.svg",
+			"sizes": "125x40",
+			"type": "image/svg"
+		},
+		{
+			"src": "svg/right.svg",
+			"sizes": "24x24",
+			"type": "image/svg"
+		},
+		{
+			"src": "svg/spotify.svg",
+			"sizes": "34x90",
+			"type": "image/svg"
+		},
+		{
+			"src": "svg/spotifyLogo.svg",
+			"sizes": "24x24",
+			"type": "image/svg"
+		},
+		{
+			"src": "svg/up.svg",
+			"sizes": "32x32",
+			"type": "image/svg"
+		},
+		{
+			"src": "svg/video.svg",
+			"sizes": "24x17",
+			"type": "image/svg"
+		},
+		{
+			"src": "svg/youtube.svg",
+			"sizes": "24x24",
+			"type": "image/svg"
+		}
+	],
+	"images": [
+		{
+			"src": "images/impasse.webp",
+			"sizes": "600x600",
+			"type": "image/webp"
+		},
+		{
+			"src": "images/carte-blanche.webp",
+			"sizes": "600x600",
+			"type": "image/webp"
+		},
+		{
+			"src": "images/untel-band-5.webp",
+			"sizes": "2667x1500",
+			"type": "image/webp"
+		},
+		{
+			"src": "images/untel-band2.webp",
+			"sizes": "1860x1240",
+			"type": "image/webp"
+		},
+		{
+			"src": "images/untel-band3.webp",
+			"sizes": "1860x2790",
+			"type": "image/webp"
+		},
+		{
+			"src": "images/untel-band4.webp",
+			"sizes": "1860x1239",
+			"type": "image/webp"
+		},
+		{
+			"src": "images/untel-favo.webp",
+			"sizes": "847x1271",
+			"type": "image/webp"
+		},
+		{
+			"src": "images/untel-front1.webp",
+			"sizes": "1860x2479",
+			"type": "image/webp"
+		},
+		{
+			"src": "images/untel-front2.webp",
+			"sizes": "1860x1861",
+			"type": "image/webp"
+		},
+		{
+			"src": "images/untel.webp",
+			"sizes": "1000x750",
+			"type": "image/webp"
+		}
+	],
+	"video": [
+		{
+			"src": "video/montage.mp4",
+			"sizes": "1080x450",
+			"type": "video/mp4"
+		}
+	],
+	"start_url": ".",
+	"display": "standalone",
+	"theme_color": "#ffffff",
+	"background_color": "#ffffff",
+	"orientation": "portrait-primary",
+	"prefer_related_applications": "false"
+}

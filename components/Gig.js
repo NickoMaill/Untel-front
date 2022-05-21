@@ -18,17 +18,17 @@ export default function Gig({ data }) {
 	// 	};
 	// }
 
-	const getGeometry = (index) => {
-		fetch(
-			`https://api.geoapify.com/v1/geocode/search?text=${data.gigs[index].address}, ${data.gigs[index].city}, ${data.gigs[index].country}&apiKey=ac8c21ac706f453b9ee59cdf882cca91`
-		)
-			.then((res) => res.json())
-			.then((res) => {
-				console.log(res);
-				// setGeometry(res.features[0].geometry.coordinates);
-			})
-			.catch((error) => console.error("error", error));
-	};
+	// const getGeometry = (index) => {
+	// 	fetch(
+	// 		`https://api.geoapify.com/v1/geocode/search?text=${data.gigs[index].address}, ${data.gigs[index].city}, ${data.gigs[index].country}&apiKey=ac8c21ac706f453b9ee59cdf882cca91`
+	// 	)
+	// 		.then((res) => res.json())
+	// 		.then((res) => {
+	// 			console.log(res);
+	// 			// setGeometry(res.features[0].geometry.coordinates);
+	// 		})
+	// 		.catch((error) => console.error("error", error));
+	// };
 
 	return (
 		<div className={styles.gigContainer}>

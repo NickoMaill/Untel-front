@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.8.1",
     "@headlessui/react": "^1.6.0",
     "@loadable/component": "^5.15.2",
+    "@next/bundle-analyzer": "^12.1.6",
     "@paypal/react-paypal-js": "^7.7.0",
     "animate.css": "^4.1.1",
     "dotenv": "^16.0.1",

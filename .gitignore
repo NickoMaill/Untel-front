@@ -35,3 +35,6 @@ yarn-error.log*
 # photoshop
 /UntelLogo.psd
 /untelLogo.png
+
+# vscode file
+.vscode
