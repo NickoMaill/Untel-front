@@ -15,6 +15,7 @@
     "@loadable/component": "^5.15.2",
     "@next/bundle-analyzer": "^12.1.6",
     "@paypal/react-paypal-js": "^7.7.0",
+    "@svgr/webpack": "^6.2.1",
     "animate.css": "^4.1.1",
     "dotenv": "^16.0.1",
     "leaflet-defaulticon-compatibility": "^0.1.1",

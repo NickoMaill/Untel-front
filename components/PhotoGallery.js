@@ -2,6 +2,8 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import styles from "../styles/PhotoGallery.module.scss";
 import Modal from "./Modal";
+import Left from "../public/svg/left.svg";
+import Right from "../public/svg/right.svg";
 
 export default function PhotoGallery() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -26,16 +28,16 @@ export default function PhotoGallery() {
 		<div style={{ display: "flex", alignItems: "center" }}>
 			<div className={styles.arrowContainer}>
 				<div onClick={() => scroll(-500)} className={styles.leftRightArrow}>
-					<Image width={24} height={24} src="/svg/left.svg" alt="flèche gauche" />
+					<Left />
 				</div>
 				<div onClick={() => scroll(500)} className={styles.leftRightArrow}>
-					<Image width={24} height={24} src="/svg/right.svg" alt="flèche droite" />
+					<Right />
 				</div>
 			</div>
 			<div className={styles.imgContainer} ref={ref}>
 				<div className={styles.img}>
 					<Image
-					layout="fixed"
+						layout="fixed"
 						loading="lazy"
 						width={256}
 						height={384}
@@ -48,7 +50,7 @@ export default function PhotoGallery() {
 				</div>
 				<div className={styles.img}>
 					<Image
-					layout="fixed"
+						layout="fixed"
 						loading="lazy"
 						width={576}
 						height={384}
@@ -61,7 +63,7 @@ export default function PhotoGallery() {
 				</div>
 				<div className={styles.img}>
 					<Image
-					layout="fixed"
+						layout="fixed"
 						loading="lazy"
 						width={255}
 						height={384}
@@ -74,7 +76,7 @@ export default function PhotoGallery() {
 				</div>
 				<div className={styles.img}>
 					<Image
-					layout="fixed"
+						layout="fixed"
 						loading="lazy"
 						width={288}
 						height={384}
@@ -87,7 +89,7 @@ export default function PhotoGallery() {
 				</div>
 				<div className={styles.img}>
 					<Image
-					layout="fixed"
+						layout="fixed"
 						loading="lazy"
 						width={384}
 						height={384}
@@ -100,7 +102,7 @@ export default function PhotoGallery() {
 				</div>
 				<div className={styles.img}>
 					<Image
-					layout="fixed"
+						layout="fixed"
 						loading="lazy"
 						width={512}
 						height={384}

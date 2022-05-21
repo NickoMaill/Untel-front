@@ -2,6 +2,11 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "../styles/Header.module.scss";
+import Facebook from "../public/svg/facebook.svg";
+import Spotify from "../public/svg/spotifyLogo.svg";
+import Deezer from "../public/svg/deezerLogo.svg";
+import Instagram from "../public/svg/instagram.svg";
+import Youtube from "../public/svg/youtube.svg";
 
 const imageSize = 25;
 
@@ -39,24 +44,12 @@ export default function Header() {
 						<div className={styles.iconContainer}>
 							<a target="_blank" rel="noreferrer" href="https://www.facebook.com/untelofficiel">
 								<div className={styles.headerIcon}>
-									<Image
-										width={24}
-										height={24}
-										alt="facebook"
-										title="facebook"
-										src="/svg/facebook.svg"
-									/>
+									<Facebook />
 								</div>
 							</a>
 							<a target="_blank" rel="noreferrer" href="https://www.instagram.com/untel.officiel/">
 								<div className={styles.headerIcon}>
-									<Image
-										width={24}
-										height={24}
-										alt="instagram"
-										title="instagram"
-										src="/svg/instagram.svg"
-									/>
+									<Instagram />
 								</div>
 							</a>
 							<a
@@ -65,13 +58,7 @@ export default function Header() {
 								href="https://www.youtube.com/channel/UC2yk6QHhrP-h_Ytn9DCcEjg"
 							>
 								<div className={styles.headerIcon}>
-									<Image
-										width={24}
-										height={24}
-										alt="youtube"
-										title="youtube"
-										src="/svg/youtube.svg"
-									/>
+									<Youtube />
 								</div>
 							</a>
 							<a
@@ -80,24 +67,12 @@ export default function Header() {
 								href="https://open.spotify.com/artist/6FKGND11aWqkYLC2zS1zas"
 							>
 								<div className={styles.headerIcon}>
-									<Image
-										width={24}
-										height={24}
-										alt="spotify"
-										title="spotify"
-										src="/svg/spotifyLogo.svg"
-									/>
+									<Spotify />
 								</div>
 							</a>
 							<a target="_blank" rel="noreferrer" href="https://www.deezer.com/fr/artist/68974282">
 								<div className={styles.headerIcon}>
-									<Image
-										width={24}
-										height={24}
-										alt="deezer"
-										title="deezer"
-										src="/svg/deezerLogo.svg"
-									/>
+									<Deezer />
 								</div>
 							</a>
 						</div>

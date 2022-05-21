@@ -1,10 +1,21 @@
-import React from "react";
-import Playlist from "../../components/Playlist";
-import styles from "../../styles/AlbumPages.module.scss";
-import PaypalButton from "../../components/PaypalButton";
+// LIBRARY IMPORT
 import loadable from "@loadable/component";
 import Image from "next/image";
 
+// COMPONENTS IMPORT
+import Playlist from "../../components/Playlist";
+import PaypalButton from "../../components/PaypalButton";
+
+// SVG IPORT
+import Qobuz from "../../public/svg/qobuz.svg";
+import Spotify from "../../public/svg/spotify.svg";
+import Deezer from "../../public/svg/deezer.svg";
+import AppleMusic from "../../public/svg/appleMusic.svg";
+
+// STYLES IMPORT
+import styles from "../../styles/AlbumPages.module.scss";
+
+// LAZY LOAD IFRAME
 const Youtube = loadable(() => import("../../components/Youtube"), {
 	fallback: <span className={styles.spinner}></span>,
 });
@@ -21,6 +32,8 @@ export default function AlbumDetails({ album }) {
 						<div style={{ display: "flex", flexDirection: "column" }}>
 							<div className={styles.img}>
 								<Image
+									loading="lazy"
+									layout="fixed"
 									height={384}
 									width={384}
 									src={`http://localhost:8000/${album.photo_path}`}
@@ -51,7 +64,9 @@ export default function AlbumDetails({ album }) {
 								{/* qobuz button */}
 								<a href={album.shop_link} title="lien d'achat qobuz" target="_blank" rel="noreferrer">
 									<button className={styles.qobuz}>
-											<Image layout="fixed" loading="lazy" width={125} height={40} src="/svg/qobuz.svg" style={{color:"#ffffff"}} alt="bouton achat qobuz" />
+										<div title="bouton d'achat Qobuz">
+											<Qobuz />
+										</div>
 									</button>
 								</a>
 								<div>
@@ -60,7 +75,11 @@ export default function AlbumDetails({ album }) {
 											return (
 												<li className={styles.streamIcon} key={i}>
 													<a target="_blank" rel="noreferrer" href={link.link}>
-														<Image loading="lazy" layout="fixed" width={90} height={34} src={`/svg/${link.nameLink}.svg`} alt={`bouton de streaming ${link.nameLink}`} />
+														<div title={`bouton de streaming ${link.nameLink}`}>
+															{link.nameLink === "spotify" && <Spotify />}
+															{link.nameLink === "deezer" && <Deezer />}
+															{link.nameLink === "appleMusic" && <AppleMusic />}
+														</div>
 													</a>
 												</li>
 											);
@@ -88,6 +107,8 @@ export default function AlbumDetails({ album }) {
 						</div>
 					</div>
 				</div>
+			</section>
+			<section>
 				<div>
 					<div className={styles.corpusContainer}>
 						<div className={styles.textContainer}>
