@@ -9,6 +9,7 @@ export default function PaypalButton({ description, value, reference_id, albumId
 	const [error, setError] = useState(false);
 	const [cancel, setCancel] = useState(false);
 	const [success, setSuccess] = useState({});
+	console.log(success);
 
 	const handleApprove = (obj) => {
 		setPaidFor(true);
@@ -29,6 +30,7 @@ export default function PaypalButton({ description, value, reference_id, albumId
 				clientFirstName: success.payer.name.given_name,
 				clientLastName: success.payer.name.surname,
 				clientEmail: success.payer.email_address,
+				address: success.payer.address,
 				city: success.payer.address.admin_area_2,
 				country: success.payer.address.country_code,
 				amount: success.purchase_units[0].amount.value,
