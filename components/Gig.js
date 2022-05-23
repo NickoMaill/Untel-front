@@ -11,7 +11,8 @@ const Map = dynamic(() => import("./Map"), {
 export default function Gig({ data }) {
 	const [geometry, setGeometry] = useState([]);
 	const [isVisible, setIsVisible] = useState(false);
-	console.log(isVisible);
+	const [currentPlace, setCurrentPlace] = useState("");
+	const [currentAddress, setCurrentAddress] = useState("");
 
 	const openCloseModal = () => {
 		setIsVisible(!isVisible);
@@ -25,6 +26,8 @@ export default function Gig({ data }) {
 			.then((res) => {
 				console.log(res);
 				setGeometry(res.features[0].geometry.coordinates.reverse());
+				setCurrentPlace(data.gigs[index].place)
+				setCurrentAddress(data.gigs[index].address + ", " + data.gigs[index].city)
 				
 			}).finally(() => openCloseModal())
 			.catch((error) => console.error("error", error));
@@ -62,7 +65,7 @@ export default function Gig({ data }) {
 				)}
 			</div>
 				<Modal open={isVisible} onClick={() => openCloseModal()} onClick2={() => setIsVisible(true)}>
-					<Map geometry={geometry} />
+					<Map place={currentPlace} address={currentAddress} geometry={geometry} />
 				</Modal>
 		</div>
 	);
