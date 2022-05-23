@@ -12,7 +12,11 @@
 
 .img {
     box-shadow: 7px 7px 18px rgba(0, 0, 0, 0.304);
-    height: 384px;
+    background-color: rgba(0, 0, 0, 0.223);
+    height: fit-content;
+    span {
+        display: none;
+    }
 }
 
 .cardContainer {
@@ -27,6 +31,20 @@
 .imgAlbum {
     width: 19rem;
     transition: 400ms;
+    &:hover {
+        -ms-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+        z-index: 3;
+    }
+}   
+
+.notReleasedAlbumPic{
+    width: 19rem;
+    transition: 400ms;
+    filter:brightness(.05);
+    filter:contrast(.05);
+    opacity:70%;
     &:hover {
         -ms-transform: scale(1.1);
         -webkit-transform: scale(1.1);
@@ -131,6 +149,8 @@
 }
 
 .textContainer {
+    display: flex;
+    flex-direction: column;
     margin-top: 3rem;
     margin-right: 8rem;
     padding: 2rem;
@@ -183,10 +203,20 @@
         transform: scale(1.5);
     }
 }
-.streamContainer{
+.streamContainer {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
+}
+
+.streamIcon {
+    padding: 0.5rem;
+    transition: 200ms;
+    border-radius: 1rem;
+    &:hover {
+        background-color: #ffffff;
+    }
 }
 
 .spinner:before {
@@ -202,5 +232,73 @@
     border: 3px solid #ccc;
     border-top-color: #000;
     animation: spinner 0.8s linear infinite;
-  }
-  
+}
+
+.playlist {
+    width: 40%;
+}
+
+.hideButton{
+    display: none;
+}
+
+@media screen and (max-width: 1024px) {
+    .corpusContainer {
+        flex-direction: column;
+    }
+    .textContainer {
+        width: 80%;
+        margin-right: 0;
+        margin-bottom: 5rem;
+    }
+    .albumInfo {
+        flex-direction: column;
+    }
+    .playlist {
+        width: 60%;
+    }
+
+    .qobuz {
+        width: 100%;
+    }
+    .trackListContainer {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 690px) {
+    .playlist {
+        width: 90%;
+    }
+    .textContainer{
+        width: 90%;
+        padding: 0;
+    }
+    .hideButton{
+        display: block;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .price {
+        top: 11rem;
+        left: 2rem;
+        transform: scale(0.8);
+    }
+
+    .img {
+        margin-inline: 2rem;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .trackListContainer{
+        margin-inline: 3rem;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .paypalButton {
+        width: 100%;
+    }
+}

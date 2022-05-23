@@ -16,7 +16,8 @@ export default function Contact() {
 	const mailRegex =
 		/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
-	const sendMessage = () => {
+	const sendMessage = (e) => {
+		e.preventDefault();
 		setIsSending(true);
 		fetch("http://localhost:8000/admin/send-email", {
 			method: "POST",
@@ -80,9 +81,14 @@ export default function Contact() {
 								alignItems: "center",
 							}}
 						>
-							<h4 style={{fontFamily:"Roboto regular",textAlign:"center", marginTop:"2rem"}}><strong>Un renseignement, une collab, un concert, ou une simple question ?</strong></h4>
-							<form className={styles.form}>
-								<h4 style={{ textAlign: "center" }}>Formulaire de contact</h4>
+							<div>
+								<h1 style={{ fontFamily: "Roboto regular", textAlign: "center", marginTop: "2rem" }}>
+									Contact
+								</h1>
+								<span>Un renseignement, une collab, un concert, ou une simple question ?</span>
+							</div>
+							<form onSubmit={(e) => sendMessage(e)} className={styles.form}>
+								<h2 style={{ textAlign: "center" }}>Formulaire de contact</h2>
 								<div style={{ marginBlock: 10, display: "flex", flexDirection: "column" }}>
 									<label htmlFor="email">Email</label>
 									<input
@@ -128,8 +134,7 @@ export default function Contact() {
 									<input
 										className={styles.button}
 										name="buttonSubmit"
-										type="button"
-										onClick={sendMessage}
+										type="submit"
 										value="envoyer votre message"
 									/>
 								</div>

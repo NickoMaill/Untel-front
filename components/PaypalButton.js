@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { useRouter } from "next/router";
 
-export default function PaypalButton({ description, value, reference_id, albumId }) {
+export default function PaypalButton({ description, value, reference_id, albumId, className }) {
+	const router = useRouter();
 	const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
 	const [paidFor, setPaidFor] = useState(false);
 	const [error, setError] = useState(false);
 	const [cancel, setCancel] = useState(false);
 	const [success, setSuccess] = useState({});
+
 	const handleApprove = (obj) => {
 		setPaidFor(true);
 	};
 
 	const postOrderHistory = () => {
-		fetch("http://localhost:8000/orders", {
+		fetch("http://localhost:8000/orders/add-order", {
 			method: "POST",
 			mode: "cors",
 			headers: {
@@ -36,6 +39,7 @@ export default function PaypalButton({ description, value, reference_id, albumId
 			.then((res) => {
 				if (res.success) {
 					console.log("request accepted");
+					router.push(`/albums/orders/${success.id}`);
 				} else {
 					console.error("pas fontionné");
 				}
@@ -46,14 +50,10 @@ export default function PaypalButton({ description, value, reference_id, albumId
 	};
 
 	useEffect(() => {
-		if (paidFor) {
-			// alert("merci pour votre achat");
-		}
-
 		if (error) {
 			alert("an error happened", error);
 		}
-	}, [paidFor, error, cancel]);
+	}, [error]);
 
 	useEffect(() => {
 		dispatch({
@@ -73,6 +73,7 @@ export default function PaypalButton({ description, value, reference_id, albumId
 
 	return (
 		<PayPalButtons
+			className={className}
 			onClick={(data, actions) => {
 				const hasAlreadyBougthCourse = false;
 

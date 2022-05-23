@@ -1,8 +1,8 @@
 import React from "react";
 
-export default function Playlist({ src }) {
+export default function Playlist({ src, className }) {
 	return (
-		<div style={{width:"40%"}}>
+		<div className={className}>
 			<iframe
 				style={{ borderRadius: 12 }}
 

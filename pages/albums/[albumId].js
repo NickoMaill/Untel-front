@@ -1,9 +1,14 @@
 // LIBRARY IMPORT
 import loadable from "@loadable/component";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+import { createRef, useContext, useEffect, useState } from "react";
+
+// CONTEXT IMPORT
+import AppContext from "../../context/state";
 
 // COMPONENTS IMPORT
-import Playlist from "../../components/Playlist";
+// import Playlist from "../../components/Playlist";
 import PaypalButton from "../../components/PaypalButton";
 
 // SVG IPORT
@@ -16,11 +21,44 @@ import AppleMusic from "../../public/svg/appleMusic.svg";
 import styles from "../../styles/AlbumPages.module.scss";
 
 // LAZY LOAD IFRAME
-const Youtube = loadable(() => import("../../components/Youtube"), {
+const Youtube = dynamic(() => import("../../components/Youtube"), {
+	ssr: false,
+	fallback: <span className={styles.spinner}></span>,
+});
+
+const Playlist = dynamic(() => import("../../components/Playlist"), {
+	ssr: false,
 	fallback: <span className={styles.spinner}></span>,
 });
 
 export default function AlbumDetails({ album }) {
+	const Context = useContext(AppContext);
+	const [isVisible, setIsVisible] = useState(false);
+	const [number, setNumber] = useState(album.description.length);
+	const slicedText = album.description.substring(0, number);
+	console.log(isVisible);
+	const showText = () => {
+		setIsVisible(!isVisible);
+	};
+
+	useEffect(() => {
+		if (Context.screenWidth <= 540) {
+			setNumber(297);
+			setIsVisible(false);
+		} else {
+			setIsVisible(true);
+			setNumber(album.description.length);
+		}
+	}, [Context.screenWidth]);
+
+	useEffect(() => {
+		if (isVisible === true) {
+			setNumber(album.description.length);
+		} else {
+			setNumber(297);
+		}
+	}, [isVisible]);
+
 	return (
 		<main className={styles.main} style={{ background: `radial-gradient( #c7c8d0, ${album.color})` }}>
 			<section>
@@ -33,9 +71,8 @@ export default function AlbumDetails({ album }) {
 							<div className={styles.img}>
 								<Image
 									loading="lazy"
-									layout="fixed"
-									height={384}
-									width={384}
+									height={450}
+									width={450}
 									src={`http://localhost:8000/${album.photo_path}`}
 									alt={`photo de l'album ${album.title} de l'artiste untel`}
 								/>
@@ -92,12 +129,14 @@ export default function AlbumDetails({ album }) {
 										display: "flex",
 										justifyContent: "center",
 										fontStyle: "italic",
+										textAlign: "center",
 									}}
 								>
 									<span>vous le voulez en version physique ? c&apos;est possible !</span>
 								</div>
 								<div>
 									<PaypalButton
+										className={styles.paypalButton}
 										value={album.price}
 										reference_id={album.album_id}
 										description={album.title + " " + album.subtitle}
@@ -112,7 +151,12 @@ export default function AlbumDetails({ album }) {
 				<div>
 					<div className={styles.corpusContainer}>
 						<div className={styles.textContainer}>
-							<p style={{ whiteSpace: "pre-line", fontSize: "1.1rem" }}>{album.description}</p>
+							<p style={{ whiteSpace: "pre-line", fontSize: "1.1rem" }}>{slicedText}</p>
+							<div>
+								<button className={styles.hideButton} onClick={showText}>
+									{isVisible ? "masquer" : "afficher"}
+								</button>
+							</div>
 						</div>
 						<Youtube src={album.video_link} />
 					</div>
@@ -124,7 +168,7 @@ export default function AlbumDetails({ album }) {
 							marginBottom: 50,
 						}}
 					>
-						<Playlist src={album.playlist_link} />
+						<Playlist className={styles.playlist} src={album.playlist_link} />
 					</div>
 				</div>
 			</section>
@@ -133,7 +177,7 @@ export default function AlbumDetails({ album }) {
 }
 
 export async function getStaticProps({ params }) {
-	const album = await fetch(`http://localhost:8000/albums/${params.id}`, {
+	const album = await fetch(`http://localhost:8000/albums/${params.albumId}`, {
 		method: "GET",
 		mode: "cors",
 		headers: {
@@ -141,7 +185,9 @@ export async function getStaticProps({ params }) {
 			"Content-Type": "application/json",
 		},
 		credentials: "include",
-	}).then((res) => res.json());
+	})
+		.then((res) => res.json())
+		.catch((err) => console.error(err));
 	return {
 		props: {
 			album: album.album[0],
@@ -158,10 +204,12 @@ export async function getStaticPaths() {
 			"Content-Type": "application/json",
 		},
 		credentials: "include",
-	}).then((res) => res.json());
+	})
+		.then((res) => res.json())
+		.catch((err) => console.error(err));
 	return {
 		paths: data.albums.map((album) => ({
-			params: { id: album.album_id.toString() },
+			params: { albumId: album.album_id.toString() },
 		})),
 		fallback: false,
 	};

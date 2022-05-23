@@ -73,7 +73,7 @@ export default function UpdateAlbum({ data }) {
 									key={i}
 									title={album.title}
 									subtitle={album.subtitle}
-									releaseYear={album.year}
+									releaseDate={album.release_date}
 									description={album.description}
 									playlist={album.playlist_link}
 									youtube={album.video_link}
@@ -83,6 +83,7 @@ export default function UpdateAlbum({ data }) {
 									id={album.album_id}
 									price={album.price}
 									setList={album.track_list !== null ? album.track_list : []}
+									qobuz={album.shop_link}
 									stream={album.stream_links !== null ? album.stream_links : []}
 									requestType="update"
 								/>

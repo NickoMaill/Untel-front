@@ -53,11 +53,12 @@ export default function Homepage({ data, instaPost }) {
 						<Album
 							key={i}
 							alt={album.title}
-							year={album.year}
+							releaseDate={album.release_date}
 							title={album.title}
 							subtitle={album.subtitle}
 							src={`http://localhost:8000/${album.photo_path}`}
 							href={album.album_id}
+							isReleased={album.is_released}
 						>
 							{album.title}
 						</Album>

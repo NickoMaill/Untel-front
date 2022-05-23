@@ -15,7 +15,7 @@ export default function Footer({ onClick }) {
 			<div className={styles.upFooterContainer}>
 				<div></div>
 				<div style={{ display: "flex", justifyContent: "center" }}>
-					<a href="#">
+					<a title="remonter en haut de page" href="#">
 						<div className={styles.footerIcon}>
 							<Arrow/>
 						</div>

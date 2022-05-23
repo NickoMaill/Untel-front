@@ -25,9 +25,10 @@ export default function addAlbum() {
 					playlist=""
 					youtube=""
 					isReleased=""
-					color="#000000"
+					color="#ffffff"
 					price=""
-					setList={[]}
+					setList={[{}]}
+					stream={[{}]}
 					requestType="add"
 				/>
 			</section>

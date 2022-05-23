@@ -5,20 +5,23 @@ import styles from "../styles/AlbumPages.module.scss";
 
 const imageSize = 290;
 
-export default function Album({ alt, title, src, children, year, subtitle, href }) {
+export default function Album({ alt, title, src, children, releaseDate, subtitle, href, isReleased, date }) {
 	const [isLoaded, setIsLoaded] = useState(true);
 
 	return (
 		<div className={styles.cardContainer}>
-			<div className={styles.imgAlbum}>
+			<div className={isReleased ? styles.imgAlbum : styles.notReleasedAlbumPic}>
 				<Image width={imageSize} height={imageSize} alt={alt} title={title} src={src} />
 			</div>
 			<div className={styles.titleContainer}>
-				<h3 className={styles.albumTitle}>{children}</h3>
-				{subtitle.length > 0 && <h5>{subtitle}</h5>}
+				{isReleased ? <h3 className={styles.albumTitle}>{children}</h3> : <span>Date de sortie</span>}
+				{subtitle.length && isReleased ?  <h5>{subtitle}</h5> : <></>}
+				{isReleased ? 
+				
 				<p className={styles.albumText} style={{ fontStyle: "italic" }}>
-					{year}
-				</p>
+					{releaseDate.slice(0, 4)}
+				</p> : <span>{date}</span>
+			}
 			</div>
 			<Link href={`/albums/${href}`}>
 				{isLoaded ? (

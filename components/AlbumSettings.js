@@ -6,7 +6,7 @@ import styles from "../styles/AlbumSettings.module.scss";
 export default function AlbumSettings({
 	title,
 	subtitle,
-	releaseYear,
+	releaseDate,
 	description,
 	playlist,
 	youtube,
@@ -20,10 +20,11 @@ export default function AlbumSettings({
 	qobuz,
 	stream,
 }) {
+	console.log(releaseDate);
 	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 	const [titleAlbum, setTitleAlbum] = useState(title);
 	const [subtitleAlbum, setSubtitleAlbum] = useState(subtitle);
-	const [yearAlbum, setYearAlbum] = useState(releaseYear);
+	const [releaseDateAlbum, setReleaseDateAlbum] = useState(releaseDate);
 	const [descriptionAlbum, setDescriptionAlbum] = useState(description);
 	const [playlistLinkAlbum, setPlaylistLinkAlbum] = useState(playlist);
 	const [videoLinkAlbum, setVideoLinkAlbum] = useState(youtube);
@@ -95,8 +96,16 @@ export default function AlbumSettings({
 		setIsUpdated(true);
 		let url;
 		let method;
-		const sortedTrackList = JSON.stringify(trackListAlbum.sort((a, b) => (a.trackNumber > b.trackNumber ? 1 : -1)));
-		const sortedNameLink = JSON.stringify(streamLinks.sort((a, b) => (a.nameLink > b.nameLink ? 1 : -1)));
+		let sortedTrackList;
+		let sortedNameLink;
+
+		if (trackListAlbum.length > 0) {
+			sortedTrackList = JSON.stringify(trackListAlbum.sort((a, b) => (a.trackNumber > b.trackNumber ? 1 : -1)));
+		}
+
+		if (streamLinks.length > 0) {
+			sortedNameLink = JSON.stringify(streamLinks.sort((a, b) => (a.nameLink > b.nameLink ? 1 : -1)));
+		}
 
 		if (type === "add") {
 			url = "http://localhost:8000/albums/add-album";
@@ -111,7 +120,7 @@ export default function AlbumSettings({
 		const formData = new FormData();
 		formData.append("title", titleAlbum);
 		formData.append("subtitle", subtitleAlbum);
-		formData.append("year", yearAlbum);
+		formData.append("releaseDate", releaseDateAlbum);
 		formData.append("description", descriptionAlbum);
 		formData.append("playlistLink", playlistLinkAlbum);
 		formData.append("videoLink", videoLinkAlbum);
@@ -148,7 +157,59 @@ export default function AlbumSettings({
 			.catch((err) => console.error(err));
 	};
 
-	const deleteAlbum = () => {};
+	const formatDate = (dateAlbum) => {
+		const newDate = new Date(dateAlbum);
+
+		const date = {
+			year: newDate.getFullYear().toString(),
+			month:
+				newDate.getMonth().toString().length < 2
+					? "0" + newDate.getMonth().toString()
+					: newDate.getMonth().toString(),
+			day:
+				newDate.getDate().toString().length < 2
+					? "0" + newDate.getDate().toString()
+					: newDate.getDate().toString(),
+			hours:
+				newDate.getHours().toString().length < 2
+					? "0" + newDate.getHours().toString()
+					: newDate.getHours().toString(),
+			minutes:
+				newDate.getMinutes().toString().length < 2
+					? "0" + newDate.getMinutes().toString()
+					: newDate.getMinutes().toString(),
+			seconds:
+				newDate.getSeconds().toString().length < 2
+					? "0" + newDate.getSeconds().toString()
+					: newDate.getSeconds().toString(),
+		};
+
+		return `${date.day}/${date.month}/${date.year}`;
+	};
+
+	const deleteAlbum = () => {
+		setIsUpdated(true);
+		fetch(`http://localhost:8000/albums/delete/${id}`, {
+			method: "DELETE",
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (!res.success) {
+					enqueueSnackbar("une erreur s'est produite...", {
+						variant: "error",
+					});
+					setIsUpdated(false);
+				} else {
+					enqueueSnackbar("album correctement supprimé", {
+						variant: "warning",
+					});
+				}
+			})
+			.finally(() => setIsUpdated(false))
+			.catch((err) => {
+				console.error(err);
+			});
+	};
 
 	return (
 		<div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
@@ -183,14 +244,14 @@ export default function AlbumSettings({
 				</div>
 				<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
 					<div className={styles.formDetails}>
-						<label htmlFor="releaseYear">Année</label>
+						<label htmlFor="releaseDate">Année</label>
 						<input
 							className={styles.input}
 							placeholder="année de sortie"
-							defaultValue={releaseYear}
-							name="releaseYear"
+							defaultValue={formatDate(releaseDateAlbum)}
+							name="releaseDate"
 							type="text"
-							onChange={(e) => setYearAlbum(e.target.value)}
+							onChange={(e) => setReleaseDateAlbum(e.target.value)}
 						/>
 					</div>
 					<div className={styles.formDetails}>
@@ -272,7 +333,7 @@ export default function AlbumSettings({
 						<label htmlFor="youtube">Qobuz</label>
 						<input
 							className={styles.input}
-							defaultValue={youtube}
+							defaultValue={qobuz}
 							placeholder="lien achat qobuz"
 							name="youtube"
 							type="text"
@@ -451,7 +512,7 @@ export default function AlbumSettings({
 					) : (
 						<></>
 					)}
-					<input className={styles.button} value="Mettre a jour l'album" type="submit" />
+					<input className={styles.button} value={requestType === "add" ? "Ajouter l'album" : "Modifier l'album"} type="submit" />
 					<Modal open={isOpen} onClick={openModal}>
 						<div
 							style={{

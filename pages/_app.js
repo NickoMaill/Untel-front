@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import { SnackbarProvider } from "notistack";
 import Footer from "../components/Footer";
@@ -11,12 +11,24 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 function MyApp({ Component, pageProps }) {
 	const [isAdminLogged, setIsAdminLogged] = useState(false);
 	const [isAdminSessionExpired, setIsAdminSessionExpired] = useState(false);
+	const [screenWidth, setScreenWidth] = useState(null);
+
+	const update = () => {
+		setScreenWidth(window.innerWidth);
+	};
+
+	useEffect(() => {
+		window.addEventListener("resize", update);
+		update();
+	}, []);
 
 	const value = {
 		isAdminLogged,
 		setIsAdminLogged,
 		isAdminSessionExpired,
 		setIsAdminSessionExpired,
+		screenWidth,
+		setScreenWidth,
 	};
 
 	return (
@@ -27,7 +39,10 @@ function MyApp({ Component, pageProps }) {
 						<meta name="viewport" content="width=device-width, initial-scale=1" />
 						<meta name="theme-color" content="#ffffff" />
 						<meta name="author" content="Nicolas Maillols" />
-						<meta name="description" content="Site officiel de l'artiste Untel, ici vous pouvez regarder ses dernières actualités, ainsi qu'acheter ses albums soit en dématérialisé ou en physique" />
+						<meta
+							name="description"
+							content="Site officiel de l'artiste Untel, ici vous pouvez regarder ses dernières actualités, ainsi qu'acheter ses albums soit en dématérialisé ou en physique"
+						/>
 						<link rel="manifest" href="/manifest.json" />
 						<title>Untel Officiel</title>
 					</Head>
