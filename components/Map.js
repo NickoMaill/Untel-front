@@ -3,20 +3,18 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 
-export default function Map() {
+export default function Map({geometry}) {
+
 	return (
-		<MapContainer
-			center={[40.8054, -74.0241]}
-			zoom={14}
-			scrollWheelZoom={false}
-			style={{ height: "100%", width: "100%" }}
-		>
-			<Marker position={[40.8054, -74.0241]} draggable={true} animate={true}>
-				<TileLayer
-					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-					attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-				/>
-				<Popup>Hey ! you found me</Popup>
+		<MapContainer style={{height:"50vh", width:"50vw"}} center={geometry} zoom={13} scrollWheelZoom={false}>
+			<TileLayer
+				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+			/>
+			<Marker position={geometry}>
+				<Popup>
+					A pretty CSS3 popup. <br /> Easily customizable.
+				</Popup>
 			</Marker>
 		</MapContainer>
 	);

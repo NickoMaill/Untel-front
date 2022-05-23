@@ -2,7 +2,7 @@ import styles from "../styles/Modal.module.scss";
 import "animate.css";
 import { useState } from "react";
 
-export default function Modal({ children, open, onClick }) {
+export default function Modal({ children, open, onClick, onClick2 }) {
 	const [animation, setAnimation] = useState("");
 
 	const anim = (bool) => {
@@ -14,10 +14,10 @@ export default function Modal({ children, open, onClick }) {
 	};
 
 	return (
-		<div>
+		<>
 			{open ? (
-				<div className={styles.modal} onClick={onClick}>
-					<div className={`${styles.imgContainer} animate__animated ${anim(open)}`}>
+				<div className={styles.modal}>
+					<div className={styles.imgContainer}>
 						{children}
 						<button type="button" onClick={onClick}>
 							close
@@ -25,8 +25,8 @@ export default function Modal({ children, open, onClick }) {
 					</div>
 				</div>
 			) : (
-					<></>
+				<></>
 			)}
-		</div>
+		</>
 	);
 }

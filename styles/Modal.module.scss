@@ -14,14 +14,9 @@
     overflow: hidden;
 }
 
-.imgContainer{
+.imgContainer {
+    position:relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-}
-
-.img{
-    height: 70vh;
-    position:absolute;
 }

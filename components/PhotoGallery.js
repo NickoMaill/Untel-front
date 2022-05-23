@@ -11,7 +11,6 @@ export default function PhotoGallery() {
 	const [currentWidth, setCurrentWidth] = useState(null);
 	const [currentHeight, setCurrentHeight] = useState(null);
 	const ref = useRef(null);
-	// console.log(ref);
 
 	const openCloseModal = (path, width, height) => {
 		setIsOpen(!isOpen);

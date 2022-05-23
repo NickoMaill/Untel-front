@@ -5,6 +5,7 @@ import styles from "../styles/Home.module.scss";
 import PhotoGallery from "../components/PhotoGallery";
 import loadable from "@loadable/component";
 import InstaGrid from "../components/InstaGrid";
+import dynamic from "next/dynamic";
 
 export const getStaticProps = async () => {
 	const data = await fetch("http://localhost:8000/", {
@@ -16,7 +17,6 @@ export const getStaticProps = async () => {
 		},
 		credentials: "include",
 	}).then((res) => res.json());
-
 
 	const instaPost = await fetch("http://localhost:8000/instagram", {
 		method: "GET",
@@ -38,6 +38,10 @@ export const getStaticProps = async () => {
 
 const Youtube = loadable(() => import("../components/Youtube"), {
 	fallback: <span className={styles.spinner}></span>,
+});
+
+const Map = dynamic(() => import("../components/Map"), {
+	ssr: false,
 });
 
 export default function Homepage({ data, instaPost }) {
@@ -67,7 +71,7 @@ export default function Homepage({ data, instaPost }) {
 			</section>
 			<section className={styles.instaContainer}>
 				<div className={styles.postsContainer}>
-					<InstaGrid posts={instaPost}/>
+					<InstaGrid posts={instaPost} />
 				</div>
 			</section>
 			<section className={styles.youtubeContainer}>

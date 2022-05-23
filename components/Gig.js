@@ -1,34 +1,34 @@
+import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import styles from "../styles/Gig.module.scss";
 import GigCard from "./GigCard";
+import Modal from "./Modal";
+
+const Map = dynamic(() => import("./Map"), {
+	ssr: false,
+});
 
 export default function Gig({ data }) {
 	const [geometry, setGeometry] = useState([]);
 	const [isVisible, setIsVisible] = useState(false);
+	console.log(isVisible);
 
-	// if (data.length > 2) {
-	// 	customStyles = {
-	// 		overflowY: "scroll",
-	// 		height: 300,
-	// 	};
-	// } else {
-	// 	customStyles = {
-	// 		overflowY: "hidden",
-	// 		height: "auto",
-	// 	};
-	// }
+	const openCloseModal = () => {
+		setIsVisible(!isVisible);
+	};
 
-	// const getGeometry = (index) => {
-	// 	fetch(
-	// 		`https://api.geoapify.com/v1/geocode/search?text=${data.gigs[index].address}, ${data.gigs[index].city}, ${data.gigs[index].country}&apiKey=ac8c21ac706f453b9ee59cdf882cca91`
-	// 	)
-	// 		.then((res) => res.json())
-	// 		.then((res) => {
-	// 			console.log(res);
-	// 			// setGeometry(res.features[0].geometry.coordinates);
-	// 		})
-	// 		.catch((error) => console.error("error", error));
-	// };
+	const getGeometry = (index) => {
+		fetch(
+			`https://api.geoapify.com/v1/geocode/search?text=${data.gigs[index].address}, ${data.gigs[index].city}, ${data.gigs[index].country}&apiKey=ac8c21ac706f453b9ee59cdf882cca91`
+		)
+			.then((res) => res.json())
+			.then((res) => {
+				console.log(res);
+				setGeometry(res.features[0].geometry.coordinates.reverse());
+				
+			}).finally(() => openCloseModal())
+			.catch((error) => console.error("error", error));
+	};
 
 	return (
 		<div className={styles.gigContainer}>
@@ -61,6 +61,9 @@ export default function Gig({ data }) {
 					</ul>
 				)}
 			</div>
+				<Modal open={isVisible} onClick={() => openCloseModal()} onClick2={() => setIsVisible(true)}>
+					<Map geometry={geometry} />
+				</Modal>
 		</div>
 	);
 }

@@ -27,6 +27,7 @@ const nextConfig = {
 	},
 	env: {
 		CLIENT_ID: process.env.CLIENT_ID,
+		MAPBOX_TOKEN: process.env.MAPBOX_TOKEN
 	},
 };
 
