@@ -45,6 +45,8 @@ export default function PhotoGallery() {
 						}
 						src="/images/untel-band3.webp"
 						alt="Untel"
+						placeholder="blur"
+						blurDataURL="https://search.brave.com/images?q=blur+white+%26+black+&source=web#6"
 					/>
 				</div>
 				<div className={styles.img}>
@@ -58,6 +60,8 @@ export default function PhotoGallery() {
 						}
 						src="/images/untel-band4.webp"
 						alt="Untel"
+						placeholder="blur"
+						blurDataURL="../public/images/blur.webp"
 					/>
 				</div>
 				<div className={styles.img}>
@@ -71,6 +75,8 @@ export default function PhotoGallery() {
 						}
 						src="/images/untel-favo.webp"
 						alt="Untel"
+						placeholder="blur"
+						blurDataURL="https://search.brave.com/images?q=blur+white+%26+black+&source=web#6"
 					/>
 				</div>
 				<div className={styles.img}>
@@ -84,6 +90,8 @@ export default function PhotoGallery() {
 						}
 						src="/images/untel-front1.webp"
 						alt="Untel"
+						placeholder="blur"
+						blurDataURL="https://search.brave.com/images?q=blur+white+%26+black+&source=web#6"
 					/>
 				</div>
 				<div className={styles.img}>
@@ -97,6 +105,8 @@ export default function PhotoGallery() {
 						}
 						src="/images/untel-front2.webp"
 						alt="Untel"
+						placeholder="blur"
+						blurDataURL="https://search.brave.com/images?q=blur+white+%26+black+&source=web#6"
 					/>
 				</div>
 				<div className={styles.img}>
@@ -110,6 +120,8 @@ export default function PhotoGallery() {
 						}
 						src="/images/untel.webp"
 						alt="Untel"
+						placeholder="blur"
+						blurDataURL="https://search.brave.com/images?q=blur+white+%26+black+&source=web#6"
 					/>
 				</div>
 			</div>
@@ -121,6 +133,8 @@ export default function PhotoGallery() {
 							height={currentHeight}
 							src={currentPhoto}
 							alt="photo de l'artiste Untel"
+							placeholder="blur"
+							blurDataURL="https://search.brave.com/images?q=blur+white+%26+black+&source=web#6"
 						/>
 					</div>
 				</Modal>

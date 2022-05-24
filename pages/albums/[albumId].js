@@ -75,6 +75,8 @@ export default function AlbumDetails({ album }) {
 									width={450}
 									src={`http://localhost:8000/${album.photo_path}`}
 									alt={`photo de l'album ${album.title} de l'artiste untel`}
+									placeholder="blur"
+									blurDataURL="https://search.brave.com/images?q=blur+white+%26+black+&source=web#6"
 								/>
 							</div>
 							<p style={{ textAlign: "center", fontStyle: "italic" }}>

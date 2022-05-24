@@ -46,17 +46,20 @@ export default function InstaGrid({ posts }) {
 							<div className={styles.videoContainer}>
 								{post.node.is_video ? (
 									<Image
+										loading="lazy"
 										width={24.003}
 										height={17.772}
 										className={styles.video}
 										src="/svg/video.svg"
 										alt=""
+										placeholder="empty"
 									/>
 								) : (
 									<></>
 								)}
 							</div>
 							<Image
+								loading="lazy"
 								className={styles.image}
 								width={240}
 								height={240}
@@ -64,6 +67,8 @@ export default function InstaGrid({ posts }) {
 									post.node.thumbnail_resources[1].src
 								)}`}
 								alt={`photo post instagram n°${i + 1}`}
+								placeholder="blur"
+								blurDataURL="https://search.brave.com/images?q=blur+white+%26+black+&source=web#6"
 							/>
 						</div>
 
@@ -72,11 +77,13 @@ export default function InstaGrid({ posts }) {
 								{post.node.edge_media_preview_like.count > 0 ? (
 									<div className={styles.statPost}>
 										<Image
+											loading="lazy"
 											width={24.003}
 											height={17.772}
 											style={{ marginRight: "0.3rem" }}
 											src="/svg/heart.svg"
 											alt='icon mention "j"aime"'
+											placeholder="empty"
 										/>
 										<span>{post.node.edge_media_preview_like.count}</span>
 									</div>
@@ -86,11 +93,13 @@ export default function InstaGrid({ posts }) {
 								{post.node.edge_media_to_comment.count > 0 ? (
 									<div className={styles.statPost}>
 										<Image
+											loading="lazy"
 											width={24.003}
 											height={17.772}
 											style={{ marginRight: "0.3rem" }}
 											src="/svg/chat.svg"
 											alt="icon commentaire"
+											placeholder="empty"
 										/>
 										<span>{post.node.edge_media_to_comment.count}</span>
 									</div>

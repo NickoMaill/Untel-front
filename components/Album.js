@@ -11,7 +11,7 @@ export default function Album({ alt, title, src, children, releaseDate, subtitle
 	return (
 		<div className={styles.cardContainer}>
 			<div className={isReleased ? styles.imgAlbum : styles.notReleasedAlbumPic}>
-				<Image width={imageSize} height={imageSize} alt={alt} title={title} src={src} />
+				<Image quality={50} width={imageSize} height={imageSize} alt={alt} title={title} src={src} />
 			</div>
 			<div className={styles.titleContainer}>
 				{isReleased ? <h3 className={styles.albumTitle}>{children}</h3> : <span>Date de sortie</span>}

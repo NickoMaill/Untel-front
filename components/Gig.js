@@ -6,6 +6,9 @@ import Modal from "./Modal";
 
 const Map = dynamic(() => import("./Map"), {
 	ssr: false,
+	loading: () => (
+		<div style={{ width: "50wv", height: "50vh", background: "radial-gradient( #AAD3DF, #FCD6A3)" }}></div>
+	),
 });
 
 export default function Gig({ data }) {
@@ -13,23 +16,29 @@ export default function Gig({ data }) {
 	const [isVisible, setIsVisible] = useState(false);
 	const [currentPlace, setCurrentPlace] = useState("");
 	const [currentAddress, setCurrentAddress] = useState("");
+	const [isLoaded, setIsLoaded] = useState(false)
 
 	const openCloseModal = () => {
 		setIsVisible(!isVisible);
+
+		if (isVisible === false) {
+			setIsLoaded(false)
+		}
 	};
 
 	const getGeometry = (index) => {
+		openCloseModal();
 		fetch(
 			`https://api.geoapify.com/v1/geocode/search?text=${data.gigs[index].address}, ${data.gigs[index].city}, ${data.gigs[index].country}&apiKey=ac8c21ac706f453b9ee59cdf882cca91`
-		)
+			)
 			.then((res) => res.json())
 			.then((res) => {
 				console.log(res);
 				setGeometry(res.features[0].geometry.coordinates.reverse());
-				setCurrentPlace(data.gigs[index].place)
-				setCurrentAddress(data.gigs[index].address + ", " + data.gigs[index].city)
-				
-			}).finally(() => openCloseModal())
+				setCurrentPlace(data.gigs[index].place);
+				setCurrentAddress(data.gigs[index].address + ", " + data.gigs[index].city);
+				setIsLoaded(true)
+			})
 			.catch((error) => console.error("error", error));
 	};
 
@@ -64,9 +73,9 @@ export default function Gig({ data }) {
 					</ul>
 				)}
 			</div>
-				<Modal open={isVisible} onClick={() => openCloseModal()} onClick2={() => setIsVisible(true)}>
-					<Map place={currentPlace} address={currentAddress} geometry={geometry} />
-				</Modal>
+			<Modal open={isVisible} onClick={() => openCloseModal()} onClick2={() => setIsVisible(true)}>
+				<Map loaded={isLoaded} place={currentPlace} address={currentAddress} geometry={geometry} />
+			</Modal>
 		</div>
 	);
 }
