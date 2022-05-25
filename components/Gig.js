@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
-import styles from "../styles/Gig.module.scss";
+import styles from "../styles/Home.module.scss";
 import GigCard from "./GigCard";
 import Modal from "./Modal";
 
@@ -44,7 +44,7 @@ export default function Gig({ data }) {
 
 	return (
 		<div className={styles.gigContainer}>
-			<div className={styles.titleContainer}>
+			<div className={styles.titleGigContainer}>
 				<h4 className={styles.gigTitle}>Prochain Concerts /</h4>
 				<h4 style={{ marginLeft: 5, color: "grey" }} className={styles.gigTitle}>
 					Concerts Passé

@@ -1,5 +1,4 @@
 // LIBRARY IMPORT
-import loadable from "@loadable/component";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { createRef, useContext, useEffect, useState } from "react";

@@ -2,8 +2,15 @@
 require("dotenv").config({
 	path: "/.env",
 });
-const nextConfig = {
+
+require("@next/bundle-analyzer")({
+	enabled: process.env.ANALYZE === "true",
+});
+const nextPwa = require("next-pwa");
+
+const nextConfig = nextPwa({
 	reactStrictMode: true,
+
 	webpack(config) {
 		config.module.rules.push({
 			test: /\.svg$/i,
@@ -27,12 +34,14 @@ const nextConfig = {
 	},
 	env: {
 		CLIENT_ID: process.env.CLIENT_ID,
-		MAPBOX_TOKEN: process.env.MAPBOX_TOKEN
+		MAPBOX_TOKEN: process.env.MAPBOX_TOKEN,
 	},
-};
-
-require("@next/bundle-analyzer")({
-	enabled: process.env.ANALYZE === "true",
+	pwa: {
+		dest: "public",
+		register: true,
+		skipWaiting: true,
+		disable: process.env.NODE_ENV === "development",
+	},
 });
 
 module.exports = nextConfig;

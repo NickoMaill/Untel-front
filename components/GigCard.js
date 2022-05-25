@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/Gig.module.scss";
+import styles from "../styles/Home.module.scss";
 import { convertDate } from "../utils/convertDate";
 
 export default function GigCard({ title, date, city, country, event, onClick }) {
@@ -21,10 +21,10 @@ export default function GigCard({ title, date, city, country, event, onClick }) 
 			</div>
 			<div className={styles.buttonContainer}>
 				<a target="_blank" rel="noreferrer" href={event}>
-					<button className={styles.button}>accéder a l&apos;évènement</button>
+					<button className={styles.buttonGig}>accéder a l&apos;évènement</button>
 				</a>
 
-				<button className={styles.button} onClick={onClick}>
+				<button className={styles.buttonGig} onClick={onClick}>
 					afficher sur la carte
 				</button>
 			</div>

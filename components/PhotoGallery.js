@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
-import styles from "../styles/PhotoGallery.module.scss";
+import styles from "../styles/Home.module.scss";
 import Modal from "./Modal";
 import Left from "../public/svg/left.svg";
 import Right from "../public/svg/right.svg";
@@ -11,6 +11,11 @@ export default function PhotoGallery() {
 	const [currentWidth, setCurrentWidth] = useState(null);
 	const [currentHeight, setCurrentHeight] = useState(null);
 	const ref = useRef(null);
+
+	// const photoRatio = (height, width) => {
+	// 	const ratio = (height / width) * 384
+	// 	return ratio
+	// }
 
 	const openCloseModal = (path, width, height) => {
 		setIsOpen(!isOpen);
@@ -34,7 +39,7 @@ export default function PhotoGallery() {
 				</div>
 			</div>
 			<div className={styles.imgContainer} ref={ref}>
-				<div className={styles.img}>
+				<div className={styles.picture}>
 					<Image
 						layout="fixed"
 						loading="lazy"
@@ -49,7 +54,7 @@ export default function PhotoGallery() {
 						blurDataURL="https://search.brave.com/images?q=blur+white+%26+black+&source=web#6"
 					/>
 				</div>
-				<div className={styles.img}>
+				<div className={styles.picture}>
 					<Image
 						layout="fixed"
 						loading="lazy"
@@ -64,7 +69,7 @@ export default function PhotoGallery() {
 						blurDataURL="../public/images/blur.webp"
 					/>
 				</div>
-				<div className={styles.img}>
+				<div className={styles.picture}>
 					<Image
 						layout="fixed"
 						loading="lazy"
@@ -79,7 +84,7 @@ export default function PhotoGallery() {
 						blurDataURL="https://search.brave.com/images?q=blur+white+%26+black+&source=web#6"
 					/>
 				</div>
-				<div className={styles.img}>
+				<div className={styles.picture}>
 					<Image
 						layout="fixed"
 						loading="lazy"
@@ -94,7 +99,7 @@ export default function PhotoGallery() {
 						blurDataURL="https://search.brave.com/images?q=blur+white+%26+black+&source=web#6"
 					/>
 				</div>
-				<div className={styles.img}>
+				<div className={styles.picture}>
 					<Image
 						layout="fixed"
 						loading="lazy"
@@ -109,7 +114,7 @@ export default function PhotoGallery() {
 						blurDataURL="https://search.brave.com/images?q=blur+white+%26+black+&source=web#6"
 					/>
 				</div>
-				<div className={styles.img}>
+				<div className={styles.picture}>
 					<Image
 						layout="fixed"
 						loading="lazy"

@@ -3,7 +3,6 @@ import Video from "../components/Video";
 import Gig from "../components/Gig";
 import styles from "../styles/Home.module.scss";
 import PhotoGallery from "../components/PhotoGallery";
-import loadable from "@loadable/component";
 import InstaGrid from "../components/InstaGrid";
 import dynamic from "next/dynamic";
 
@@ -36,11 +35,8 @@ export const getStaticProps = async () => {
 	};
 };
 
-const Youtube = loadable(() => import("../components/Youtube"), {
+const Youtube = dynamic(() => import("../components/Youtube"), {
 	fallback: <span className={styles.spinner}></span>,
-});
-
-const Map = dynamic(() => import("../components/Map"), {
 	ssr: false,
 });
 
@@ -51,7 +47,7 @@ export default function Homepage({ data, instaPost }) {
 			<div className={styles.coloredDiv}>
 				<h2 className={styles.title}>UNTEL</h2>
 			</div>
-			<section className={styles.albumContainer} style={{ display: "flex", justifyContent: "center" }}>
+			<section className={styles.albumContainer}>
 				{data.albums.map((album, i) => {
 					return (
 						<Album
@@ -70,7 +66,7 @@ export default function Homepage({ data, instaPost }) {
 				})}
 			</section>
 			<section className={styles.instaContainer}>
-				<div className={styles.postsContainer}>
+				<div className={styles.postsSection}>
 					<InstaGrid posts={instaPost} />
 				</div>
 			</section>
@@ -78,7 +74,7 @@ export default function Homepage({ data, instaPost }) {
 				<Youtube src="https://www.youtube.com/embed/1JbqsjB4qPg" />
 				<Youtube src="https://www.youtube.com/embed/fyi2exJt24U" />
 			</section>
-			<section className={styles.gigContainer}>
+			<section className={styles.gigSection}>
 				<Gig data={data} />
 			</section>
 			<section>

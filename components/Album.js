@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import styles from "../styles/AlbumPages.module.scss";
+import styles from "../styles/Home.module.scss";
 
 const imageSize = 290;
 
@@ -10,10 +10,10 @@ export default function Album({ alt, title, src, children, releaseDate, subtitle
 
 	return (
 		<div className={styles.cardContainer}>
-			<div className={isReleased ? styles.imgAlbum : styles.notReleasedAlbumPic}>
+			<div className={isReleased < new Date() ? styles.imgAlbum : styles.notReleasedAlbumPic}>
 				<Image quality={50} width={imageSize} height={imageSize} alt={alt} title={title} src={src} />
 			</div>
-			<div className={styles.titleContainer}>
+			<div className={styles.titleAlbumContainer}>
 				{isReleased ? <h3 className={styles.albumTitle}>{children}</h3> : <span>Date de sortie</span>}
 				{subtitle.length && isReleased ?  <h5>{subtitle}</h5> : <></>}
 				{isReleased ? 

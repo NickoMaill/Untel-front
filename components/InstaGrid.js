@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Modal from "./Modal";
 import Instagram from "./Instagram";
-import styles from "../styles/instaGrid.module.scss";
+import styles from "../styles/Home.module.scss";
 import "animate.css";
 
 export default function InstaGrid({ posts }) {
@@ -32,7 +32,7 @@ export default function InstaGrid({ posts }) {
 	};
 
 	return (
-		<div className={styles.mainContainer}>
+		<div className={styles.gridContainer}>
 			<div className={styles.instaLogoContainer}>
 				<div className={styles.borderDesign}></div>
 				<div className={styles.instaLogo}>
@@ -60,7 +60,7 @@ export default function InstaGrid({ posts }) {
 							</div>
 							<Image
 								loading="lazy"
-								className={styles.image}
+								className={styles.postImage}
 								width={240}
 								height={240}
 								src={`https://scp2.elfsightcdn.com/?url=https://scontent-lhr8-2.cdninstagram.com/v/${formatUrl(
@@ -117,7 +117,7 @@ export default function InstaGrid({ posts }) {
 				))}
 			</div>
 			<div className={styles.buttonContainer}>
-				<button className={styles.button} onClick={() => showMoreItem()}>
+				<button className={styles.morePostButton} onClick={() => showMoreItem()}>
 					Afficher plus de posts
 				</button>
 				{endOfPost && (
