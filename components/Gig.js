@@ -33,7 +33,6 @@ export default function Gig({ data }) {
 			)
 			.then((res) => res.json())
 			.then((res) => {
-				console.log(res);
 				setGeometry(res.features[0].geometry.coordinates.reverse());
 				setCurrentPlace(data.gigs[index].place);
 				setCurrentAddress(data.gigs[index].address + ", " + data.gigs[index].city);

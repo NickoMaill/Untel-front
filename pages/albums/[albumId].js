@@ -35,7 +35,7 @@ export default function AlbumDetails({ album }) {
 	const [isVisible, setIsVisible] = useState(false);
 	const [number, setNumber] = useState(album.description.length);
 	const slicedText = album.description.substring(0, number);
-	console.log(isVisible);
+
 	const showText = () => {
 		setIsVisible(!isVisible);
 	};
@@ -188,6 +188,12 @@ export async function getStaticProps({ params }) {
 		credentials: "include",
 	})
 		.then((res) => res.json())
+		.then((res) => {
+			if (typeof res === "string") {
+				return JSON.parse(res);
+			}
+
+		})
 		.catch((err) => console.error(err));
 	return {
 		props: {
@@ -207,6 +213,11 @@ export async function getStaticPaths() {
 		credentials: "include",
 	})
 		.then((res) => res.json())
+		.then((res) => {
+			if (typeof res === "string") {
+				return JSON.parse(res);
+			}
+		})
 		.catch((err) => console.error(err));
 	return {
 		paths: data.albums.map((album) => ({

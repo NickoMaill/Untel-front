@@ -15,7 +15,7 @@ export default function Album({ alt, title, src, children, releaseDate, subtitle
 			</div>
 			<div className={styles.titleAlbumContainer}>
 				{isReleased ? <h3 className={styles.albumTitle}>{children}</h3> : <span>Date de sortie</span>}
-				{subtitle.length && isReleased ?  <h5>{subtitle}</h5> : <></>}
+				{subtitle.length && isReleased ?  <h4>{subtitle}</h4> : <></>}
 				{isReleased ? 
 				
 				<p className={styles.albumText} style={{ fontStyle: "italic" }}>

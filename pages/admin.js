@@ -8,7 +8,6 @@ import AppContext from "../context/state";
 export default function Admin() {
 	const { enqueueSnackbar } = useSnackbar();
 	const Context = useContext(AppContext);
-	// const [isAdminLogged, setIsAdminLogged] = useState(false);
 	const [password, setPassword] = useState("");
 	const [validPassword, setValidPassword] = useState(true);
 

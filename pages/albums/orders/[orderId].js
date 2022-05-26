@@ -3,7 +3,7 @@ import React from "react";
 import Success from "../../../public/svg/success.svg";
 import styles from "../../../styles/AlbumPages.module.scss";
 
-export default function orderCompleted({ order }) {
+export default function OrderCompleted({ order }) {
 	const router = useRouter();
 	// const date = new Date()
 	const navigate = () => {

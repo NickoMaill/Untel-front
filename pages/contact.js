@@ -60,11 +60,9 @@ export default function Contact() {
 
 		if (!mailRegex.test(input)) {
 			setIsEmailValid(false);
-			console.log("mauvais format");
 		} else {
 			setIsEmailValid(true);
 			setContactEmail(input);
-			console.log("bon format");
 		}
 	};
 

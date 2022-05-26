@@ -14,11 +14,11 @@ export default function mediaCredits() {
 						<ul className={styles.mediaList}>
 							<li className={styles.photoList}>
 								<a className={styles.mediaLogo} target="_blank" rel="noreferrer" href="https://elodieroyphotographe-69.webself.net/">
-									<Image src="/pictures/royLogo.png" quality={100} width={171} height={50} />   								</a>
+									<Image alt="Logo Elodie Roy" src="/pictures/royLogo.png" quality={100} width={171} height={50} />   								</a>
 							</li>
 							<li className={styles.photoList}>
 								<a className={styles.mediaLogo} href="https://www.instagram.com/atiadaily/" target="_blank" rel="noreferrer">
-								<Image src="/pictures/atiaLogo.png" width={154} height={113} />
+								<Image alt="logo Atia Daily" src="/pictures/atiaLogo.png" width={154} height={113} />
 								</a>
 							</li>
 						</ul>

@@ -15,7 +15,13 @@ export const getStaticProps = async () => {
 			"Content-Type": "application/json",
 		},
 		credentials: "include",
-	}).then((res) => res.json());
+	})
+		.then((res) => res.json())
+		.then((res) => {
+			if (typeof res === "string") {
+				return JSON.parse(res);
+			}
+		});
 
 	const instaPost = await fetch("http://localhost:8000/instagram", {
 		method: "GET",
@@ -25,12 +31,18 @@ export const getStaticProps = async () => {
 			"Content-Type": "application/json",
 		},
 		credentials: "include",
-	}).then((res) => res.json());
+	})
+		.then((res) => res.json())
+		.then((res) => {
+			if (typeof res === "string") {
+				return JSON.parse(res);
+			}
+		});
 
 	return {
 		props: {
-			data,
-			instaPost,
+			data: data,
+			instaPost: instaPost,
 		},
 	};
 };

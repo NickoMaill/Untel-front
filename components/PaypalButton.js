@@ -9,11 +9,6 @@ export default function PaypalButton({ description, value, reference_id, albumId
 	const [error, setError] = useState(false);
 	const [cancel, setCancel] = useState(false);
 	const [success, setSuccess] = useState({});
-	console.log(success);
-
-	const handleApprove = (obj) => {
-		setPaidFor(true);
-	};
 
 	const postOrderHistory = () => {
 		fetch("http://localhost:8000/orders/add-order", {
@@ -68,10 +63,10 @@ export default function PaypalButton({ description, value, reference_id, albumId
 	}, []);
 
 	useEffect(() => {
-		if (success.status === "COMPLETED") {
+		if (paidFor) {
 			postOrderHistory();
 		}
-	}, [success]);
+	}, [paidFor]);
 
 	return (
 		<PayPalButtons
@@ -103,8 +98,8 @@ export default function PaypalButton({ description, value, reference_id, albumId
 			onApprove={async (_data, actions) => {
 				const order = await actions.order.capture();
 				console.log("order", order);
-				setPaidFor(true);
 				setSuccess(order);
+				setPaidFor(true);
 			}}
 			onCancel={() => {
 				setCancel(true);

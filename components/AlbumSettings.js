@@ -39,7 +39,6 @@ export default function AlbumSettings({
 	const [streamLinks, setStreamLinks] = useState(stream) || [];
 	const [isUpdated, setIsUpdated] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
-	console.log(releaseDateAlbum);
 
 	const openModal = () => {
 		setIsOpen(!isOpen);
@@ -149,7 +148,6 @@ export default function AlbumSettings({
 					enqueueSnackbar("Album mis à jour", {
 						variant: "success",
 					});
-					console.log(res);
 				}
 			})
 			.finally(() => {
