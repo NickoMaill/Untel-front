@@ -45,7 +45,7 @@ export default function CGU() {
 					intervenants dans le cadre de sa réalisation et de son suivi:
 				</p>
 				<p>
-					<strong>Propriétaire</strong> : Louis Bourgeois – 2 la rue on verra 750001 Paris
+					<strong>Propriétaire</strong> : Louis Bourgeois – 59 rue Caulaincourt 75018 Paris
 					<br />
 					<strong>Responsable publication</strong> : Louis Bourgeois – untel-official@outlook.fr
 					<br />

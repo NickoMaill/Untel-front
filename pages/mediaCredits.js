@@ -1,5 +1,6 @@
+import Image from "next/image";
 import React from "react";
-import styles from "../styles/Docu.module.scss"
+import styles from "../styles/Docu.module.scss";
 
 export default function mediaCredits() {
 	return (
@@ -8,16 +9,16 @@ export default function mediaCredits() {
 				<h1 className={styles.title1}>Crédits photo et vidéo</h1>
 			</div>
 			<div>
-				<div><h2 className={styles.title2}>Photos</h2></div>
 				<div>
-					<span>
-						<ul className={styles.groupList}>
-							<li className={styles.list}>
-								<a href="https://elodieroyphotographe-69.webself.net/">Elodie Roy</a>
+					<span>  
+						<ul className={styles.mediaList}>
+							<li className={styles.photoList}>
+								<a className={styles.mediaLogo} target="_blank" rel="noreferrer" href="https://elodieroyphotographe-69.webself.net/">
+									<Image src="/pictures/royLogo.png" quality={100} width={171} height={50} />   								</a>
 							</li>
-							<li className={styles.list}>
-								<a href="https://www.instagram.com/atiadaily/" target="_blank" rel="noreferrer">
-									Atia Cakil
+							<li className={styles.photoList}>
+								<a className={styles.mediaLogo} href="https://www.instagram.com/atiadaily/" target="_blank" rel="noreferrer">
+								<Image src="/pictures/atiaLogo.png" width={154} height={113} />
 								</a>
 							</li>
 						</ul>

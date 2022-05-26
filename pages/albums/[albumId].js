@@ -63,7 +63,7 @@ export default function AlbumDetails({ album }) {
 			<section>
 				<div className={styles.title}>
 					<div style={{ margin: "2rem 0rem 4rem 0rem" }}>
-						<h2>{`${album.title} (${album.year})`}</h2>
+						<h2>{`${album.title} (${album.release_date.slice(0, 4)})`}</h2>
 					</div>
 					<div className={styles.albumInfo}>
 						<div style={{ display: "flex", flexDirection: "column" }}>

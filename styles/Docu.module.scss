@@ -2,40 +2,114 @@
 .title2,
 .title2cgu,
 .title3 {
-    font-family: "Roboto regular"
-};
+    font-family: "Roboto regular";
+}
 
-.title2{
+.title2 {
     margin-block: 1rem;
 }
 
-.title2cgu{
+.title2cgu {
     margin-top: 2rem;
     margin-bottom: 1rem;
     border-bottom: solid 1px #0000005a;
     padding-bottom: 1.5rem;
     line-height: 2rem;
-    
 }
 
-.title1{
+.title1 {
     margin-block: 2rem;
     border-bottom: solid 1px #0000005a;
     padding-bottom: 1.5rem;
     line-height: 3rem;
 }
 
-.title3{
+.title3 {
     margin-block: 0.5rem;
     line-height: 1.5rem;
 }
 
-.groupList{
+.groupList {
     margin-left: 2rem;
     margin-block: 0.5rem;
 }
 
-.list{
-    list-style:circle;
+.mediaList {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.photoList {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #333;
+    font-family: "Cinzel", serif;
+    font-size: 20px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 0;
+    transition: 1s;
+    padding: 0.5rem;
+    &::before,
+    &::after {
+        position: absolute;
+        background: #fff;
+        z-index: -1;
+        transition: 1s;
+        content: "";
+    }
+    &::before {
+        height: 150px;
+        width: 130px;
+    }
+    &::after {
+        width: 150px;
+        height: 130px;
+    }
+    &:hover::before {
+        width: 0px;
+        background: #fff;
+    }
+    &:hover::after {
+        height: 0px;
+        background: #fff;
+    }
+    &:hover {
+        background: #fff;
+    }
+}
+
+.mediaLogo {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.list {
+    list-style: circle;
     list-style-type: circle;
+}
+
+.contactSpan{
+    cursor: pointer;
+    text-decoration: underline;
+    line-height: 2rem;
+    &:hover{
+        color: blue;
+    }
+
+}
+
+.titleContainer{
+    display: flex;
+    align-items: center;
 }

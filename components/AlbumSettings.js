@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSnackbar } from "notistack";
+import Image from "next/image";
 import Modal from "../components/Modal";
 import styles from "../styles/AlbumSettings.module.scss";
 
@@ -20,7 +21,6 @@ export default function AlbumSettings({
 	qobuz,
 	stream,
 }) {
-	console.log(releaseDate);
 	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 	const [titleAlbum, setTitleAlbum] = useState(title);
 	const [subtitleAlbum, setSubtitleAlbum] = useState(subtitle);
@@ -39,6 +39,7 @@ export default function AlbumSettings({
 	const [streamLinks, setStreamLinks] = useState(stream) || [];
 	const [isUpdated, setIsUpdated] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
+	console.log(releaseDateAlbum);
 
 	const openModal = () => {
 		setIsOpen(!isOpen);
@@ -244,13 +245,13 @@ export default function AlbumSettings({
 				</div>
 				<div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
 					<div className={styles.formDetails}>
-						<label htmlFor="releaseDate">Année</label>
+						<label htmlFor="releaseDate">Date de sortie</label>
 						<input
 							className={styles.input}
 							placeholder="année de sortie"
-							defaultValue={formatDate(releaseDateAlbum)}
+							defaultValue={releaseDateAlbum}
 							name="releaseDate"
-							type="text"
+							type="date"
 							onChange={(e) => setReleaseDateAlbum(e.target.value)}
 						/>
 					</div>
@@ -431,8 +432,10 @@ export default function AlbumSettings({
 								flexDirection: "column",
 							}}
 						>
-							<img
+							<Image
 								style={{ width: 200 }}
+								width={200}
+								height={200}
 								src={`http://localhost:8000/${albumCover}`}
 								alt={`photo de couveture de ${title}`}
 							/>

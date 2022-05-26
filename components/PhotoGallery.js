@@ -48,7 +48,7 @@ export default function PhotoGallery() {
 						onClick={() =>
 							openCloseModal(ref.current.childNodes[0].childNodes[0].childNodes[0].src, 256, 384)
 						}
-						src="/images/untel-band3.webp"
+						src="/pictures/untel-band3.webp"
 						alt="Untel"
 						placeholder="blur"
 						blurDataURL="https://search.brave.com/images?q=blur+white+%26+black+&source=web#6"
@@ -63,7 +63,7 @@ export default function PhotoGallery() {
 						onClick={() =>
 							openCloseModal(ref.current.childNodes[1].childNodes[0].childNodes[0].src, 576, 384)
 						}
-						src="/images/untel-band4.webp"
+						src="/pictures/untel-band4.webp"
 						alt="Untel"
 						placeholder="blur"
 						blurDataURL="../public/images/blur.webp"
@@ -78,7 +78,7 @@ export default function PhotoGallery() {
 						onClick={() =>
 							openCloseModal(ref.current.childNodes[2].childNodes[0].childNodes[0].src, 255, 384)
 						}
-						src="/images/untel-favo.webp"
+						src="/pictures/untel-favo.webp"
 						alt="Untel"
 						placeholder="blur"
 						blurDataURL="https://search.brave.com/images?q=blur+white+%26+black+&source=web#6"
@@ -93,7 +93,7 @@ export default function PhotoGallery() {
 						onClick={() =>
 							openCloseModal(ref.current.childNodes[3].childNodes[0].childNodes[0].src, 288, 384)
 						}
-						src="/images/untel-front1.webp"
+						src="/pictures/untel-front1.webp"
 						alt="Untel"
 						placeholder="blur"
 						blurDataURL="https://search.brave.com/images?q=blur+white+%26+black+&source=web#6"
@@ -108,7 +108,7 @@ export default function PhotoGallery() {
 						onClick={() =>
 							openCloseModal(ref.current.childNodes[4].childNodes[0].childNodes[0].src, 384, 384)
 						}
-						src="/images/untel-front2.webp"
+						src="/pictures/untel-front2.webp"
 						alt="Untel"
 						placeholder="blur"
 						blurDataURL="https://search.brave.com/images?q=blur+white+%26+black+&source=web#6"
@@ -123,7 +123,7 @@ export default function PhotoGallery() {
 						onClick={() =>
 							openCloseModal(ref.current.childNodes[5].childNodes[0].childNodes[0].src, 512, 384)
 						}
-						src="/images/untel.webp"
+						src="/pictures/untel.webp"
 						alt="Untel"
 						placeholder="blur"
 						blurDataURL="https://search.brave.com/images?q=blur+white+%26+black+&source=web#6"

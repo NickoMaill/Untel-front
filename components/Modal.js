@@ -1,6 +1,7 @@
 import styles from "../styles/Modal.module.scss";
 import "animate.css";
 import { useState } from "react";
+import Cross from "../public/svg/cross.svg"
 
 export default function Modal({ children, open, onClick, onClick2 }) {
 	const [animation, setAnimation] = useState("");
@@ -19,8 +20,8 @@ export default function Modal({ children, open, onClick, onClick2 }) {
 				<div className={styles.modal}>
 					<div className={styles.imgContainer}>
 						{children}
-						<button type="button" onClick={onClick}>
-							close
+						<button className={styles.crossButton} type="button" onClick={onClick}>
+							<Cross/>
 						</button>
 					</div>
 				</div>

@@ -133,6 +133,76 @@
     display: none;
 }
 
+.mainOrder{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titleOrder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.orderSuccess{
+    margin-top: 2rem;
+    font-family: "Roboto regular";
+}
+
+.orderMessage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.spanOrder{
+    margin-bottom: 3rem;
+    font-size: 1.3rem;
+    text-align: center;
+    line-height: 2rem
+}
+
+.borderDiv{
+    z-index: 1;
+    border-top: #383e42 solid 1px;
+    width: 120%;
+    display: flex;
+    justify-content: center;
+}
+
+.coloredDiv{
+    z-index: 2;
+    margin-top: -1.5rem;
+    background-color: #fff;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.purchaseButton{
+    z-index: 3;
+    cursor: pointer;
+    width: 80%;
+    min-width: 20%;
+    padding: 0.7rem;
+    background-color: #ffffff;
+    border: solid #383e42 2px;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: 300ms;
+    &:hover{
+        background-color: #383e42;
+        color: #fff;
+    }
+    &:active{
+        transform: scale(0.9);
+    }
+}
+
 @media screen and (max-width: 1024px) {
     .corpusContainer {
         flex-direction: column;
