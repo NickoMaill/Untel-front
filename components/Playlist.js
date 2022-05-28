@@ -12,6 +12,7 @@ export default function Playlist({ src, className }) {
 				allowFullScreen={false}
 				allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
 				title="spotify"
+				name="spotify"
 				loading="lazy"
 				
 			></iframe>

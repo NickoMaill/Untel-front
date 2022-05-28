@@ -10,7 +10,7 @@ export default function InstaGrid({ posts }) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [currentPost, setCurrentPost] = useState("");
 	const [endOfPost, setEndOfPost] = useState(false);
-
+	const [sizeDiv, setSizeDiv] = useState(0)
 	const openCloseModal = (post) => {
 		setIsOpen(!isOpen);
 		setCurrentPost(post);
@@ -21,7 +21,7 @@ export default function InstaGrid({ posts }) {
 			setVisible((pervState) => pervState + 0);
 			setEndOfPost(true);
 		} else {
-			setVisible((pervState) => pervState + 5);
+				setVisible((pervState) => pervState + 5);
 		}
 	};
 
@@ -39,7 +39,7 @@ export default function InstaGrid({ posts }) {
 					<Image height={114} width={320} src="/svg/instaString.svg" alt="" />
 				</div>
 			</div>
-			<div className={styles.wrapper}>
+			<div className={styles.wrapper} >
 				{posts.edges.slice(0, visible).map((post, i) => (
 					<div className={`${styles.postContainer} animate__animated animate__backInUp`} key={i}>
 						<div className={styles.photoContainer}>

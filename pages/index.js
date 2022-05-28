@@ -17,11 +17,7 @@ export const getStaticProps = async () => {
 		credentials: "include",
 	})
 		.then((res) => res.json())
-		.then((res) => {
-			if (typeof res === "string") {
-				return JSON.parse(res);
-			}
-		});
+		.catch((err) => console.error(err));
 
 	const instaPost = await fetch("http://localhost:8000/instagram", {
 		method: "GET",
@@ -33,16 +29,12 @@ export const getStaticProps = async () => {
 		credentials: "include",
 	})
 		.then((res) => res.json())
-		.then((res) => {
-			if (typeof res === "string") {
-				return JSON.parse(res);
-			}
-		});
+		.catch((err) => console.error(err));
 
 	return {
 		props: {
-			data: data,
-			instaPost: instaPost,
+			data,
+			instaPost,
 		},
 	};
 };

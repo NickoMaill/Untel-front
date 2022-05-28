@@ -10,6 +10,7 @@ export default function Youtube({ src, ref }) {
 				ref={ref}
 				src={src}
 				title="youtube"
+				name="youtube"
 				frameBorder="0"
 				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 				allowFullScreen

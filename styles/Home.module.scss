@@ -1,13 +1,19 @@
+/********* MIXIN ***********/
+
+@mixin displayCenter($justify) {
+  display: flex;
+  justify-content: $justify;
+  align-items: center;
+}
+
 /******* Video Title **********/
 
 .coloredDiv {
+  @include displayCenter(center);
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
   height: 28.1rem;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 6rem;
   color: #fff;
   text-align: center;
@@ -22,15 +28,12 @@
 
 /******* Album section **********/
 
-.albumContainer{
-  display: flex;
-  justify-content: center;
+.albumContainer {
+  @include displayCenter(center);
 }
 
 .cardContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include displayCenter(center);
   flex-direction: column;
   margin-block: 4rem;
   margin-inline: 5rem;
@@ -39,33 +42,30 @@
 .imgAlbum {
   transition: 400ms;
   &:hover {
-      -ms-transform: scale(1.1);
-      -webkit-transform: scale(1.1);
-      transform: scale(1.1);
-      z-index: 3;
-  }
-}   
-
-.notReleasedAlbumPic{
-  transition: 400ms;
-  filter:brightness(.05);
-  filter:contrast(.05);
-  opacity:70%;
-  &:hover {
-      -ms-transform: scale(1.1);
-      -webkit-transform: scale(1.1);
-      transform: scale(1.1);
-      z-index: 3;
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    z-index: 3;
   }
 }
 
+.notReleasedAlbumPic {
+  transition: 400ms;
+  filter: brightness(0.05);
+  filter: contrast(0.05);
+  opacity: 70%;
+  &:hover {
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    z-index: 3;
+  }
+}
 
 .titleAlbumContainer {
+  @include displayCenter(center);
   z-index: 2;
-  display: flex;
-  align-items: center;
   flex-direction: column;
-  justify-content: center;
   margin-top: -1rem;
   border: solid;
   border-width: 2px;
@@ -93,26 +93,24 @@
   border: solid #a5a5a5 1px;
   transition: 300ms;
   &:hover {
-      background-color: #383e42;
-      color: #fff;
-      transform: scale(1.1);
-      border-color: #383e42;
+    background-color: var(--anthracite);
+    color: #fff;
+    transform: scale(1.1);
+    border-color: var(--anthracite);
   }
   &:active {
-      transform: scale(0.95);
+    transform: scale(0.95);
   }
 }
 
 @keyframes spinner {
   to {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 .albumLoader {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  @include displayCenter(flex-start);
   z-index: 3;
   margin-top: -1rem;
   padding: 0.7rem;
@@ -137,17 +135,16 @@
   animation: spinner 0.8s linear infinite;
 }
 
-
 /******* Youtube section **********/
 
 .youtubeContainer {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  @include displayCenter(space-evenly);
   background-image: url("/pictures/untel-band2.webp");
-  background-position: center;
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  background-size: cover;
   width: 100%;
-  height: 45rem;
+  height: 60rem;
   object-fit: cover;
 }
 
@@ -167,93 +164,91 @@
   max-width: 70%;
 }
 
-.postInfoContainer{
+.postInfoContainer {
   z-index: 1;
   position: relative;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   margin-top: -15rem;
   padding: 0.5rem;
-  justify-content: center;
   width: 15rem;
   height: 15rem;
   color: #f1f1f1;
   opacity: 0%;
   background-color: rgba(0, 0, 0, 0.693);
-  transition: all .3s ease-in-out;
-  &:hover{
-      opacity:100% ;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    opacity: 100%;
   }
 }
 
-.postContainer{
+.postContainer {
   width: 15rem;
   height: 15rem;
 }
-.postImage{
-  
+.postImage {
   width: 15rem;
   height: 15rem;
 }
 
 .wrapper {
-  display: flex;
+  @include displayCenter(center);
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  transition: all 0.6s ease-out;
 }
 
 .videoContainer {
   display: flex;
+  position: absolute;
   margin-top: 0.2rem;
   margin-left: 13.2rem;
-  position: absolute;
 }
 
-.photoContainer{
+.photoContainer {
+  display: flex;
   z-index: 1;
   position: relative;
-  display: flex;
 }
 
-.statsPosts{
+.statsPosts {
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 3rem;
 }
 
-.statPost{
+.statPost {
   display: flex;
   align-items: center;
 }
 
-.postDetails{
+.postDetails {
   text-align: center;
 }
 
-.buttonContainer{
+.buttonContainer {
   margin: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.morePostButton{
+.morePostButton {
   padding: 1rem;
   margin-bottom: 1rem;
   font-size: 1rem;
-  width:15rem;
+  width: 15rem;
   background-color: #fff;
-  border: solid 1px #383e42;
+  border: solid 1px var(--anthracite);
   border-radius: 0.3rem;
   transition: 200ms;
-  &:hover{
-      color: #f1f1f1;
-      background-color: #383e42;
+  &:hover {
+    color: #f1f1f1;
+    background-color: var(--anthracite);
   }
 }
 
-.instaLogoContainer{
+.instaLogoContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -261,15 +256,15 @@
   margin-block: 1rem;
 }
 
-.borderDesign{
+.borderDesign {
   z-index: -1;
-  border-top: solid 1px #383e42;
-  width:100%;
+  border-top: solid 1px var(--anthracite);
+  width: 100%;
   position: relative;
   top: 3.4rem;
 }
 
-.instaLogo{
+.instaLogo {
   background-color: #fff;
   padding-inline: 6rem;
 }
@@ -280,11 +275,10 @@
   background-image: url("/pictures/untel-band-5.webp");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
-  height: 40rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-position: bottom left;
+  @include displayCenter(center);
+  height: 50rem;
+  // overflow-x: visible;
 }
 
 .spinner:before {
@@ -308,17 +302,34 @@
   background: radial-gradient(#aad3df, #fcd6a3);
 }
 
-
 .gigContainer {
-  width: 30rem;
+  width: 40rem;
+  height: 30rem;
   background-color: #fff;
+  overflow: overlay;
+  // overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 15px; /* width of the entire scrollbar */
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent; /* color of the tracking area */
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #c6c6c6; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    border: 4px solid transparent;
+    background-clip: padding-box;
+    &:hover {
+      background-color: var(--anthracite);
+    }
+  }
 }
 
 .titleGigContainer {
+  display: flex;
   border-bottom: solid 1px;
   margin-bottom: 0.5rem;
   padding: 0.5rem;
-  display: flex;
 }
 
 .gigTitle {
@@ -344,7 +355,7 @@
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
-  
+
   &:before {
     width: 50%;
     height: 50%;
@@ -355,7 +366,7 @@
     left: 0;
     content: "";
   }
-  
+
   &:after {
     background: #0dc5c1;
     width: 75%;
@@ -376,7 +387,7 @@
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
-  
+
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
@@ -388,7 +399,7 @@
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
-  
+
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
@@ -402,7 +413,7 @@
 .gigCardContainer2 {
   padding: 0.5rem;
   border-bottom: solid 1px;
-  background-color: rgb(125, 125, 125);
+  background-color: rgba(125, 125, 125, 0.399);
 }
 .infoContainer {
   display: flex;
@@ -411,6 +422,8 @@
 
 .buttonContainer {
   display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
   margin-block: 1rem;
 }
 
@@ -423,7 +436,8 @@
   width: 10rem;
   margin-right: 1rem;
   &:hover {
-    background-color: #303030;
+    background-color: var(--anthracite);
+    border-color: var(--anthracite);
     color: #fff;
   }
 }
@@ -431,12 +445,10 @@
 /******* photo gallery section **********/
 
 .arrowContainer {
+  @include displayCenter(space-between);
   position: absolute;
   background: none;
-  display: flex;
-  justify-content: space-between;
   width: 100%;
-  align-items: center;
 }
 
 .arrowGallery {
@@ -449,17 +461,16 @@
   overflow-x: scroll;
   scroll-behavior: smooth;
   &::-webkit-scrollbar {
-      display: none;
+    display: none;
   }
 }
 
 .picture {
   width: max-content;
-  // object-fit: contain;
   margin: 0.1rem;
   transition: 100ms;
   &:hover {
-      filter: sepia(20);
+    filter: sepia(20);
   }
 }
 
@@ -474,8 +485,8 @@
   background-color: rgba(0, 0, 0, 0.7);
   padding: 0.7rem;
   transition: 200ms;
-  &:hover{
-      transform: scale(1.2);
+  &:hover {
+    transform: scale(1.2);
   }
 }
 
@@ -489,7 +500,7 @@
     flex-direction: column;
     align-items: center;
   }
-  .button {
+  .buttonGig {
     margin-bottom: 0.5rem;
     margin-right: 0;
   }
@@ -511,14 +522,14 @@
 }
 
 @media screen and (max-width: 768px) {
-  .borderDesign{
-      display: none;
+  .borderDesign {
+    display: none;
   }
 }
 
 @media screen and (max-width: 521px) {
-  .instaLogo{
-      padding: 0;
-      width: 15rem;
+  .instaLogo {
+    padding: 0;
+    width: 15rem;
   }
 }

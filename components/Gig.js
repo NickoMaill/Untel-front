@@ -16,13 +16,13 @@ export default function Gig({ data }) {
 	const [isVisible, setIsVisible] = useState(false);
 	const [currentPlace, setCurrentPlace] = useState("");
 	const [currentAddress, setCurrentAddress] = useState("");
-	const [isLoaded, setIsLoaded] = useState(false)
+	const [isLoaded, setIsLoaded] = useState(false);
 
 	const openCloseModal = () => {
 		setIsVisible(!isVisible);
 
 		if (isVisible === false) {
-			setIsLoaded(false)
+			setIsLoaded(false);
 		}
 	};
 
@@ -30,13 +30,13 @@ export default function Gig({ data }) {
 		openCloseModal();
 		fetch(
 			`https://api.geoapify.com/v1/geocode/search?text=${data.gigs[index].address}, ${data.gigs[index].city}, ${data.gigs[index].country}&apiKey=ac8c21ac706f453b9ee59cdf882cca91`
-			)
+		)
 			.then((res) => res.json())
 			.then((res) => {
 				setGeometry(res.features[0].geometry.coordinates.reverse());
 				setCurrentPlace(data.gigs[index].place);
 				setCurrentAddress(data.gigs[index].address + ", " + data.gigs[index].city);
-				setIsLoaded(true)
+				setIsLoaded(true);
 			})
 			.catch((error) => console.error("error", error));
 	};
@@ -45,7 +45,7 @@ export default function Gig({ data }) {
 		<div className={styles.gigContainer}>
 			<div className={styles.titleGigContainer}>
 				<h4 className={styles.gigTitle}>Prochain Concerts /</h4>
-				<h4 style={{ marginLeft: 5, color: "grey" }} className={styles.gigTitle}>
+				<h4 style={{ marginLeft: 5, color: "rgba(125, 125, 125)" }} className={styles.gigTitle}>
 					Concerts Passé
 				</h4>
 			</div>
@@ -56,17 +56,19 @@ export default function Gig({ data }) {
 					<ul>
 						<li>
 							{data.gigs.map((gigData, i) => {
-								return (
-									<GigCard
-										key={i}
-										title={gigData.place}
-										date={gigData.date}
-										city={gigData.city}
-										country={gigData.country}
-										event={gigData.event_link}
-										onClick={() => getGeometry(i)}
-									/>
-								);
+								if (i < 5) {
+									return (
+										<GigCard
+											key={i}
+											title={gigData.place}
+											date={gigData.date}
+											city={gigData.city}
+											country={gigData.country}
+											event={gigData.event_link}
+											onClick={() => getGeometry(i)}
+										/>
+									);
+								}
 							})}
 						</li>
 					</ul>

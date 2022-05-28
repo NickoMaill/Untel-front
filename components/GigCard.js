@@ -7,11 +7,7 @@ export default function GigCard({ title, date, city, country, event, onClick }) 
 	const testDate = new Date(date);
 
 	return (
-		<div
-			className={
-				Date.parse(testDate) < Date.parse(currentDate) ? styles.gigCardContainer : styles.gigCardContainer2
-			}
-		>
+		<div className={currentDate < testDate ? styles.gigCardContainer : styles.gigCardContainer2}>
 			<h4 style={{ fontSize: 15, marginBottom: 10 }}>{title}</h4>
 			<div className={styles.infoContainer}>
 				<span>{convertDate(date)}</span>
@@ -20,10 +16,9 @@ export default function GigCard({ title, date, city, country, event, onClick }) 
 				</span>
 			</div>
 			<div className={styles.buttonContainer}>
-				<a target="_blank" rel="noreferrer" href={event}>
-					<button className={styles.buttonGig}>accéder a l&apos;évènement</button>
-				</a>
-
+				<button onClick={() => window.open(event, "_blank")} className={styles.buttonGig}>
+					accéder a l&apos;évènement
+				</button>
 				<button className={styles.buttonGig} onClick={onClick}>
 					afficher sur la carte
 				</button>

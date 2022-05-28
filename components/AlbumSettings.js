@@ -21,7 +21,7 @@ export default function AlbumSettings({
 	qobuz,
 	stream,
 }) {
-	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+	const { enqueueSnackbar } = useSnackbar();
 	const [titleAlbum, setTitleAlbum] = useState(title);
 	const [subtitleAlbum, setSubtitleAlbum] = useState(subtitle);
 	const [releaseDateAlbum, setReleaseDateAlbum] = useState(releaseDate);
@@ -37,7 +37,6 @@ export default function AlbumSettings({
 	const [shopLink, setShopLink] = useState(qobuz);
 	const [currentStream, setCurrentStream] = useState({});
 	const [streamLinks, setStreamLinks] = useState(stream) || [];
-	const [isUpdated, setIsUpdated] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 
 	const openModal = () => {
@@ -142,16 +141,13 @@ export default function AlbumSettings({
 					enqueueSnackbar("une erreur s'est produite...", {
 						variant: "error",
 					});
-					setIsUpdated(false);
+
 					return;
 				} else {
 					enqueueSnackbar("Album mis à jour", {
 						variant: "success",
 					});
 				}
-			})
-			.finally(() => {
-				setIsUpdated(false);
 			})
 			.catch((err) => console.error(err));
 	};
@@ -197,14 +193,13 @@ export default function AlbumSettings({
 					enqueueSnackbar("une erreur s'est produite...", {
 						variant: "error",
 					});
-					setIsUpdated(false);
 				} else {
 					enqueueSnackbar("album correctement supprimé", {
 						variant: "warning",
 					});
 				}
 			})
-			.finally(() => setIsUpdated(false))
+
 			.catch((err) => {
 				console.error(err);
 			});
@@ -513,7 +508,11 @@ export default function AlbumSettings({
 					) : (
 						<></>
 					)}
-					<input className={styles.button} value={requestType === "add" ? "Ajouter l'album" : "Modifier l'album"} type="submit" />
+					<input
+						className={styles.button}
+						value={requestType === "add" ? "Ajouter l'album" : "Modifier l'album"}
+						type="submit"
+					/>
 					<Modal open={isOpen} onClick={openModal}>
 						<div
 							style={{

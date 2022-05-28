@@ -1,13 +1,12 @@
 // LIBRARY IMPORT
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import { createRef, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 // CONTEXT IMPORT
 import AppContext from "../../context/state";
 
 // COMPONENTS IMPORT
-// import Playlist from "../../components/Playlist";
 import PaypalButton from "../../components/PaypalButton";
 
 // SVG IPORT
@@ -188,12 +187,6 @@ export async function getStaticProps({ params }) {
 		credentials: "include",
 	})
 		.then((res) => res.json())
-		.then((res) => {
-			if (typeof res === "string") {
-				return JSON.parse(res);
-			}
-
-		})
 		.catch((err) => console.error(err));
 	return {
 		props: {
@@ -213,11 +206,6 @@ export async function getStaticPaths() {
 		credentials: "include",
 	})
 		.then((res) => res.json())
-		.then((res) => {
-			if (typeof res === "string") {
-				return JSON.parse(res);
-			}
-		})
 		.catch((err) => console.error(err));
 	return {
 		paths: data.albums.map((album) => ({
