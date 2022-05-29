@@ -6,6 +6,12 @@
     margin-block: 0.3rem;
 }
 
+@mixin displayCenter($justify) {
+    display: flex;
+    justify-content: $justify;
+    align-items: center;
+}
+
 .wrongPassword {
     @include inputBase();
     border-color: rgb(243, 36, 36);
@@ -38,4 +44,35 @@
     &:active {
         transform: scale(0.95);
     }
+}
+
+.formSection {
+    @include displayCenter(center);
+}
+
+.formContainer {
+    border: solid #000000 2px;
+    flex-direction: column;
+    width: 70%;
+    padding: 1rem;
+    margin-block: 2rem;
+    border-radius: 1rem;
+}
+
+.searchForm {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.searchPart {
+    display: flex;
+    flex-direction: column;
+}
+
+.searchInput {
+    width: 15rem;
+    padding: 0.5rem;
+    margin-block: 0.5rem;
+    margin-right: 0.5rem;
 }

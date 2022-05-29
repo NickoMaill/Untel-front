@@ -1,3 +1,9 @@
+@mixin displayCenter($justify) {
+  display: flex;
+  justify-content: $justify;
+  align-items: center;
+}
+
 /****** Import Font ******/
 @font-face {
   font-family: "LemonMilk";
@@ -51,7 +57,8 @@ span,
 p,
 a,
 li,
-textarea {
+textarea,
+input {
   font-family: "Roboto light";
   list-style: none;
 }
@@ -103,4 +110,33 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+table{
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  align-items: center;
+  justify-content: center;
+  width: 99%;
+  margin-block: 2rem;
+}
+thead{
+  border: solid 1px #fff;
+  background-color: #c2c2c2;
+
+};
+
+
+td, th {
+
+  border: 1px solid #767676;
+  text-align: left;
+  padding: 8px;
+  text-align: center;
+}
+
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+  border-inline-color: #fff;
 }

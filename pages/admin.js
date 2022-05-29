@@ -92,8 +92,8 @@ export default function Admin() {
 							<Link passHref={true} href="/admin/addDeletePhotos">
 								<button className={styles.button}>Ajouter / supprimer vos photos </button>
 							</Link>
-							<Link passHref={true} href="/admin/updateVideos">
-								<button className={styles.button}>Modifier vidéo</button>
+							<Link passHref={true} href="/admin/orders">
+								<button className={styles.button}>Historique des Achats</button>
 							</Link>
 						</div>
 					</section>
