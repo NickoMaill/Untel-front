@@ -4,10 +4,10 @@ import Gig from "../components/Gig";
 import styles from "../styles/Home.module.scss";
 import PhotoGallery from "../components/PhotoGallery";
 import InstaGrid from "../components/InstaGrid";
-import dynamic from "next/dynamic";
+import Youtube from "../components/Youtube"
 
 export const getStaticProps = async () => {
-	const data = await fetch("http://localhost:8000/", {
+	const data = await fetch("http://localhost:8000/api/", {
 		method: "GET",
 		mode: "cors",
 		headers: {
@@ -19,7 +19,7 @@ export const getStaticProps = async () => {
 		.then((res) => res.json())
 		.catch((err) => console.error(err));
 
-	const instaPost = await fetch("http://localhost:8000/instagram", {
+	const instaPost = await fetch("http://localhost:8000/api/instagram", {
 		method: "GET",
 		mode: "cors",
 		headers: {
@@ -38,11 +38,6 @@ export const getStaticProps = async () => {
 		},
 	};
 };
-
-const Youtube = dynamic(() => import("../components/Youtube"), {
-	fallback: <span className={styles.spinner}></span>,
-	ssr: false,
-});
 
 export default function Homepage({ data, instaPost }) {
 	return (

@@ -1,17 +1,20 @@
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
 import { useState } from "react";
-import styles from "../styles/Contact.module.scss";
+import ContactForm from "../components/ContactForm";
+import Error from "../components/Error";
+import Success from "../components/Success";
 
 export default function Contact() {
-	const router = useRouter();
 	const { enqueueSnackbar } = useSnackbar();
 	const [contactEmail, setContactEmail] = useState("");
 	const [subject, setSubject] = useState("");
 	const [messageBody, setMessageBody] = useState("");
 	const [isEmailValid, setIsEmailValid] = useState(null);
 	const [messageSend, setMessageSend] = useState(false);
-	const [_isSending, setIsSending] = useState(false);
+	const [isSending, setIsSending] = useState(false);
+	const [error, setError] = useState(false);
+	console.log(isSending);
 
 	const mailRegex =
 		/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
@@ -21,12 +24,10 @@ export default function Contact() {
 		setIsSending(true);
 		fetch("http://localhost:8000/admin/send-email", {
 			method: "POST",
-			mode: "cors",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
 			},
-			credentials: "include",
 			body: JSON.stringify({
 				contactEmail,
 				subject,
@@ -35,17 +36,15 @@ export default function Contact() {
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				setIsSending(false);
+				console.log(res);
 				if (res.success) {
 					setMessageSend(true);
-					enqueueSnackbar("hello", {
+					enqueueSnackbar("message envoyé !", {
 						variant: "success",
 					});
-					setTimeout(() => {
-						router.push("/");
-					}, 2000);
 				} else {
-					enqueueSnackbar("hello", {
+					setError(true);
+					enqueueSnackbar("une erreur est survenue...", {
 						variant: "error",
 					});
 				}
@@ -70,7 +69,7 @@ export default function Contact() {
 		<main>
 			<section>
 				<div>
-					{!messageSend ? (
+					{!isSending ? (
 						<div
 							style={{
 								display: "flex",
@@ -85,62 +84,22 @@ export default function Contact() {
 								</h1>
 								<span>Un renseignement, une collab, un concert, ou une simple question ?</span>
 							</div>
-							<form onSubmit={(e) => sendMessage(e)} className={styles.form}>
-								<h2 style={{ textAlign: "center" }}>Formulaire de contact</h2>
-								<div style={{ marginBlock: 10, display: "flex", flexDirection: "column" }}>
-									<label htmlFor="email">Email</label>
-									<input
-										className={
-											isEmailValid !== null
-												? isEmailValid
-													? styles.goodEmail
-													: styles.wrongEmail
-												: styles.input
-										}
-										placeholder="exemple@mail.com"
-										onBlur={(e) => verifyEmail(e.target.value)}
-										name="email"
-										type="text"
-									/>
-									{isEmailValid === false && (
-										<span style={{ color: "rgb(243, 36, 36)" }}>mauvais format d&apos;email</span>
-									)}
-								</div>
-								<div style={{ marginBlock: 10, display: "flex", flexDirection: "column" }}>
-									<label htmlFor="subject">Sujet</label>
-									<input
-										className={styles.input}
-										placeholder="Votre sujet de discussion"
-										name="subject"
-										onChange={(e) => setSubject(e.target.value)}
-										type="text"
-									/>
-								</div>
-								<div style={{ marginBlock: 10, display: "flex", flexDirection: "column" }}>
-									<label htmlFor="messageBody">Votre message</label>
-									<textarea
-										className={styles.input}
-										placeholder="Votre message ici ..."
-										name="messageBody"
-										style={{ fontFamily: "Roboto light" }}
-										onChange={(e) => setMessageBody(e.target.value)}
-										cols="30"
-										rows="10"
-									/>
-								</div>
-								<div style={{ display: "flex", justifyContent: "center" }}>
-									<input
-										className={styles.button}
-										name="buttonSubmit"
-										type="submit"
-										value="envoyer votre message"
-									/>
-								</div>
-							</form>
+							<ContactForm
+								onSubmit={(e) => sendMessage(e)}
+								onBlur={(e) => verifyEmail(e.target.value)}
+								isEmailValid={isEmailValid}
+								onChangeSubject={(e) => setSubject(e.target.value)}
+								onChangeBody={(e) => setMessageBody(e.target.value)}
+							/>
 						</div>
 					) : (
-						<p>message envoyer</p>
-					)}
+						error ? (
+							<Error title="Une erreur est survenue...">Une erreur est survenue lors de l'envoi de votre email, veuillez recommencer. Si le problème persiste, contacter notre service de maintenance à <a style={{ fontStyle: "italic", color: "blue" }} target="blank" rel="noreferrer" href="mailto:untel.officiel@outlook.com"><strong>untel.officiel@outlook.com</strong></a></Error>
+						) : (
+							<Success title="Message envoyé !">Merci pour votre message vous une réponse très prochainement, surveillez vos spams (au cas où !) !</Success>
+						)
+					) 
+					}
 				</div>
 			</section>
 		</main>

@@ -1294,19 +1294,19 @@
     "@nodelib/fs.scandir" "2.1.5"
     "fastq" "^1.6.0"
 
-"@paypal/paypal-js@^5.0.5":
+"@paypal/paypal-js@^5.0.6":
   "integrity" "sha512-q40h/Rc2Dus5p7Ctgq8EQyyqWGVCdfaezi4D5eWSIl2+p0FHL1mBA4XnXYgv9FPYejrVUmnIATdbqBdEYwasYg=="
   "resolved" "https://registry.npmjs.org/@paypal/paypal-js/-/paypal-js-5.0.6.tgz"
   "version" "5.0.6"
   dependencies:
     "promise-polyfill" "^8.2.3"
 
-"@paypal/react-paypal-js@^7.7.0":
-  "integrity" "sha512-f+SXVtyO4Yr0IkV6UVAlHC3GlpRxTNyP9EUUFLhBjyW0z9paMJ47XsG6QcqSoj2Y+YEpdVTVhfvji2K0Gpy7lA=="
-  "resolved" "https://registry.npmjs.org/@paypal/react-paypal-js/-/react-paypal-js-7.7.0.tgz"
-  "version" "7.7.0"
+"@paypal/react-paypal-js@^7.8.1":
+  "integrity" "sha512-+cAa0QLJUO1TUlFk/xqJsfEm6Ywtg3kvMmxf2EJcmVJDkNHc6+7Qq2o6Gt1mTn16ZG4/2uWRROeKcoXFFdNrQA=="
+  "resolved" "https://registry.npmjs.org/@paypal/react-paypal-js/-/react-paypal-js-7.8.1.tgz"
+  "version" "7.8.1"
   dependencies:
-    "@paypal/paypal-js" "^5.0.5"
+    "@paypal/paypal-js" "^5.0.6"
     "@paypal/sdk-constants" "^1.0.116"
 
 "@paypal/sdk-constants@^1.0.116":
@@ -3601,7 +3601,7 @@
     "workbox-webpack-plugin" "^6.5.2"
     "workbox-window" "^6.5.2"
 
-"next@>=10.2.0", "next@>=9.0.0", "next@12.1.5":
+"next@>=10.2.0", "next@>=9.0.0":
   "integrity" "sha512-YGHDpyfgCfnT5GZObsKepmRnne7Kzp7nGrac07dikhutWQug7hHg85/+sPJ4ZW5Q2pDkb+n0FnmLkmd44htIJQ=="
   "resolved" "https://registry.npmjs.org/next/-/next-12.1.5.tgz"
   "version" "12.1.5"

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../../styles/Admin.module.scss";
 
 export default function Orders({ data }) {
@@ -13,6 +13,8 @@ export default function Orders({ data }) {
 	const [searchedFirstName, setSearchedFirstName] = useState("");
 	const [searchedLastName, setSearchedLastName] = useState("");
 	const [searchedDates, setSearchedDates] = useState({});
+	const [searchBuffer, setSearchBuffer] = useState([]);
+	console.log(searchBuffer);
 
 	const prevOrNextPage = (sign) => {
 		if (sign === "+" && orderNumber <= data.orders.length) {
@@ -33,7 +35,14 @@ export default function Orders({ data }) {
 		let url;
 
 		if (searchedArticle !== "") {
-			queryString += `name_item=${searchedArticle}&`;
+			let query;
+			searchBuffer.forEach((buffer, i) => {
+				if(buffer.includes(searchedArticle)){
+					console.log(true);
+					query = searchBuffer[i].replace(/'/g, "''")
+				}
+			})
+			queryString += `name_item=${query}&`;
 		}
 
 		if (searchedId !== "") {
@@ -75,7 +84,6 @@ export default function Orders({ data }) {
 				Accept: "application/json",
 				"Content-Type": "application/json",
 			},
-			credentials: "include",
 		})
 			.then((res) => res.json())
 			.then((res) => {
@@ -84,16 +92,25 @@ export default function Orders({ data }) {
 					setIsLoading(false);
 					console.log(res);
 				} else {
-
 				}
 			});
 	};
+
+	useEffect(() => {
+		let tempArray = []
+		dataOrder.orders.forEach((data) => {
+			if (tempArray.indexOf(data.name_item) < 0) {
+				tempArray.push(data.name_item);
+			}
+		})
+		setSearchBuffer(tempArray)
+	}, []);
 
 	return (
 		<main>
 			<div>
 				<h1>Historique des achats</h1>
-				<span>ici vous pouvez consulter l'historique de tout vos achats</span>
+				<span>ici vous pouvez consulter l&apos;historique de tout vos achats</span>
 			</div>
 			<section className={styles.formSection}>
 				<form onSubmit={(e) => searchRequest(true, e)} className={styles.formContainer}>
@@ -200,7 +217,7 @@ export default function Orders({ data }) {
 						<p></p>
 					</div>
 					<div>
-						<span>sur l'année</span>
+						<span>sur l&apos;année</span>
 						<p></p>
 					</div>
 				</div>
@@ -211,7 +228,7 @@ export default function Orders({ data }) {
 						<tr>
 							<th>N° de commande</th>
 							<th>article acheté</th>
-							<th>Date d'achat</th>
+							<th>Date d&apos;achat</th>
 							<th>Prénom</th>
 							<th>Nom de famille</th>
 							<th>Prix</th>

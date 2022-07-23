@@ -17,12 +17,9 @@ export default function Modal({ children, open, onClick, onClick2 }) {
 	return (
 		<>
 			{open ? (
-				<div className={styles.modal}>
+				<div onClick={onClick} className={styles.modal}>
 					<div className={styles.imgContainer}>
 						{children}
-						<button className={styles.crossButton} type="button" onClick={onClick}>
-							<Cross/>
-						</button>
 					</div>
 				</div>
 			) : (

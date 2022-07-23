@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
+
 require("dotenv").config({
-	path: "/.env",
+	path: "./.env.development.local",
 });
 
 require("@next/bundle-analyzer")({
 	enabled: process.env.ANALYZE === "true",
 });
+
 const nextPwa = require("next-pwa");
 
 const nextConfig = nextPwa({

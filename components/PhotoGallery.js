@@ -20,8 +20,8 @@ export default function PhotoGallery() {
 	const openCloseModal = (path, width, height) => {
 		setIsOpen(!isOpen);
 		setCurrentPhoto(path);
-		setCurrentWidth(width * 2);
-		setCurrentHeight(height * 2);
+		setCurrentWidth(width * 1.5);
+		setCurrentHeight(height * 1.5);
 	};
 
 	const scroll = (scrollOffset) => {

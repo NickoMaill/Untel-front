@@ -22,7 +22,11 @@
 
 .goodEmail {
     @include inputBase();
-    border-color: rgb(0, 96, 0);
+    border: solid 1px rgb(0, 96, 0);
+}
+.wrongEmail {
+    @include inputBase();
+    border: solid 2px rgb(250, 15, 15);
 }
 
 .button {

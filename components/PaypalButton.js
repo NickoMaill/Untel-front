@@ -13,7 +13,6 @@ export default function PaypalButton({ description, value, reference_id, albumId
 	const postOrderHistory = () => {
 		fetch("http://localhost:8000/orders/add-order", {
 			method: "POST",
-			mode: "cors",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
@@ -33,13 +32,9 @@ export default function PaypalButton({ description, value, reference_id, albumId
 			}),
 		})
 			.then((res) => res.json())
-			.then((res) => {
-				if (res.success) {
-					console.log("request accepted");
-					router.push(`/albums/orders/${success.id}`);
-				} else {
-					console.error("pas fontionné");
-				}
+			.then(() => {
+				console.log("request accepted");
+				router.push(`/albums/orders/${success.id}`);
 			})
 			.catch((err) => {
 				console.error(err);
@@ -95,7 +90,7 @@ export default function PaypalButton({ description, value, reference_id, albumId
 					],
 				});
 			}}
-			onApprove={async (_data, actions) => {
+			onApprove={async (data, actions) => {
 				const order = await actions.order.capture();
 				console.log("order", order);
 				setSuccess(order);

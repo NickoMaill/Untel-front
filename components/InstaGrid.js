@@ -10,18 +10,19 @@ export default function InstaGrid({ posts }) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [currentPost, setCurrentPost] = useState("");
 	const [endOfPost, setEndOfPost] = useState(false);
-	const [sizeDiv, setSizeDiv] = useState(0)
+	const [sizeDiv, setSizeDiv] = useState(0);
+
 	const openCloseModal = (post) => {
 		setIsOpen(!isOpen);
 		setCurrentPost(post);
 	};
 
 	const showMoreItem = () => {
-		if (visible === posts.edges.length) {
+		if (visible === posts.length) {
 			setVisible((pervState) => pervState + 0);
 			setEndOfPost(true);
 		} else {
-				setVisible((pervState) => pervState + 5);
+			setVisible((pervState) => pervState + 5);
 		}
 	};
 
@@ -39,8 +40,8 @@ export default function InstaGrid({ posts }) {
 					<Image height={114} width={320} src="/svg/instaString.svg" alt="" />
 				</div>
 			</div>
-			<div className={styles.wrapper} >
-				{posts.edges.slice(0, visible).map((post, i) => (
+			<div className={styles.wrapper}>
+				{posts.slice(0, visible).map((post, i) => (
 					<div className={`${styles.postContainer} animate__animated animate__backInUp`} key={i}>
 						<div className={styles.photoContainer}>
 							<div className={styles.videoContainer}>
@@ -51,7 +52,7 @@ export default function InstaGrid({ posts }) {
 										height={17.772}
 										className={styles.video}
 										src="/svg/video.svg"
-										alt=""
+										alt="icône vidéo"
 										placeholder="empty"
 									/>
 								) : (
@@ -116,7 +117,7 @@ export default function InstaGrid({ posts }) {
 					</div>
 				))}
 			</div>
-			<div className={styles.buttonContainer}>
+			<div className={styles.buttonContainerPosts}>
 				<button className={styles.morePostButton} onClick={() => showMoreItem()}>
 					Afficher plus de posts
 				</button>

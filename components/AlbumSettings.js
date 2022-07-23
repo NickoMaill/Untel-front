@@ -92,7 +92,6 @@ export default function AlbumSettings({
 
 	const updateOrAddAlbum = (event, type) => {
 		event.preventDefault();
-		setIsUpdated(true);
 		let url;
 		let method;
 		let sortedTrackList;
@@ -183,7 +182,6 @@ export default function AlbumSettings({
 	};
 
 	const deleteAlbum = () => {
-		setIsUpdated(true);
 		fetch(`http://localhost:8000/albums/delete/${id}`, {
 			method: "DELETE",
 		})

@@ -6,7 +6,7 @@ import Link from "next/link";
 import styles from "../../styles/AlbumSettings.module.scss"
 
 export const getStaticProps = async () => {
-	const data = await fetch("http://localhost:8000/", {
+	const data = await fetch("http://localhost:8000/albums/all", {
 		method: "GET",
 		mode: "cors",
 		headers: {
